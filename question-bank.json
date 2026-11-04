@@ -1,0 +1,2102 @@
+[
+  {
+    "id": 1,
+    "lesson": "01",
+    "level": {
+      "es": "Básico",
+      "en": "Basic"
+    },
+    "category": {
+      "es": "Fundamentos",
+      "en": "Fundamentals"
+    },
+    "question": {
+      "es": "¿Qué es un OODBMS?",
+      "en": "What is an OODBMS?"
+    },
+    "options": {
+      "es": [
+        "Un SGBD que combina las capacidades de una base de datos (persistencia, concurrencia, recuperación, consultas) con las de la orientación a objetos (identidad, encapsulamiento, herencia).",
+        "Una biblioteca que serializa objetos a archivos JSON sin soporte de transacciones ni de consultas.",
+        "Un SGBD relacional que solo permite almacenar procedimientos almacenados escritos en lenguajes orientados a objetos.",
+        "Un servidor de aplicaciones que traduce automáticamente clases Java a tablas relacionales en tiempo de compilación."
+      ],
+      "en": [
+        "A DBMS that combines database capabilities (persistence, concurrency, recovery, queries) with object-oriented ones (identity, encapsulation, inheritance).",
+        "A library that serializes objects to JSON files without transaction or query support.",
+        "A relational DBMS that only allows stored procedures written in object-oriented languages.",
+        "An application server that automatically translates Java classes into relational tables at compile time."
+      ]
+    },
+    "answer": "a",
+    "explanation": {
+      "es": "La fórmula clásica del Manifiesto de 1989 es OODBMS = sistema orientado a objetos + sistema de base de datos. No es simple serialización ni un ORM.",
+      "en": "The classic formula from the 1989 Manifesto is OODBMS = object-oriented system + database system. It is neither plain serialization nor an ORM."
+    }
+  },
+  {
+    "id": 2,
+    "lesson": "01",
+    "level": {
+      "es": "Básico",
+      "en": "Basic"
+    },
+    "category": {
+      "es": "Fundamentos",
+      "en": "Fundamentals"
+    },
+    "question": {
+      "es": "¿Qué describe mejor el «desajuste de impedancia» (impedance mismatch)?",
+      "en": "What best describes the 'impedance mismatch'?"
+    },
+    "options": {
+      "es": [
+        "La diferencia de velocidad entre la memoria RAM y el disco cuando se leen páginas de datos.",
+        "Las diferencias estructurales y semánticas entre el modelo de objetos de la aplicación y el modelo relacional de almacenamiento.",
+        "La incompatibilidad entre dos versiones distintas del mismo SGBD relacional durante una migración.",
+        "El retraso de red que se produce cuando el cliente y el servidor están en centros de datos diferentes."
+      ],
+      "en": [
+        "The speed difference between RAM and disk when data pages are read.",
+        "The structural and semantic differences between the application's object model and the relational storage model.",
+        "The incompatibility between two versions of the same relational DBMS during a migration.",
+        "The network latency that occurs when the client and server are in different data centers."
+      ]
+    },
+    "answer": "b",
+    "explanation": {
+      "es": "Abarca estructura (grafos vs tablas planas), identidad (referencia vs clave), encapsulamiento, herencia, navegación vs conjuntos, tipos y granularidad transaccional.",
+      "en": "It covers structure (graphs vs flat tables), identity (reference vs key), encapsulation, inheritance, navigation vs sets, types and transactional granularity."
+    }
+  },
+  {
+    "id": 3,
+    "lesson": "01",
+    "level": {
+      "es": "Básico",
+      "en": "Basic"
+    },
+    "category": {
+      "es": "Fundamentos",
+      "en": "Fundamentals"
+    },
+    "question": {
+      "es": "¿Quiénes firmaron «The Object-Oriented Database System Manifesto» (1989)?",
+      "en": "Who authored 'The Object-Oriented Database System Manifesto' (1989)?"
+    },
+    "options": {
+      "es": [
+        "Codd, Date, Darwen, Chamberlin, Boyce y Gray.",
+        "Stonebraker, Rowe, Lindsay, Gray, Carey y Brodie.",
+        "Atkinson, Bancilhon, DeWitt, Dittrich, Maier y Zdonik.",
+        "Cattell, Barry, Berler, Eastman, Jordan y Russell."
+      ],
+      "en": [
+        "Codd, Date, Darwen, Chamberlin, Boyce and Gray.",
+        "Stonebraker, Rowe, Lindsay, Gray, Carey and Brodie.",
+        "Atkinson, Bancilhon, DeWitt, Dittrich, Maier and Zdonik.",
+        "Cattell, Barry, Berler, Eastman, Jordan and Russell."
+      ]
+    },
+    "answer": "c",
+    "explanation": {
+      "es": "El grupo de Stonebraker firmó el manifiesto de tercera generación (1990), Date y Darwen escribieron The Third Manifesto, y Cattell y colegas son los editores de ODMG.",
+      "en": "Stonebraker's group wrote the Third-Generation manifesto (1990), Date and Darwen wrote The Third Manifesto, and Cattell et al. edited ODMG."
+    }
+  },
+  {
+    "id": 4,
+    "lesson": "02",
+    "level": {
+      "es": "Básico",
+      "en": "Basic"
+    },
+    "category": {
+      "es": "Modelo de objetos",
+      "en": "Object model"
+    },
+    "question": {
+      "es": "¿Qué conjunto de propiedades caracteriza a un OID?",
+      "en": "Which set of properties characterizes an OID?"
+    },
+    "options": {
+      "es": [
+        "Único, modificable por el usuario y derivado de la combinación de los atributos clave.",
+        "Reutilizable tras borrar el objeto y visible siempre como columna en las consultas.",
+        "Local a cada tabla y calculado como un hash del contenido del objeto.",
+        "Único, inmutable, generado por el sistema e independiente del valor de los atributos."
+      ],
+      "en": [
+        "Unique, user-modifiable and derived from the combination of key attributes.",
+        "Reusable after the object is deleted and always visible as a column in queries.",
+        "Local to each table and computed as a hash of the object's contents.",
+        "Unique, immutable, system-generated and independent of the attribute values."
+      ]
+    },
+    "answer": "d",
+    "explanation": {
+      "es": "El OID da identidad al objeto durante toda su vida, aunque cambien sus valores; por eso no puede derivarse del contenido.",
+      "en": "The OID gives the object identity for its whole lifetime even if its values change; hence it cannot be derived from its contents."
+    }
+  },
+  {
+    "id": 5,
+    "lesson": "02",
+    "level": {
+      "es": "Básico",
+      "en": "Basic"
+    },
+    "category": {
+      "es": "Modelo de objetos",
+      "en": "Object model"
+    },
+    "question": {
+      "es": "Dos objetos tienen exactamente los mismos valores en todos sus atributos, pero OID distintos. ¿Qué afirmación es correcta?",
+      "en": "Two objects have exactly the same values in all their attributes but different OIDs. Which statement is correct?"
+    },
+    "options": {
+      "es": [
+        "Son iguales en valor pero no son idénticos.",
+        "Son idénticos, porque la identidad depende de los valores.",
+        "El sistema los fusiona automáticamente en un único objeto.",
+        "Es imposible: un OODBMS prohíbe objetos con los mismos valores."
+      ],
+      "en": [
+        "They are equal in value but not identical.",
+        "They are identical, because identity depends on values.",
+        "The system automatically merges them into a single object.",
+        "It is impossible: an OODBMS forbids objects with the same values."
+      ]
+    },
+    "answer": "a",
+    "explanation": {
+      "es": "La identidad (mismo OID) es más fuerte que la igualdad: los gemelos idénticos son iguales, pero no son la misma persona.",
+      "en": "Identity (same OID) is stronger than equality: identical twins are equal but not the same person."
+    }
+  },
+  {
+    "id": 6,
+    "lesson": "03",
+    "level": {
+      "es": "Básico",
+      "en": "Basic"
+    },
+    "category": {
+      "es": "ODMG",
+      "en": "ODMG"
+    },
+    "question": {
+      "es": "En el modelo ODMG, ¿qué es un literal?",
+      "en": "In the ODMG model, what is a literal?"
+    },
+    "options": {
+      "es": [
+        "Un objeto con OID que no puede borrarse mientras existan referencias hacia él.",
+        "Un valor sin OID que se incrusta en el objeto que lo contiene, como un long, un string o un struct.",
+        "Una constante declarada dentro de una consulta OQL que el optimizador precalcula.",
+        "Una clase abstracta que no puede tener instancias ni extent."
+      ],
+      "en": [
+        "An object with an OID that cannot be deleted while references to it exist.",
+        "A value without an OID embedded in the containing object, such as a long, a string or a struct.",
+        "A constant declared inside an OQL query that the optimizer precomputes.",
+        "An abstract class that cannot have instances or an extent."
+      ]
+    },
+    "answer": "b",
+    "explanation": {
+      "es": "Los objetos tienen identidad y pueden compartirse; los literales son valores y se copian.",
+      "en": "Objects have identity and can be shared; literals are values and are copied."
+    }
+  },
+  {
+    "id": 7,
+    "lesson": "02",
+    "level": {
+      "es": "Básico",
+      "en": "Basic"
+    },
+    "category": {
+      "es": "Modelo de objetos",
+      "en": "Object model"
+    },
+    "question": {
+      "es": "¿Qué es el extent de una clase?",
+      "en": "What is the extent of a class?"
+    },
+    "options": {
+      "es": [
+        "El espacio en disco reservado para la clase, medido en páginas.",
+        "La lista de métodos heredados que la clase puede redefinir.",
+        "El conjunto de todas las instancias persistentes de la clase, incluidas las de sus subclases.",
+        "El número máximo de instancias que la clase puede tener."
+      ],
+      "en": [
+        "The disk space reserved for the class, measured in pages.",
+        "The list of inherited methods the class can override.",
+        "The set of all persistent instances of the class, including those of its subclasses.",
+        "The maximum number of instances the class can have."
+      ]
+    },
+    "answer": "c",
+    "explanation": {
+      "es": "Por la inclusión de extents, Empleados ⊆ Personas: una consulta sobre personas también devuelve empleados.",
+      "en": "Due to extent inclusion, Employees ⊆ Persons: a query over persons also returns employees."
+    }
+  },
+  {
+    "id": 8,
+    "lesson": "02",
+    "level": {
+      "es": "Básico",
+      "en": "Basic"
+    },
+    "category": {
+      "es": "Modelo de objetos",
+      "en": "Object model"
+    },
+    "question": {
+      "es": "¿Qué constructor de colección admite duplicados y no tiene orden?",
+      "en": "Which collection constructor allows duplicates and has no order?"
+    },
+    "options": {
+      "es": [
+        "set",
+        "list",
+        "dictionary",
+        "bag"
+      ],
+      "en": [
+        "set",
+        "list",
+        "dictionary",
+        "bag"
+      ]
+    },
+    "answer": "d",
+    "explanation": {
+      "es": "set: sin duplicados ni orden; list: con orden y duplicados; dictionary: claves únicas; bag: multiconjunto sin orden.",
+      "en": "set: no duplicates, no order; list: ordered with duplicates; dictionary: unique keys; bag: unordered multiset."
+    }
+  },
+  {
+    "id": 9,
+    "lesson": "03",
+    "level": {
+      "es": "Básico",
+      "en": "Basic"
+    },
+    "category": {
+      "es": "ODMG",
+      "en": "ODMG"
+    },
+    "question": {
+      "es": "¿Qué componente del estándar ODMG se usa para definir esquemas?",
+      "en": "Which ODMG component is used to define schemas?"
+    },
+    "options": {
+      "es": [
+        "ODL (Object Definition Language).",
+        "OQL (Object Query Language).",
+        "OIF (Object Interchange Format).",
+        "OML (Object Manipulation Language)."
+      ],
+      "en": [
+        "ODL (Object Definition Language).",
+        "OQL (Object Query Language).",
+        "OIF (Object Interchange Format).",
+        "OML (Object Manipulation Language)."
+      ]
+    },
+    "answer": "a",
+    "explanation": {
+      "es": "ODL define esquemas de forma independiente del lenguaje; OQL consulta; OIF intercambia objetos; la manipulación ocurre en los language bindings.",
+      "en": "ODL defines schemas in a language-independent way; OQL queries; OIF exchanges objects; manipulation happens in the language bindings."
+    }
+  },
+  {
+    "id": 10,
+    "lesson": "03",
+    "level": {
+      "es": "Básico",
+      "en": "Basic"
+    },
+    "category": {
+      "es": "ODMG",
+      "en": "ODMG"
+    },
+    "question": {
+      "es": "¿Qué ventaja ofrece declarar una relationship con inverse en ODL?",
+      "en": "What advantage does declaring a relationship with an inverse in ODL provide?"
+    },
+    "options": {
+      "es": [
+        "La relación se almacena en una tabla aparte para acelerar los joins.",
+        "El sistema mantiene automáticamente la integridad referencial en ambos lados de la relación.",
+        "Permite declarar relaciones ternarias y de orden superior.",
+        "Impide que los objetos relacionados se borren mientras exista la relación."
+      ],
+      "en": [
+        "The relationship is stored in a separate table to speed up joins.",
+        "The system automatically maintains referential integrity on both sides of the relationship.",
+        "It allows declaring ternary and higher-order relationships.",
+        "It prevents related objects from being deleted while the relationship exists."
+      ]
+    },
+    "answer": "b",
+    "explanation": {
+      "es": "Si haces profesor.imparte.insert_element(curso), el sistema actualiza curso.impartido_por. ODMG solo admite relaciones binarias.",
+      "en": "If you call professor.teaches.insert_element(course), the system updates course.taught_by. ODMG only supports binary relationships."
+    }
+  },
+  {
+    "id": 11,
+    "lesson": "02",
+    "level": {
+      "es": "Básico",
+      "en": "Basic"
+    },
+    "category": {
+      "es": "Modelo de objetos",
+      "en": "Object model"
+    },
+    "question": {
+      "es": "¿Qué es la ligadura tardía (late binding)?",
+      "en": "What is late binding?"
+    },
+    "options": {
+      "es": [
+        "Retrasar la escritura de los cambios en disco hasta que termine la transacción.",
+        "Cargar los atributos de un objeto solo cuando se accede a ellos por primera vez.",
+        "Elegir en tiempo de ejecución la implementación de un método según el tipo real del objeto.",
+        "Asociar una clase a su tabla al final del proceso de compilación."
+      ],
+      "en": [
+        "Delaying writing changes to disk until the transaction ends.",
+        "Loading an object's attributes only when they are first accessed.",
+        "Choosing a method's implementation at run time according to the object's actual type.",
+        "Binding a class to its table at the end of compilation."
+      ]
+    },
+    "answer": "c",
+    "explanation": {
+      "es": "Permite consultas polimórficas: select f.area() from figuras f ejecuta el area() de cada subclase.",
+      "en": "It enables polymorphic queries: select f.area() from figures f runs each subclass's area()."
+    }
+  },
+  {
+    "id": 12,
+    "lesson": "04",
+    "level": {
+      "es": "Básico",
+      "en": "Basic"
+    },
+    "category": {
+      "es": "OQL",
+      "en": "OQL"
+    },
+    "question": {
+      "es": "¿Qué tipo de colección devuelve una consulta OQL «select distinct ...» sin order by?",
+      "en": "What collection type does an OQL 'select distinct ...' query without order by return?"
+    },
+    "options": {
+      "es": [
+        "bag",
+        "list",
+        "array",
+        "set"
+      ],
+      "en": [
+        "bag",
+        "list",
+        "array",
+        "set"
+      ]
+    },
+    "answer": "d",
+    "explanation": {
+      "es": "select devuelve bag; select distinct, set; con order by, list.",
+      "en": "select returns a bag; select distinct, a set; with order by, a list."
+    }
+  },
+  {
+    "id": 13,
+    "lesson": "04",
+    "level": {
+      "es": "Básico",
+      "en": "Basic"
+    },
+    "category": {
+      "es": "OQL",
+      "en": "OQL"
+    },
+    "question": {
+      "es": "En OQL, ¿qué es una expresión de ruta como p.pertenece_a.nombre?",
+      "en": "In OQL, what is a path expression such as p.belongs_to.name?"
+    },
+    "options": {
+      "es": [
+        "Una navegación a través de referencias entre objetos, equivalente a un join implícito.",
+        "La ruta del archivo en disco donde se almacena el objeto p.",
+        "Una cadena que el optimizador convierte en una expresión regular.",
+        "Una llamada remota a un procedimiento almacenado del servidor."
+      ],
+      "en": [
+        "Navigation through references between objects, equivalent to an implicit join.",
+        "The disk file path where object p is stored.",
+        "A string that the optimizer converts into a regular expression.",
+        "A remote call to a server stored procedure."
+      ]
+    },
+    "answer": "a",
+    "explanation": {
+      "es": "Las rutas sustituyen los JOIN explícitos de SQL siempre que cada paso sea un único valor.",
+      "en": "Paths replace SQL's explicit JOINs as long as each step is single-valued."
+    }
+  },
+  {
+    "id": 14,
+    "lesson": "01",
+    "level": {
+      "es": "Básico",
+      "en": "Basic"
+    },
+    "category": {
+      "es": "Fundamentos",
+      "en": "Fundamentals"
+    },
+    "question": {
+      "es": "¿Cuál fue la última versión del estándar ODMG y qué ocurrió después?",
+      "en": "What was the last version of the ODMG standard and what happened afterwards?"
+    },
+    "options": {
+      "es": [
+        "ODMG 5.0 (2010); se integró por completo en el estándar SQL:2011.",
+        "ODMG 3.0 (2000); el grupo se disolvió en 2001 y su binding de Java dio origen a JDO.",
+        "ODMG 2.0 (1997); fue reemplazado directamente por JPA 1.0 ese mismo año.",
+        "ODMG 4.0 (2004); lo adoptó el W3C como estándar para bases de datos XML."
+      ],
+      "en": [
+        "ODMG 5.0 (2010); it was fully merged into the SQL:2011 standard.",
+        "ODMG 3.0 (2000); the group disbanded in 2001 and its Java binding gave rise to JDO.",
+        "ODMG 2.0 (1997); it was directly replaced by JPA 1.0 that same year.",
+        "ODMG 4.0 (2004); the W3C adopted it as the standard for XML databases."
+      ]
+    },
+    "answer": "b",
+    "explanation": {
+      "es": "JDO (JSR 12) heredó el binding de Java; JPA llegó en 2006 con ideas de JDO y de Hibernate.",
+      "en": "JDO (JSR 12) inherited the Java binding; JPA arrived in 2006 with ideas from JDO and Hibernate."
+    }
+  },
+  {
+    "id": 15,
+    "lesson": "05",
+    "level": {
+      "es": "Básico",
+      "en": "Basic"
+    },
+    "category": {
+      "es": "Persistencia",
+      "en": "Persistence"
+    },
+    "question": {
+      "es": "¿Qué significa persistencia por alcanzabilidad?",
+      "en": "What does persistence by reachability mean?"
+    },
+    "options": {
+      "es": [
+        "Solo persisten los objetos cuya clase hereda de una clase base persistente.",
+        "Los objetos persisten únicamente si el usuario llama a save() sobre cada uno.",
+        "Todo objeto alcanzable, directa o indirectamente, desde una raíz persistente se vuelve persistente.",
+        "Los objetos persisten mientras exista una conexión de red con el servidor."
+      ],
+      "en": [
+        "Only objects whose class inherits from a persistent base class are persisted.",
+        "Objects are persisted only if the user calls save() on each one.",
+        "Every object reachable, directly or indirectly, from a persistent root becomes persistent.",
+        "Objects persist while a network connection to the server exists."
+      ]
+    },
+    "answer": "c",
+    "explanation": {
+      "es": "Es uno de los tres principios de la persistencia ortogonal (Atkinson y Morrison): el programador no marca objeto por objeto.",
+      "en": "It is one of the three principles of orthogonal persistence (Atkinson and Morrison): the programmer does not mark objects one by one."
+    }
+  },
+  {
+    "id": 16,
+    "lesson": "05",
+    "level": {
+      "es": "Básico",
+      "en": "Basic"
+    },
+    "category": {
+      "es": "Persistencia",
+      "en": "Persistence"
+    },
+    "question": {
+      "es": "¿Qué es ZODB?",
+      "en": "What is ZODB?"
+    },
+    "options": {
+      "es": [
+        "Un ORM de Python que traduce clases a tablas de PostgreSQL.",
+        "Un motor de búsqueda de texto completo escrito en Java.",
+        "Un formato de compresión para respaldos de bases de datos relacionales.",
+        "Una base de datos de objetos nativa de Python con persistencia transparente, transacciones y MVCC."
+      ],
+      "en": [
+        "A Python ORM that maps classes to PostgreSQL tables.",
+        "A full-text search engine written in Java.",
+        "A compression format for relational database backups.",
+        "A native Python object database with transparent persistence, transactions and MVCC."
+      ]
+    },
+    "answer": "d",
+    "explanation": {
+      "es": "ZODB nació con Zope; usa FileStorage, ZEO para cliente-servidor y RelStorage para guardar en un SGBD relacional.",
+      "en": "ZODB was born with Zope; it uses FileStorage, ZEO for client-server and RelStorage to store in a relational DBMS."
+    }
+  },
+  {
+    "id": 17,
+    "lesson": "09",
+    "level": {
+      "es": "Básico",
+      "en": "Basic"
+    },
+    "category": {
+      "es": "Objeto-relacional",
+      "en": "Object-relational"
+    },
+    "question": {
+      "es": "¿Qué estándar SQL introdujo los tipos estructurados de usuario, el tipo REF y la herencia de tipos y tablas?",
+      "en": "Which SQL standard introduced structured user-defined types, the REF type and type/table inheritance?"
+    },
+    "options": {
+      "es": [
+        "SQL:1999",
+        "SQL-92",
+        "SQL:2011",
+        "SQL-86"
+      ],
+      "en": [
+        "SQL:1999",
+        "SQL-92",
+        "SQL:2011",
+        "SQL-86"
+      ]
+    },
+    "answer": "a",
+    "explanation": {
+      "es": "SQL:1999 dio origen a los SGBD objeto-relacionales; SQL:2003 añadió MULTISET.",
+      "en": "SQL:1999 gave rise to object-relational DBMSs; SQL:2003 added MULTISET."
+    }
+  },
+  {
+    "id": 18,
+    "lesson": "01",
+    "level": {
+      "es": "Básico",
+      "en": "Basic"
+    },
+    "category": {
+      "es": "Fundamentos",
+      "en": "Fundamentals"
+    },
+    "question": {
+      "es": "¿Qué proponía el «Third-Generation Database System Manifesto» (1990)?",
+      "en": "What did the 'Third-Generation Database System Manifesto' (1990) propose?"
+    },
+    "options": {
+      "es": [
+        "Abandonar SQL y adoptar OQL como único lenguaje de consulta.",
+        "Extender el modelo relacional y SQL con capacidades de objetos en lugar de reemplazarlos.",
+        "Eliminar las transacciones ACID para escalar horizontalmente.",
+        "Sustituir las tablas por documentos JSON sin esquema."
+      ],
+      "en": [
+        "Abandoning SQL and adopting OQL as the only query language.",
+        "Extending the relational model and SQL with object capabilities instead of replacing them.",
+        "Eliminating ACID transactions to scale horizontally.",
+        "Replacing tables with schemaless JSON documents."
+      ]
+    },
+    "answer": "b",
+    "explanation": {
+      "es": "Escrito por Stonebraker y colegas, anticipó el camino objeto-relacional que siguieron PostgreSQL, Oracle e Informix.",
+      "en": "Written by Stonebraker et al., it anticipated the object-relational path followed by PostgreSQL, Oracle and Informix."
+    }
+  },
+  {
+    "id": 19,
+    "lesson": "10",
+    "level": {
+      "es": "Básico",
+      "en": "Basic"
+    },
+    "category": {
+      "es": "ORM",
+      "en": "ORM"
+    },
+    "question": {
+      "es": "¿Qué garantiza el patrón Identity Map en un ORM?",
+      "en": "What does the Identity Map pattern guarantee in an ORM?"
+    },
+    "options": {
+      "es": [
+        "Que cada tabla tenga una clave primaria autoincremental.",
+        "Que los identificadores se generen de forma global entre todos los servidores.",
+        "Que dentro de una sesión cada fila se represente con un único objeto en memoria.",
+        "Que los objetos se guarden en el mismo orden en que se crearon."
+      ],
+      "en": [
+        "That every table has an auto-increment primary key.",
+        "That identifiers are generated globally across all servers.",
+        "That within a session each row is represented by a single in-memory object.",
+        "That objects are saved in the same order they were created."
+      ]
+    },
+    "answer": "c",
+    "explanation": {
+      "es": "em.find(Cliente.class, 1L) dos veces devuelve el mismo objeto. No es global: cada EntityManager tiene el suyo.",
+      "en": "Calling em.find(Customer.class, 1L) twice returns the same object. It is not global: each EntityManager has its own."
+    }
+  },
+  {
+    "id": 20,
+    "lesson": "10",
+    "level": {
+      "es": "Básico",
+      "en": "Basic"
+    },
+    "category": {
+      "es": "ORM",
+      "en": "ORM"
+    },
+    "question": {
+      "es": "¿En qué consiste el problema N+1?",
+      "en": "What is the N+1 problem?"
+    },
+    "options": {
+      "es": [
+        "Una tabla tiene N columnas más una columna discriminadora de herencia.",
+        "Se necesitan N+1 servidores para tolerar N fallas.",
+        "Una transacción hace N escrituras y un commit final.",
+        "Una consulta trae N objetos y luego se ejecuta una consulta adicional por cada asociación perezosa que se recorre."
+      ],
+      "en": [
+        "A table has N columns plus one inheritance discriminator column.",
+        "N+1 servers are needed to tolerate N failures.",
+        "A transaction performs N writes and one final commit.",
+        "A query loads N objects and then one extra query runs for each lazy association traversed."
+      ]
+    },
+    "answer": "d",
+    "explanation": {
+      "es": "Se resuelve con JOIN FETCH, @EntityGraph, batch fetching o proyecciones a DTO.",
+      "en": "It is solved with JOIN FETCH, @EntityGraph, batch fetching or DTO projections."
+    }
+  },
+  {
+    "id": 21,
+    "lesson": "03",
+    "level": {
+      "es": "Intermedio",
+      "en": "Intermediate"
+    },
+    "category": {
+      "es": "ODMG",
+      "en": "ODMG"
+    },
+    "question": {
+      "es": "En ODL, ¿qué diferencia hay entre «class B extends A» y «class B : I»?",
+      "en": "In ODL, what is the difference between 'class B extends A' and 'class B : I'?"
+    },
+    "options": {
+      "es": [
+        "extends hereda estado y comportamiento de una sola clase; «:» hereda solo comportamiento (interfaces) y admite herencia múltiple.",
+        "extends admite herencia múltiple de clases; «:» solo permite heredar de una interfaz.",
+        "Son sinónimos; «:» es la abreviatura de extends en ODMG 3.0.",
+        "extends copia los objetos del extent de A; «:» solo copia su esquema."
+      ],
+      "en": [
+        "extends inherits state and behavior from a single class; ':' inherits only behavior (interfaces) and allows multiple inheritance.",
+        "extends allows multiple class inheritance; ':' only allows inheriting from one interface.",
+        "They are synonyms; ':' is shorthand for extends in ODMG 3.0.",
+        "extends copies the objects of A's extent; ':' only copies its schema."
+      ]
+    },
+    "answer": "a",
+    "explanation": {
+      "es": "ODMG separa la herencia ISA de comportamiento (múltiple) de la herencia EXTENDS de estado (simple).",
+      "en": "ODMG separates ISA behavior inheritance (multiple) from EXTENDS state inheritance (single)."
+    }
+  },
+  {
+    "id": 22,
+    "lesson": "02",
+    "level": {
+      "es": "Intermedio",
+      "en": "Intermediate"
+    },
+    "category": {
+      "es": "Modelo de objetos",
+      "en": "Object model"
+    },
+    "question": {
+      "es": "Dos objetos Persona tienen el mismo nombre y referencian al MISMO objeto Direccion. ¿Qué tipo de igualdad cumplen como mínimo?",
+      "en": "Two Person objects have the same name and reference the SAME Address object. What kind of equality do they at least satisfy?"
+    },
+    "options": {
+      "es": [
+        "Identidad, porque comparten la dirección.",
+        "Igualdad superficial (y, por tanto, también profunda).",
+        "Solo igualdad profunda, nunca superficial.",
+        "Ninguna, porque sus OID son distintos."
+      ],
+      "en": [
+        "Identity, because they share the address.",
+        "Shallow equality (and therefore deep equality too).",
+        "Only deep equality, never shallow.",
+        "None, because their OIDs differ."
+      ]
+    },
+    "answer": "b",
+    "explanation": {
+      "es": "Superficial = mismos valores y mismas referencias. Identidad ⇒ superficial ⇒ profunda, pero no al revés.",
+      "en": "Shallow = same values and same references. Identity ⇒ shallow ⇒ deep, but not the reverse."
+    }
+  },
+  {
+    "id": 23,
+    "lesson": "03",
+    "level": {
+      "es": "Intermedio",
+      "en": "Intermediate"
+    },
+    "category": {
+      "es": "ODMG",
+      "en": "ODMG"
+    },
+    "question": {
+      "es": "¿Cómo se modela en ODL una relación M:N entre Estudiante y Curso que necesita guardar la calificación?",
+      "en": "How do you model in ODL an M:N relationship between Student and Course that must store the grade?"
+    },
+    "options": {
+      "es": [
+        "Con un atributo dictionary<Curso, float> en Estudiante y nada en Curso.",
+        "Declarando una relationship ternaria con un atributo calificación.",
+        "Reificándola como una clase Inscripcion con dos relaciones con inversa, una hacia Estudiante y otra hacia Curso.",
+        "Con dos set<> sin inversa y un método que calcule la calificación."
+      ],
+      "en": [
+        "With a dictionary<Course, float> attribute in Student and nothing in Course.",
+        "By declaring a ternary relationship with a grade attribute.",
+        "By reifying it as an Enrollment class with two relationships with inverses, one to Student and one to Course.",
+        "With two set<> without inverses and a method that computes the grade."
+      ]
+    },
+    "answer": "c",
+    "explanation": {
+      "es": "Las relaciones ODMG son binarias y no tienen atributos; las asociaciones con datos se convierten en clases.",
+      "en": "ODMG relationships are binary and have no attributes; associations with data become classes."
+    }
+  },
+  {
+    "id": 24,
+    "lesson": "04",
+    "level": {
+      "es": "Intermedio",
+      "en": "Intermediate"
+    },
+    "category": {
+      "es": "OQL",
+      "en": "OQL"
+    },
+    "question": {
+      "es": "¿Por qué la expresión OQL «e.inscripciones.curso» es inválida si inscripciones es set<Inscripcion>?",
+      "en": "Why is the OQL expression 'e.enrollments.course' invalid if enrollments is set<Enrollment>?"
+    },
+    "options": {
+      "es": [
+        "Porque OQL no permite rutas de más de un punto.",
+        "Porque los conjuntos no pueden aparecer en la cláusula select.",
+        "Porque curso es una palabra reservada de OQL.",
+        "Porque una ruta solo puede seguir pasos de un solo valor; para atravesar una colección hay que introducir una variable en el from (e.inscripciones i)."
+      ],
+      "en": [
+        "Because OQL does not allow paths with more than one dot.",
+        "Because sets cannot appear in the select clause.",
+        "Because course is an OQL reserved word.",
+        "Because a path can only follow single-valued steps; to traverse a collection you must introduce a variable in from (e.enrollments i)."
+      ]
+    },
+    "answer": "d",
+    "explanation": {
+      "es": "Forma correcta: select i.curso from estudiantes e, e.inscripciones i.",
+      "en": "Correct form: select i.course from students e, e.enrollments i."
+    }
+  },
+  {
+    "id": 25,
+    "lesson": "04",
+    "level": {
+      "es": "Intermedio",
+      "en": "Intermediate"
+    },
+    "category": {
+      "es": "OQL",
+      "en": "OQL"
+    },
+    "question": {
+      "es": "En un group by de OQL, ¿qué contiene la variable partition?",
+      "en": "In an OQL group by, what does the partition variable contain?"
+    },
+    "options": {
+      "es": [
+        "El bag de elementos de cada grupo, como structs con las variables del from.",
+        "El número de grupos que generó la consulta.",
+        "La página física en la que se almacena cada grupo.",
+        "Solo el valor de la clave de agrupación."
+      ],
+      "en": [
+        "The bag of elements of each group, as structs with the from variables.",
+        "The number of groups produced by the query.",
+        "The physical page where each group is stored.",
+        "Only the grouping key value."
+      ]
+    },
+    "answer": "a",
+    "explanation": {
+      "es": "Ejemplo: avg(select x.p.salario from partition x) calcula el promedio dentro de cada grupo.",
+      "en": "Example: avg(select x.p.salary from partition x) computes the average within each group."
+    }
+  },
+  {
+    "id": 26,
+    "lesson": "04",
+    "level": {
+      "es": "Intermedio",
+      "en": "Intermediate"
+    },
+    "category": {
+      "es": "OQL",
+      "en": "OQL"
+    },
+    "question": {
+      "es": "¿Qué devuelve «for all c in p.imparte: c.creditos = 8» para un profesor que no imparte ningún curso?",
+      "en": "What does 'for all c in p.teaches: c.credits = 8' return for a professor who teaches no course?"
+    },
+    "options": {
+      "es": [
+        "false, porque no hay ningún curso que cumpla la condición.",
+        "true, porque la cuantificación universal sobre una colección vacía es verdadera.",
+        "nil, porque la colección está vacía.",
+        "Un error de ejecución por colección vacía."
+      ],
+      "en": [
+        "false, because no course satisfies the condition.",
+        "true, because universal quantification over an empty collection is true.",
+        "nil, because the collection is empty.",
+        "A runtime error due to an empty collection."
+      ]
+    },
+    "answer": "b",
+    "explanation": {
+      "es": "Es la verdad vacía de la lógica; en cambio, exists sobre una colección vacía es falso.",
+      "en": "It is logic's vacuous truth; exists over an empty collection, by contrast, is false."
+    }
+  },
+  {
+    "id": 27,
+    "lesson": "05",
+    "level": {
+      "es": "Intermedio",
+      "en": "Intermediate"
+    },
+    "category": {
+      "es": "Persistencia",
+      "en": "Persistence"
+    },
+    "question": {
+      "es": "¿Qué es el pointer swizzling?",
+      "en": "What is pointer swizzling?"
+    },
+    "options": {
+      "es": [
+        "Cifrar los punteros para que nadie pueda leer la memoria del proceso.",
+        "Reordenar los objetos en disco para mejorar el clustering.",
+        "Convertir las referencias almacenadas como OID en punteros de memoria al cargar los objetos (y al revés al escribirlos).",
+        "Duplicar los punteros en dos réplicas para alta disponibilidad."
+      ],
+      "en": [
+        "Encrypting pointers so nobody can read the process memory.",
+        "Reordering objects on disk to improve clustering.",
+        "Converting references stored as OIDs into memory pointers when objects are loaded (and back when they are written).",
+        "Duplicating pointers across two replicas for high availability."
+      ]
+    },
+    "answer": "c",
+    "explanation": {
+      "es": "Puede ser eager o lazy, in-place o por copia, y por software o por hardware (memoria virtual).",
+      "en": "It can be eager or lazy, in-place or copy-based, and software or hardware (virtual memory) based."
+    }
+  },
+  {
+    "id": 28,
+    "lesson": "05",
+    "level": {
+      "es": "Intermedio",
+      "en": "Intermediate"
+    },
+    "category": {
+      "es": "Persistencia",
+      "en": "Persistence"
+    },
+    "question": {
+      "es": "En ZODB, un objeto Persistent tiene un atributo que es una list de Python normal. Haces obj.items.append(x) y commit. ¿Qué pasa?",
+      "en": "In ZODB, a Persistent object has an attribute that is a plain Python list. You call obj.items.append(x) and commit. What happens?"
+    },
+    "options": {
+      "es": [
+        "El cambio se guarda siempre, porque ZODB compara el estado completo al hacer commit.",
+        "ZODB lanza un ConflictError porque las listas no son persistentes.",
+        "La lista se convierte automáticamente en PersistentList.",
+        "El cambio no se guarda, salvo que marques obj._p_changed = True o uses PersistentList."
+      ],
+      "en": [
+        "The change is always saved because ZODB compares the full state on commit.",
+        "ZODB raises a ConflictError because lists are not persistent.",
+        "The list is automatically converted into a PersistentList.",
+        "The change is not saved unless you set obj._p_changed = True or use PersistentList."
+      ]
+    },
+    "answer": "d",
+    "explanation": {
+      "es": "ZODB detecta las asignaciones de atributos del objeto Persistent, no las mutaciones internas de objetos no persistentes.",
+      "en": "ZODB detects attribute assignments on the Persistent object, not in-place mutations of non-persistent objects."
+    }
+  },
+  {
+    "id": 29,
+    "lesson": "05",
+    "level": {
+      "es": "Intermedio",
+      "en": "Intermediate"
+    },
+    "category": {
+      "es": "Persistencia",
+      "en": "Persistence"
+    },
+    "question": {
+      "es": "En db4o, con el update depth por defecto (1), llamas a store(pedido) después de modificar pedido.cliente.nombre. ¿Qué ocurre?",
+      "en": "In db4o, with the default update depth (1), you call store(order) after modifying order.customer.name. What happens?"
+    },
+    "options": {
+      "es": [
+        "Se actualizan los campos directos del pedido, pero el cambio en el cliente referenciado no se guarda.",
+        "Se guarda todo el grafo del pedido, incluido el nombre del cliente.",
+        "db4o lanza una excepción por modificar un objeto referenciado.",
+        "Se crea un cliente duplicado con el nombre nuevo."
+      ],
+      "en": [
+        "The order's direct fields are updated, but the change in the referenced customer is not saved.",
+        "The whole order graph is saved, including the customer's name.",
+        "db4o throws an exception for modifying a referenced object.",
+        "A duplicate customer with the new name is created."
+      ]
+    },
+    "answer": "a",
+    "explanation": {
+      "es": "Hay que aumentar el update depth, llamar a store(cliente) o usar transparent persistence.",
+      "en": "You must increase the update depth, call store(customer) or use transparent persistence."
+    }
+  },
+  {
+    "id": 30,
+    "lesson": "06",
+    "level": {
+      "es": "Intermedio",
+      "en": "Intermediate"
+    },
+    "category": {
+      "es": "Almacenamiento",
+      "en": "Storage"
+    },
+    "question": {
+      "es": "¿Cuál es una desventaja característica de la arquitectura de servidor de páginas frente a la de servidor de objetos?",
+      "en": "What is a characteristic disadvantage of the page-server architecture compared with the object-server architecture?"
+    },
+    "options": {
+      "es": [
+        "No puede aprovechar el clustering porque transfiere objetos de uno en uno.",
+        "El bloqueo suele ser de grano grueso (por página), lo que provoca conflictos falsos entre objetos distintos de la misma página.",
+        "Obliga a ejecutar todos los métodos en el servidor.",
+        "No permite caché en el cliente."
+      ],
+      "en": [
+        "It cannot exploit clustering because it transfers objects one at a time.",
+        "Locking is usually coarse-grained (per page), causing false conflicts between different objects on the same page.",
+        "It forces all methods to run on the server.",
+        "It does not allow client caching."
+      ]
+    },
+    "answer": "b",
+    "explanation": {
+      "es": "Su ventaja es la simplicidad y el aprovechamiento del clustering (una página trae muchos objetos relacionados).",
+      "en": "Its advantage is simplicity and exploiting clustering (one page brings many related objects)."
+    }
+  },
+  {
+    "id": 31,
+    "lesson": "06",
+    "level": {
+      "es": "Intermedio",
+      "en": "Intermediate"
+    },
+    "category": {
+      "es": "Almacenamiento",
+      "en": "Storage"
+    },
+    "question": {
+      "es": "¿Cuál es el objetivo del clustering en una BDOO?",
+      "en": "What is the goal of clustering in an OODB?"
+    },
+    "options": {
+      "es": [
+        "Replicar la base de datos en varios nodos de un clúster.",
+        "Agrupar las consultas parecidas para compilarlas una sola vez.",
+        "Colocar físicamente juntos los objetos que se acceden juntos para reducir las lecturas de páginas.",
+        "Comprimir los objetos de la misma clase en un único bloque."
+      ],
+      "en": [
+        "Replicating the database across several cluster nodes.",
+        "Grouping similar queries to compile them once.",
+        "Physically placing together objects that are accessed together to reduce page reads.",
+        "Compressing objects of the same class into a single block."
+      ]
+    },
+    "answer": "c",
+    "explanation": {
+      "es": "Puede ser por clase, por composición, por relación o guiado por pistas del programador; el óptimo general es NP-difícil.",
+      "en": "It can be by class, composition, relationship or programmer hints; the general optimum is NP-hard."
+    }
+  },
+  {
+    "id": 32,
+    "lesson": "06",
+    "level": {
+      "es": "Intermedio",
+      "en": "Intermediate"
+    },
+    "category": {
+      "es": "Almacenamiento",
+      "en": "Storage"
+    },
+    "question": {
+      "es": "Para la ruta Vehiculo.fabricante.empresa.ciudad, ¿qué mapea un índice anidado (nested index)?",
+      "en": "For the path Vehicle.manufacturer.company.city, what does a nested index map?"
+    },
+    "options": {
+      "es": [
+        "Cada objeto intermedio a su objeto siguiente en la ruta.",
+        "El valor final a las instanciaciones completas (vehículo, fabricante, empresa).",
+        "Cada clase de la ruta a su número de instancias.",
+        "El valor final (ciudad) a los objetos iniciales de la ruta (vehículos)."
+      ],
+      "en": [
+        "Each intermediate object to the next object in the path.",
+        "The final value to the complete instantiations (vehicle, manufacturer, company).",
+        "Each class in the path to its number of instances.",
+        "The final value (city) to the starting objects of the path (vehicles)."
+      ]
+    },
+    "answer": "d",
+    "explanation": {
+      "es": "El multi-índice tiene un índice por paso y el índice de ruta guarda las instanciaciones completas. El anidado es el más rápido para la ruta completa, pero el más caro de mantener.",
+      "en": "The multi-index keeps one index per step and the path index stores full instantiations. The nested index is fastest for the full path but costliest to maintain."
+    }
+  },
+  {
+    "id": 33,
+    "lesson": "06",
+    "level": {
+      "es": "Intermedio",
+      "en": "Intermediate"
+    },
+    "category": {
+      "es": "Almacenamiento",
+      "en": "Storage"
+    },
+    "question": {
+      "es": "¿Cuándo conviene un índice de jerarquía de clases (class-hierarchy index) en lugar de un índice por cada clase?",
+      "en": "When is a class-hierarchy index preferable to one index per class?"
+    },
+    "options": {
+      "es": [
+        "Cuando las consultas suelen abarcar la superclase y todas sus subclases.",
+        "Cuando las consultas casi siempre se dirigen a una sola subclase profunda.",
+        "Cuando la jerarquía tiene un solo nivel y una sola clase.",
+        "Cuando los atributos indexados cambian en cada transacción."
+      ],
+      "en": [
+        "When queries usually span the superclass and all its subclasses.",
+        "When queries almost always target a single deep subclass.",
+        "When the hierarchy has a single level and a single class.",
+        "When indexed attributes change in every transaction."
+      ]
+    },
+    "answer": "a",
+    "explanation": {
+      "es": "Un único árbol B con listas de OID por clase evita consultar n índices por separado.",
+      "en": "A single B-tree with per-class OID lists avoids probing n separate indexes."
+    }
+  },
+  {
+    "id": 34,
+    "lesson": "07",
+    "level": {
+      "es": "Intermedio",
+      "en": "Intermediate"
+    },
+    "category": {
+      "es": "Transacciones",
+      "en": "Transactions"
+    },
+    "question": {
+      "es": "En el bloqueo jerárquico, ¿con qué modos es compatible un bloqueo IX?",
+      "en": "In multiple-granularity locking, which modes is an IX lock compatible with?"
+    },
+    "options": {
+      "es": [
+        "S y SIX",
+        "IS e IX",
+        "Solo X",
+        "IS, IX, S y SIX"
+      ],
+      "en": [
+        "S and SIX",
+        "IS and IX",
+        "Only X",
+        "IS, IX, S and SIX"
+      ]
+    },
+    "answer": "b",
+    "explanation": {
+      "es": "IX indica intención de escribir más abajo; choca con S, SIX y X, que leen o escriben todo el subárbol.",
+      "en": "IX signals the intent to write below; it conflicts with S, SIX and X, which read or write the whole subtree."
+    }
+  },
+  {
+    "id": 35,
+    "lesson": "07",
+    "level": {
+      "es": "Intermedio",
+      "en": "Intermediate"
+    },
+    "category": {
+      "es": "Transacciones",
+      "en": "Transactions"
+    },
+    "question": {
+      "es": "En las transacciones anidadas cerradas (Moss), ¿qué ocurre cuando una subtransacción hace commit?",
+      "en": "In closed nested transactions (Moss), what happens when a subtransaction commits?"
+    },
+    "options": {
+      "es": [
+        "Sus cambios se vuelven durables de inmediato en disco.",
+        "Libera todos sus bloqueos para que otras transacciones raíz los usen.",
+        "Sus efectos y bloqueos se heredan al padre; solo serán durables cuando la transacción raíz haga commit.",
+        "Obliga al padre a hacer commit en ese mismo instante."
+      ],
+      "en": [
+        "Its changes immediately become durable on disk.",
+        "It releases all its locks so other root transactions can use them.",
+        "Its effects and locks are inherited by the parent; they become durable only when the root transaction commits.",
+        "It forces the parent to commit at that very moment."
+      ]
+    },
+    "answer": "c",
+    "explanation": {
+      "es": "Las anidadas abiertas sí liberan bloqueos al confirmar, pero entonces exigen compensaciones.",
+      "en": "Open nested transactions do release locks on commit, but then require compensations."
+    }
+  },
+  {
+    "id": 36,
+    "lesson": "07",
+    "level": {
+      "es": "Intermedio",
+      "en": "Intermediate"
+    },
+    "category": {
+      "es": "Transacciones",
+      "en": "Transactions"
+    },
+    "question": {
+      "es": "¿Qué problema resuelve el modelo de check-out/check-in en BDOO de diseño?",
+      "en": "What problem does the check-out/check-in model solve in design OODBs?"
+    },
+    "options": {
+      "es": [
+        "Acelera las consultas ad hoc al copiar índices al cliente.",
+        "Evita la necesidad de OID al trabajar con copias.",
+        "Sincroniza los relojes entre cliente y servidor.",
+        "Permite transacciones largas (horas o días) en espacios privados sin mantener bloqueos 2PL sobre la BD compartida."
+      ],
+      "en": [
+        "It speeds up ad hoc queries by copying indexes to the client.",
+        "It removes the need for OIDs when working with copies.",
+        "It synchronizes clocks between client and server.",
+        "It allows long transactions (hours or days) in private workspaces without holding 2PL locks on the shared DB."
+      ]
+    },
+    "answer": "d",
+    "explanation": {
+      "es": "El check-out pone un bloqueo persistente; el check-in valida y publica una nueva versión.",
+      "en": "Check-out takes a persistent lock; check-in validates and publishes a new version."
+    }
+  },
+  {
+    "id": 37,
+    "lesson": "09",
+    "level": {
+      "es": "Intermedio",
+      "en": "Intermediate"
+    },
+    "category": {
+      "es": "Objeto-relacional",
+      "en": "Object-relational"
+    },
+    "question": {
+      "es": "En PostgreSQL, profesor INHERITS (persona) y persona tiene PRIMARY KEY (id). ¿Qué es cierto?",
+      "en": "In PostgreSQL, professor INHERITS (person) and person has PRIMARY KEY (id). What is true?"
+    },
+    "options": {
+      "es": [
+        "La unicidad no es global: puede haber un id repetido entre persona y profesor, y una FK hacia persona no ve las filas de profesor.",
+        "La clave primaria se hereda y se garantiza en toda la jerarquía.",
+        "PostgreSQL impide crear tablas hijas si la madre tiene clave primaria.",
+        "Las filas de profesor no aparecen al consultar persona."
+      ],
+      "en": [
+        "Uniqueness is not global: an id can repeat between person and professor, and an FK to person does not see professor rows.",
+        "The primary key is inherited and enforced across the whole hierarchy.",
+        "PostgreSQL prevents creating child tables if the parent has a primary key.",
+        "Professor rows do not appear when querying person."
+      ]
+    },
+    "answer": "a",
+    "explanation": {
+      "es": "Los índices, las restricciones UNIQUE y PK y las FK no se propagan a las hijas. SELECT de persona sí incluye a las hijas, salvo que se use ONLY.",
+      "en": "Indexes, UNIQUE/PK constraints and FKs do not propagate to children. SELECT on person does include children unless ONLY is used."
+    }
+  },
+  {
+    "id": 38,
+    "lesson": "09",
+    "level": {
+      "es": "Intermedio",
+      "en": "Intermediate"
+    },
+    "category": {
+      "es": "Objeto-relacional",
+      "en": "Object-relational"
+    },
+    "question": {
+      "es": "En Oracle, ¿qué hace TREAT(VALUE(p) AS profesor_t)?",
+      "en": "In Oracle, what does TREAT(VALUE(p) AS professor_t) do?"
+    },
+    "options": {
+      "es": [
+        "Crea una copia del objeto con un OID nuevo de tipo profesor_t.",
+        "Convierte el objeto a su subtipo profesor_t (downcast) y devuelve NULL si no es de ese subtipo.",
+        "Cambia de forma permanente el tipo almacenado de la fila.",
+        "Valida que la tabla tenga una columna llamada profesor_t."
+      ],
+      "en": [
+        "It creates a copy of the object with a new OID of type professor_t.",
+        "It casts the object to its subtype professor_t (downcast) and returns NULL if it is not of that subtype.",
+        "It permanently changes the stored type of the row.",
+        "It validates that the table has a column named professor_t."
+      ]
+    },
+    "answer": "b",
+    "explanation": {
+      "es": "Suele combinarse con IS OF (profesor_t) para filtrar por subtipo.",
+      "en": "It is often combined with IS OF (professor_t) to filter by subtype."
+    }
+  },
+  {
+    "id": 39,
+    "lesson": "10",
+    "level": {
+      "es": "Intermedio",
+      "en": "Intermediate"
+    },
+    "category": {
+      "es": "ORM",
+      "en": "ORM"
+    },
+    "question": {
+      "es": "¿Cuál es el principal compromiso de la estrategia de herencia SINGLE_TABLE en JPA?",
+      "en": "What is the main trade-off of JPA's SINGLE_TABLE inheritance strategy?"
+    },
+    "options": {
+      "es": [
+        "Esquema totalmente normalizado, a cambio de un join por cada subclase.",
+        "Sin consultas polimórficas, a cambio de reutilizar atributos.",
+        "Consultas polimórficas rápidas sin joins, a cambio de que las columnas de las subclases deban admitir NULL.",
+        "UNION ALL en cada consulta, a cambio de no usar discriminador."
+      ],
+      "en": [
+        "Fully normalized schema, at the cost of one join per subclass.",
+        "No polymorphic queries, in exchange for reusing attributes.",
+        "Fast polymorphic queries without joins, at the cost of subclass columns having to be nullable.",
+        "UNION ALL in every query, in exchange for no discriminator."
+      ]
+    },
+    "answer": "c",
+    "explanation": {
+      "es": "JOINED normaliza con joins; TABLE_PER_CLASS usa UNION ALL; @MappedSuperclass no permite consultas polimórficas.",
+      "en": "JOINED normalizes with joins; TABLE_PER_CLASS uses UNION ALL; @MappedSuperclass allows no polymorphic queries."
+    }
+  },
+  {
+    "id": 40,
+    "lesson": "10",
+    "level": {
+      "es": "Intermedio",
+      "en": "Intermediate"
+    },
+    "category": {
+      "es": "ORM",
+      "en": "ORM"
+    },
+    "question": {
+      "es": "¿En qué se diferencia mappedBy de JPA de una relationship con inverse de ODMG?",
+      "en": "How does JPA's mappedBy differ from an ODMG relationship with an inverse?"
+    },
+    "options": {
+      "es": [
+        "mappedBy mantiene automáticamente ambos lados en memoria y en la BD.",
+        "mappedBy crea siempre una tabla intermedia.",
+        "mappedBy solo funciona con relaciones uno a uno.",
+        "mappedBy solo indica el lado dueño de la FK; la aplicación debe mantener coherentes ambos lados en memoria."
+      ],
+      "en": [
+        "mappedBy automatically maintains both sides in memory and in the DB.",
+        "mappedBy always creates a join table.",
+        "mappedBy only works with one-to-one relationships.",
+        "mappedBy only indicates the FK owner side; the application must keep both sides consistent in memory."
+      ]
+    },
+    "answer": "d",
+    "explanation": {
+      "es": "Por eso se escriben métodos auxiliares como agregarPedido(p) que actualizan las dos referencias.",
+      "en": "That is why helper methods like addOrder(o) are written to update both references."
+    }
+  },
+  {
+    "id": 41,
+    "lesson": "08",
+    "level": {
+      "es": "Avanzado",
+      "en": "Advanced"
+    },
+    "category": {
+      "es": "Evolución de esquema",
+      "en": "Schema evolution"
+    },
+    "question": {
+      "es": "¿Cuál es el principal compromiso de la conversión perezosa (lazy) de instancias tras un cambio de esquema?",
+      "en": "What is the main trade-off of lazy instance conversion after a schema change?"
+    },
+    "options": {
+      "es": [
+        "Evita la inactividad y reparte el costo, pero conviven varias formas del objeto y cada acceso debe comprobar la versión.",
+        "Garantiza un único formato inmediato, pero exige detener el sistema.",
+        "No requiere código de conversión, pero pierde los datos antiguos.",
+        "Es más rápida en lectura, pero impide agregar atributos."
+      ],
+      "en": [
+        "It avoids downtime and spreads the cost, but several object shapes coexist and every access must check the version.",
+        "It guarantees a single immediate format, but requires stopping the system.",
+        "It requires no conversion code, but loses old data.",
+        "It is faster to read, but prevents adding attributes."
+      ]
+    },
+    "answer": "a",
+    "explanation": {
+      "es": "La conversión inmediata tiene el perfil opuesto. Versant y el __setstate__ de ZODB son ejemplos de conversión perezosa.",
+      "en": "Immediate conversion has the opposite profile. Versant and ZODB's __setstate__ are examples of lazy conversion."
+    }
+  },
+  {
+    "id": 42,
+    "lesson": "08",
+    "level": {
+      "es": "Avanzado",
+      "en": "Advanced"
+    },
+    "category": {
+      "es": "Evolución de esquema",
+      "en": "Schema evolution"
+    },
+    "question": {
+      "es": "¿Qué es el screening en ORION?",
+      "en": "What is screening in ORION?"
+    },
+    "options": {
+      "es": [
+        "Reescribir todas las instancias en una ventana de mantenimiento nocturna.",
+        "Adaptar las instancias antiguas al leerlas (ocultar atributos eliminados y añadir valores por defecto) sin reescribirlas nunca.",
+        "Rechazar cualquier cambio de esquema que afecte a clases con instancias.",
+        "Crear una vista SQL por cada versión de la clase."
+      ],
+      "en": [
+        "Rewriting all instances in a nightly maintenance window.",
+        "Adapting old instances when they are read (hiding dropped attributes and adding default values) without ever rewriting them.",
+        "Rejecting any schema change that affects classes with instances.",
+        "Creating a SQL view for each class version."
+      ]
+    },
+    "answer": "b",
+    "explanation": {
+      "es": "Hace cero reescrituras a cambio de un sobrecosto permanente en cada lectura.",
+      "en": "It performs zero rewrites at the price of a permanent overhead on every read."
+    }
+  },
+  {
+    "id": 43,
+    "lesson": "07",
+    "level": {
+      "es": "Avanzado",
+      "en": "Advanced"
+    },
+    "category": {
+      "es": "Transacciones",
+      "en": "Transactions"
+    },
+    "question": {
+      "es": "Durante una migración perezosa en ZODB se dispara _p_resolveConflict(old, committed, new). ¿Por qué old puede llegar en el formato antiguo del esquema?",
+      "en": "During a lazy migration in ZODB, _p_resolveConflict(old, committed, new) is triggered. Why may old arrive in the old schema format?"
+    },
+    "options": {
+      "es": [
+        "Porque ZODB siempre revierte los estados a la primera versión de la clase.",
+        "Porque __setstate__ se ejecuta después de _p_resolveConflict.",
+        "Porque ZODB entrega los estados tal como están serializados en disco, y __setstate__ solo convirtió el objeto en memoria.",
+        "Porque los estados en conflicto se guardan en un archivo separado con el esquema original."
+      ],
+      "en": [
+        "Because ZODB always reverts states to the class's first version.",
+        "Because __setstate__ runs after _p_resolveConflict.",
+        "Because ZODB passes the states as serialized on disk, and __setstate__ only converted the object in memory.",
+        "Because conflicting states are stored in a separate file with the original schema."
+      ]
+    },
+    "answer": "c",
+    "explanation": {
+      "es": "Hay que normalizar los tres estados a la versión nueva antes de fusionarlos; si no, aparece un KeyError y el conflicto queda sin resolver.",
+      "en": "All three states must be normalized to the new version before merging; otherwise a KeyError leaves the conflict unresolved."
+    }
+  },
+  {
+    "id": 44,
+    "lesson": "07",
+    "level": {
+      "es": "Avanzado",
+      "en": "Advanced"
+    },
+    "category": {
+      "es": "Transacciones",
+      "en": "Transactions"
+    },
+    "question": {
+      "es": "En control de concurrencia semántico, ¿qué par de operaciones concurrentes sobre una cuenta puede fusionarse con seguridad?",
+      "en": "In semantic concurrency control, which pair of concurrent operations on an account can be safely merged?"
+    },
+    "options": {
+      "es": [
+        "Dos retiros con validación de fondos, porque ambos restan.",
+        "Un retiro con validación y una consulta de saldo.",
+        "Un cierre de cuenta y un depósito.",
+        "Dos depósitos, porque conmutan: el resultado no depende del orden."
+      ],
+      "en": [
+        "Two withdrawals with funds validation, because both subtract.",
+        "A validated withdrawal and a balance query.",
+        "An account closure and a deposit.",
+        "Two deposits, because they commute: the result does not depend on the order."
+      ]
+    },
+    "answer": "d",
+    "explanation": {
+      "es": "Dos retiros válidos por separado pueden dejar el saldo negativo al combinarse; no conmutan respecto al invariante.",
+      "en": "Two individually valid withdrawals can make the balance negative when combined; they do not commute with respect to the invariant."
+    }
+  },
+  {
+    "id": 45,
+    "lesson": "07",
+    "level": {
+      "es": "Avanzado",
+      "en": "Advanced"
+    },
+    "category": {
+      "es": "Transacciones",
+      "en": "Transactions"
+    },
+    "question": {
+      "es": "¿Para qué patrón de acceso es ideal el modo de bloqueo SIX?",
+      "en": "For which access pattern is the SIX lock mode ideal?"
+    },
+    "options": {
+      "es": [
+        "Recorrer (leer) todo un extent o contenedor y modificar solo algunos de sus objetos.",
+        "Leer un único objeto sin modificar nada.",
+        "Borrar por completo una clase y todas sus instancias.",
+        "Indicar que se leerá un objeto en una transacción futura."
+      ],
+      "en": [
+        "Scanning (reading) an entire extent or container and modifying only some of its objects.",
+        "Reading a single object without modifying anything.",
+        "Dropping an entire class and all its instances.",
+        "Signaling that an object will be read in a future transaction."
+      ]
+    },
+    "answer": "a",
+    "explanation": {
+      "es": "SIX = S sobre todo el nodo + IX para bloquear en X los descendientes que se modifiquen.",
+      "en": "SIX = S on the whole node + IX to X-lock the descendants being modified."
+    }
+  },
+  {
+    "id": 46,
+    "lesson": "11",
+    "level": {
+      "es": "Avanzado",
+      "en": "Advanced"
+    },
+    "category": {
+      "es": "Optimización",
+      "en": "Optimization"
+    },
+    "question": {
+      "es": "Según la migración de predicados de Hellerstein, ¿en qué orden se evalúan predicados costosos?",
+      "en": "According to Hellerstein's predicate migration, in what order are expensive predicates evaluated?"
+    },
+    "options": {
+      "es": [
+        "Siempre primero el más selectivo, sin importar su costo.",
+        "En orden creciente de rango = (selectividad − 1) / costo por tupla.",
+        "Siempre primero el más barato, sin importar su selectividad.",
+        "En el orden en que aparecen en la cláusula where."
+      ],
+      "en": [
+        "Always the most selective first, regardless of cost.",
+        "In increasing order of rank = (selectivity − 1) / per-tuple cost.",
+        "Always the cheapest first, regardless of selectivity.",
+        "In the order they appear in the where clause."
+      ]
+    },
+    "answer": "b",
+    "explanation": {
+      "es": "Un predicado muy selectivo pero carísimo (un método) puede convenir evaluarlo después de otro barato y medianamente selectivo.",
+      "en": "A very selective but very expensive predicate (a method) may be better evaluated after a cheap, moderately selective one."
+    }
+  },
+  {
+    "id": 47,
+    "lesson": "11",
+    "level": {
+      "es": "Avanzado",
+      "en": "Advanced"
+    },
+    "category": {
+      "es": "Optimización",
+      "en": "Optimization"
+    },
+    "question": {
+      "es": "¿Qué condiciones debe cumplir un método para materializarse (function materialization)?",
+      "en": "Which conditions must a method satisfy to be materialized (function materialization)?"
+    },
+    "options": {
+      "es": [
+        "Estar escrito en SQL y no recibir parámetros.",
+        "Ejecutarse en menos de un milisegundo.",
+        "Ser determinista, no tener efectos secundarios y tener dependencias rastreables para invalidar el valor cuando cambien.",
+        "Pertenecer a una clase sin subclases."
+      ],
+      "en": [
+        "Being written in SQL and taking no parameters.",
+        "Running in under one millisecond.",
+        "Being deterministic, side-effect free and having trackable dependencies to invalidate the value when they change.",
+        "Belonging to a class without subclasses."
+      ]
+    },
+    "answer": "c",
+    "explanation": {
+      "es": "Es análogo a una vista materializada: consultas más rápidas a cambio de actualizaciones más caras.",
+      "en": "It is analogous to a materialized view: faster queries at the cost of more expensive updates."
+    }
+  },
+  {
+    "id": 48,
+    "lesson": "11",
+    "level": {
+      "es": "Avanzado",
+      "en": "Advanced"
+    },
+    "category": {
+      "es": "Optimización",
+      "en": "Optimization"
+    },
+    "question": {
+      "es": "Para «select v from vehiculos v where v.fabricante.empresa.ciudad = 'Monterrey'», ¿cuándo conviene el recorrido hacia atrás (backward traversal)?",
+      "en": "For 'select v from vehicles v where v.manufacturer.company.city = \"Monterrey\"', when is backward traversal preferable?"
+    },
+    "options": {
+      "es": [
+        "Cuando hay muy pocos vehículos y muchas empresas en Monterrey.",
+        "Cuando la ruta no tiene índices ni referencias inversas.",
+        "Siempre: el recorrido hacia delante nunca es óptimo.",
+        "Cuando el predicado sobre ciudad es muy selectivo y hay índices o referencias inversas para subir por la ruta."
+      ],
+      "en": [
+        "When there are very few vehicles and many companies in Monterrey.",
+        "When the path has no indexes or inverse references.",
+        "Always: forward traversal is never optimal.",
+        "When the predicate on city is highly selective and there are indexes or inverse references to climb the path."
+      ]
+    },
+    "answer": "d",
+    "explanation": {
+      "es": "Se parte de las pocas empresas de Monterrey y se sube a fabricantes y vehículos, en lugar de desreferenciar millones de vehículos.",
+      "en": "You start from the few Monterrey companies and climb to manufacturers and vehicles instead of dereferencing millions of vehicles."
+    }
+  },
+  {
+    "id": 49,
+    "lesson": "11",
+    "level": {
+      "es": "Avanzado",
+      "en": "Advanced"
+    },
+    "category": {
+      "es": "Optimización",
+      "en": "Optimization"
+    },
+    "question": {
+      "es": "¿Qué ventaja tiene un pointer-based hash join frente al recorrido ingenuo de punteros?",
+      "en": "What advantage does a pointer-based hash join have over naive pointer chasing?"
+    },
+    "options": {
+      "es": [
+        "Agrupa las desreferencias por página destino, de modo que cada página se lee una sola vez.",
+        "Elimina la necesidad de OID al usar hashes del contenido.",
+        "Permite ejecutar la consulta sin abrir una transacción.",
+        "Convierte automáticamente la consulta en SQL."
+      ],
+      "en": [
+        "It groups dereferences by target page so each page is read only once.",
+        "It removes the need for OIDs by using content hashes.",
+        "It allows running the query without opening a transaction.",
+        "It automatically converts the query to SQL."
+      ]
+    },
+    "answer": "a",
+    "explanation": {
+      "es": "Shekita y Carey (1990) compararon el recorrido ingenuo con las variantes hash, sort-merge e híbridas basadas en punteros.",
+      "en": "Shekita and Carey (1990) compared naive pointer chasing with hash, sort-merge and hybrid pointer-based variants."
+    }
+  },
+  {
+    "id": 50,
+    "lesson": "11",
+    "level": {
+      "es": "Avanzado",
+      "en": "Advanced"
+    },
+    "category": {
+      "es": "Optimización",
+      "en": "Optimization"
+    },
+    "question": {
+      "es": "¿Qué dominio modela el benchmark OO7 (Carey, DeWitt y Naughton, 1993)?",
+      "en": "What domain does the OO7 benchmark (Carey, DeWitt and Naughton, 1993) model?"
+    },
+    "options": {
+      "es": [
+        "Un sistema bancario con cuentas, transferencias y auditoría.",
+        "Una aplicación de diseño CAD con módulos, ensambles, partes compuestas y partes atómicas.",
+        "Una red social con usuarios, publicaciones y seguidores.",
+        "Un almacén de datos con hechos de ventas y dimensiones."
+      ],
+      "en": [
+        "A banking system with accounts, transfers and auditing.",
+        "A CAD design application with modules, assemblies, composite parts and atomic parts.",
+        "A social network with users, posts and followers.",
+        "A data warehouse with sales facts and dimensions."
+      ]
+    },
+    "answer": "b",
+    "explanation": {
+      "es": "Mide recorridos, consultas y cambios estructurales; ningún sistema ganó en todo.",
+      "en": "It measures traversals, queries and structural changes; no system won everything."
+    }
+  },
+  {
+    "id": 51,
+    "lesson": "12",
+    "level": {
+      "es": "Avanzado",
+      "en": "Advanced"
+    },
+    "category": {
+      "es": "Sistemas reales",
+      "en": "Real systems"
+    },
+    "question": {
+      "es": "¿Qué técnica característica usaba ObjectStore para que los punteros de C++ funcionaran sobre datos persistentes?",
+      "en": "What characteristic technique did ObjectStore use so that C++ pointers worked on persistent data?"
+    },
+    "options": {
+      "es": [
+        "Un proxy dinámico por cada objeto, generado en tiempo de ejecución.",
+        "Traducir cada desreferencia en una consulta SQL al servidor.",
+        "Swizzling en el momento de la falla de página, usando la protección de la memoria virtual del sistema operativo.",
+        "Copiar toda la base de datos en memoria al iniciar el programa."
+      ],
+      "en": [
+        "A dynamic proxy for each object generated at run time.",
+        "Translating each dereference into a SQL query to the server.",
+        "Swizzling at page-fault time, using the operating system's virtual memory protection.",
+        "Copying the whole database into memory at program start."
+      ]
+    },
+    "answer": "c",
+    "explanation": {
+      "es": "Las páginas se mapean protegidas; al tocarlas, la falla de página carga los datos y convierte sus punteros (Wilson, 1991).",
+      "en": "Pages are mapped protected; touching them triggers a fault that loads the data and swizzles its pointers (Wilson, 1991)."
+    }
+  },
+  {
+    "id": 52,
+    "lesson": "08",
+    "level": {
+      "es": "Avanzado",
+      "en": "Advanced"
+    },
+    "category": {
+      "es": "Versionado",
+      "en": "Versioning"
+    },
+    "question": {
+      "es": "Una configuración de producto liberada para fabricación debe referenciar sus piezas mediante...",
+      "en": "A product configuration released for manufacturing should reference its parts via..."
+    },
+    "options": {
+      "es": [
+        "Referencias genéricas que siempre se resuelven a la versión por defecto.",
+        "Copias de las piezas sin OID para evitar dependencias.",
+        "Nombres de texto de las piezas que se resuelven al imprimir el plano.",
+        "Referencias específicas (estáticas) a versiones concretas, para que no cambie al aparecer versiones nuevas."
+      ],
+      "en": [
+        "Generic references that always resolve to the default version.",
+        "Copies of the parts without OIDs to avoid dependencies.",
+        "Text names of the parts resolved when the drawing is printed.",
+        "Specific (static) references to concrete versions, so it does not change when new versions appear."
+      ]
+    },
+    "answer": "d",
+    "explanation": {
+      "es": "Las referencias genéricas son útiles durante el desarrollo; las liberaciones necesitan reproducibilidad.",
+      "en": "Generic references are useful during development; releases need reproducibility."
+    }
+  },
+  {
+    "id": 53,
+    "lesson": "06",
+    "level": {
+      "es": "Avanzado",
+      "en": "Advanced"
+    },
+    "category": {
+      "es": "Almacenamiento",
+      "en": "Storage"
+    },
+    "question": {
+      "es": "¿En qué consiste el callback locking para la coherencia de cachés cliente?",
+      "en": "What is callback locking for client cache coherence?"
+    },
+    "options": {
+      "es": [
+        "El cliente conserva en caché los bloqueos entre transacciones y el servidor le pide liberarlos cuando otro cliente los necesita.",
+        "El cliente consulta al servidor antes de cada lectura para validar la copia.",
+        "El servidor envía periódicamente una copia completa de la BD a cada cliente.",
+        "Los clientes se comunican entre sí sin pasar por el servidor."
+      ],
+      "en": [
+        "The client keeps locks cached across transactions and the server asks it to release them when another client needs them.",
+        "The client asks the server before every read to validate its copy.",
+        "The server periodically sends a full copy of the DB to each client.",
+        "Clients communicate with each other without going through the server."
+      ]
+    },
+    "answer": "a",
+    "explanation": {
+      "es": "Reduce mensajes cuando la contención es baja; alternativas: evitación optimista y notificaciones de invalidación.",
+      "en": "It reduces messages under low contention; alternatives are optimistic avoidance and invalidation notifications."
+    }
+  },
+  {
+    "id": 54,
+    "lesson": "05",
+    "level": {
+      "es": "Avanzado",
+      "en": "Advanced"
+    },
+    "category": {
+      "es": "Persistencia",
+      "en": "Persistence"
+    },
+    "question": {
+      "es": "¿Cuáles son los tres principios de la persistencia ortogonal (Atkinson y Morrison)?",
+      "en": "What are the three principles of orthogonal persistence (Atkinson and Morrison)?"
+    },
+    "options": {
+      "es": [
+        "Atomicidad, consistencia y durabilidad.",
+        "Ortogonalidad de tipos, persistencia por alcanzabilidad e independencia de la persistencia.",
+        "Encapsulamiento, herencia y polimorfismo.",
+        "Serialización, compresión y cifrado."
+      ],
+      "en": [
+        "Atomicity, consistency and durability.",
+        "Type orthogonality, persistence by reachability and persistence independence.",
+        "Encapsulation, inheritance and polymorphism.",
+        "Serialization, compression and encryption."
+      ]
+    },
+    "answer": "b",
+    "explanation": {
+      "es": "Cualquier tipo puede persistir, la vida del objeto la define su alcanzabilidad y el código es el mismo para datos de corta y de larga vida.",
+      "en": "Any type can persist, an object's lifetime is defined by reachability, and code is the same for short- and long-lived data."
+    }
+  },
+  {
+    "id": 55,
+    "lesson": "08",
+    "level": {
+      "es": "Avanzado",
+      "en": "Advanced"
+    },
+    "category": {
+      "es": "Evolución de esquema",
+      "en": "Schema evolution"
+    },
+    "question": {
+      "es": "Según los invariantes de ORION, si una subclase redefine un atributo heredado, ¿qué restricción aplica a su dominio?",
+      "en": "According to ORION's invariants, if a subclass redefines an inherited attribute, what restriction applies to its domain?"
+    },
+    "options": {
+      "es": [
+        "Debe ser una generalización (superclase) del dominio original.",
+        "Puede ser cualquier tipo, siempre que conserve el nombre.",
+        "Debe ser el mismo dominio o una especialización (subclase) del dominio original.",
+        "Debe ser un tipo atómico, nunca una clase."
+      ],
+      "en": [
+        "It must be a generalization (superclass) of the original domain.",
+        "It can be any type as long as it keeps the name.",
+        "It must be the same domain or a specialization (subclass) of the original domain.",
+        "It must be an atomic type, never a class."
+      ]
+    },
+    "answer": "c",
+    "explanation": {
+      "es": "Es el invariante de compatibilidad de dominios, que preserva la sustituibilidad.",
+      "en": "It is the domain compatibility invariant, which preserves substitutability."
+    }
+  },
+  {
+    "id": 56,
+    "lesson": "05",
+    "level": {
+      "es": "Avanzado",
+      "en": "Advanced"
+    },
+    "category": {
+      "es": "Persistencia",
+      "en": "Persistence"
+    },
+    "question": {
+      "es": "En JDO, con la configuración por defecto (retainValues = false), ¿en qué estado queda un objeto persistente justo después de commit?",
+      "en": "In JDO, with the default configuration (retainValues = false), what state is a persistent object in right after commit?"
+    },
+    "options": {
+      "es": [
+        "Transient: pierde su identidad persistente.",
+        "Persistent-dirty: queda marcado para la siguiente transacción.",
+        "Persistent-deleted: se elimina de la caché y de la BD.",
+        "Hollow: conserva su identidad, pero sus campos se recargarán al próximo acceso."
+      ],
+      "en": [
+        "Transient: it loses its persistent identity.",
+        "Persistent-dirty: it stays marked for the next transaction.",
+        "Persistent-deleted: it is removed from the cache and the DB.",
+        "Hollow: it keeps its identity, but its fields will be reloaded on next access."
+      ]
+    },
+    "answer": "d",
+    "explanation": {
+      "es": "Hollow equivale a los objetos fantasma de ZODB: identidad sin estado cargado.",
+      "en": "Hollow is equivalent to ZODB ghost objects: identity without loaded state."
+    }
+  },
+  {
+    "id": 57,
+    "lesson": "01",
+    "level": {
+      "es": "Avanzado",
+      "en": "Advanced"
+    },
+    "category": {
+      "es": "Fundamentos",
+      "en": "Fundamentals"
+    },
+    "question": {
+      "es": "¿Qué explicación es más completa sobre por qué las BDOO no desplazaron a las relacionales?",
+      "en": "Which explanation is most complete about why OODBs did not displace relational databases?"
+    },
+    "options": {
+      "es": [
+        "Inercia del ecosistema SQL y BI, consultas ad hoc más débiles, acoplamiento al lenguaje y absorción de ideas OO por el relacional (SQL:1999, ORM).",
+        "Las BDOO eran más lentas en todos los tipos de carga.",
+        "Las BDOO no soportaban transacciones ni recuperación ante fallas.",
+        "Ningún OODBMS llegó a comercializarse."
+      ],
+      "en": [
+        "SQL and BI ecosystem inertia, weaker ad hoc querying, language coupling and absorption of OO ideas by relational systems (SQL:1999, ORM).",
+        "OODBs were slower for every kind of workload.",
+        "OODBs did not support transactions or crash recovery.",
+        "No OODBMS was ever sold commercially."
+      ]
+    },
+    "answer": "a",
+    "explanation": {
+      "es": "Las BDOO ganaron en nichos (CAD, telecomunicaciones, física de altas energías, finanzas) y eran mucho más rápidas en recorridos de grafos.",
+      "en": "OODBs won in niches (CAD, telecom, high-energy physics, finance) and were much faster at graph traversals."
+    }
+  },
+  {
+    "id": 58,
+    "lesson": "13",
+    "level": {
+      "es": "Avanzado",
+      "en": "Advanced"
+    },
+    "category": {
+      "es": "Diseño avanzado",
+      "en": "Advanced design"
+    },
+    "question": {
+      "es": "¿Qué propone el modelo de autorización implícita en BDOO (Rabitti, Bertino, Kim y Woelk)?",
+      "en": "What does the implicit authorization model for OODBs (Rabitti, Bertino, Kim and Woelk) propose?"
+    },
+    "options": {
+      "es": [
+        "Conceder todos los permisos al creador de la BD y ninguno a los demás.",
+        "Derivar permisos a lo largo de las jerarquías de clases, de objetos compuestos y del esquema, con autorizaciones positivas y negativas, fuertes y débiles.",
+        "Usar solo listas de control de acceso por archivo del sistema operativo.",
+        "Cifrar cada objeto con la llave del usuario que lo creó."
+      ],
+      "en": [
+        "Granting all permissions to the DB creator and none to others.",
+        "Deriving permissions along class, composite-object and schema hierarchies, with positive and negative, strong and weak authorizations.",
+        "Using only OS file access control lists.",
+        "Encrypting each object with its creator's key."
+      ]
+    },
+    "answer": "b",
+    "explanation": {
+      "es": "Por ejemplo, leer una clase implica poder leer sus instancias, salvo que una autorización negativa fuerte lo impida.",
+      "en": "For example, reading a class implies reading its instances unless a strong negative authorization forbids it."
+    }
+  },
+  {
+    "id": 59,
+    "lesson": "10",
+    "level": {
+      "es": "Avanzado",
+      "en": "Advanced"
+    },
+    "category": {
+      "es": "ORM",
+      "en": "ORM"
+    },
+    "question": {
+      "es": "En Hibernate, haces JOIN FETCH de dos colecciones List de la misma entidad en una sola consulta. ¿Qué suele ocurrir?",
+      "en": "In Hibernate, you JOIN FETCH two List collections of the same entity in a single query. What usually happens?"
+    },
+    "options": {
+      "es": [
+        "Hibernate genera dos consultas independientes y óptimas.",
+        "Las colecciones se cargan vacías.",
+        "MultipleBagFetchException o un producto cartesiano que multiplica las filas.",
+        "La consulta se convierte automáticamente en batch fetching."
+      ],
+      "en": [
+        "Hibernate generates two independent, optimal queries.",
+        "The collections are loaded empty.",
+        "MultipleBagFetchException or a Cartesian product that multiplies rows.",
+        "The query is automatically converted into batch fetching."
+      ]
+    },
+    "answer": "c",
+    "explanation": {
+      "es": "Soluciones: usar Set, dividir en varias consultas o usar batch fetching / SUBSELECT.",
+      "en": "Solutions: use Set, split into several queries or use batch fetching / SUBSELECT."
+    }
+  },
+  {
+    "id": 60,
+    "lesson": "13",
+    "level": {
+      "es": "Avanzado",
+      "en": "Advanced"
+    },
+    "category": {
+      "es": "Diseño avanzado",
+      "en": "Advanced design"
+    },
+    "question": {
+      "es": "¿Qué riesgo de seguridad implica abrir un archivo FileStorage de ZODB de origen no confiable?",
+      "en": "What security risk comes with opening a ZODB FileStorage file from an untrusted source?"
+    },
+    "options": {
+      "es": [
+        "Ninguno: FileStorage solo contiene datos y nunca código.",
+        "Que se borre automáticamente la base de datos local.",
+        "Que se pierda la compatibilidad con versiones anteriores de Python.",
+        "Los objetos se guardan como pickles de Python y deserializarlos puede ejecutar código arbitrario."
+      ],
+      "en": [
+        "None: FileStorage contains only data and never code.",
+        "That the local database is automatically deleted.",
+        "That compatibility with older Python versions is lost.",
+        "Objects are stored as Python pickles and unpickling them can execute arbitrary code."
+      ]
+    },
+    "answer": "d",
+    "explanation": {
+      "es": "Nunca cargues datos serializados de fuentes no confiables; lo mismo aplica a otros formatos de serialización de objetos.",
+      "en": "Never load serialized data from untrusted sources; the same applies to other object-serialization formats."
+    }
+  }
+]

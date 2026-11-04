@@ -1,0 +1,99 @@
+site_name: Bases de Datos Orientadas a Objetos — Curso de 90 días
+site_description: Curso neuro-optimizado (recuerdo activo, repetición espaciada, intercalación y técnica Feynman) sobre Bases de Datos Orientadas a Objetos.
+site_author: Isidro Leos Viscencio
+docs_dir: book
+site_dir: site
+strict: true
+
+hooks:
+  - mkdocs_hooks.py
+
+theme:
+  name: material
+  language: es
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.top
+    - navigation.footer
+    - navigation.indexes
+    - search.suggest
+    - search.highlight
+    - content.code.copy
+    - toc.follow
+  palette:
+    - scheme: default
+      primary: indigo
+      accent: teal
+      toggle:
+        icon: material/weather-night
+        name: Usar modo oscuro
+    - scheme: slate
+      primary: indigo
+      accent: teal
+      toggle:
+        icon: material/weather-sunny
+        name: Usar modo claro
+
+plugins:
+  - search:
+      lang: es
+
+nav:
+  - Inicio: index.md
+  - Programa de estudio: programa-de-estudio.md
+  - Lecciones:
+      - "00 · Cómo estudiar este libro": lecciones/00-como-estudiar.md
+      - "Fase 1 · Cimientos":
+          - "01 · Fundamentos y motivación": lecciones/01-fundamentos.md
+          - "02 · El modelo de objetos": lecciones/02-modelo-de-objetos.md
+          - "03 · El estándar ODMG": lecciones/03-odmg.md
+          - "04 · OQL": lecciones/04-oql.md
+      - "Fase 2 · Mecanismos internos":
+          - "05 · Persistencia": lecciones/05-persistencia.md
+          - "06 · Almacenamiento e índices": lecciones/06-almacenamiento.md
+          - "07 · Transacciones y concurrencia": lecciones/07-transacciones.md
+          - "08 · Evolución de esquema y versionado": lecciones/08-evolucion-esquema.md
+      - "Fase 3 · Integración y maestría":
+          - "09 · Objeto-relacional": lecciones/09-objeto-relacional.md
+          - "10 · ORM": lecciones/10-orm.md
+          - "11 · Optimización": lecciones/11-optimizacion.md
+          - "12 · Sistemas reales": lecciones/12-sistemas-reales.md
+          - "13 · Diseño avanzado": lecciones/13-diseno-avanzado.md
+  - Ejemplos y ejercicios:
+      - ejemplos/index.md
+      - "B1 · Esquema ODL (básico)": ejemplos/B1-esquema-odl.md
+      - "B2 · Persistencia por alcanzabilidad (básico)": ejemplos/B2-persistencia-alcanzabilidad.md
+      - "I1 · Objeto-relacional (intermedio)": ejemplos/I1-objeto-relacional.md
+      - "I2 · Clustering e índices (intermedio)": ejemplos/I2-clustering-indices.md
+      - "I3 · Consultas OQL (intermedio)": ejemplos/I3-consultas-oql.md
+      - "A1 · Evolución y concurrencia (avanzado)": ejemplos/A1-evolucion-concurrencia.md
+      - "A2 · Proyecto final (avanzado)": ejemplos/A2-proyecto-final.md
+  - Autoevaluación: autoevaluacion.md
+  - Glosario: glosario.md
+
+markdown_extensions:
+  - abbr
+  - admonition
+  - attr_list
+  - def_list
+  - footnotes
+  - md_in_html
+  - tables
+  - toc:
+      permalink: true
+      slugify: !!python/object/apply:pymdownx.slugs.slugify
+        kwds:
+          case: lower
+  - pymdownx.details
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg

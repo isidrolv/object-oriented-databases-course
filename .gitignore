@@ -1,0 +1,10 @@
+site/
+__pycache__/
+.pytest_cache/
+.venv/
+*.pyc
+# Archivos de ZODB generados por los ejemplos
+*.fs
+*.fs.index
+*.fs.lock
+*.fs.tmp

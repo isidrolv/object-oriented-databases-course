@@ -1,0 +1,13 @@
+# Sitio de documentación
+mkdocs>=1.6
+mkdocs-material>=9.5
+
+# Programas de autoevaluación (opcionales: gráficas y config.yml)
+matplotlib>=3.8
+pyyaml>=6.0
+
+# Pruebas del banco de reactivos
+pytest>=8.0
+
+# Ejemplos de código (lecciones 05, 07 y 08; ejercicios B2 y A1)
+ZODB>=6.0

@@ -1,0 +1,6 @@
+# Configuration for the OODB Quiz console app
+# You can customize the pass threshold and the maximum number of questions here.
+
+# Quiz logic
+max_questions: 60      # if more exist, pick a random subset of this many
+pass_threshold: 0.8     # 80% required to pass
