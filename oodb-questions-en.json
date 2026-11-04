@@ -1,0 +1,902 @@
+[
+  {
+    "id": 1,
+    "level": "Basic",
+    "category": "Fundamentals",
+    "lesson": "01",
+    "question": "What is an OODBMS?",
+    "options": [
+      "A DBMS that combines database capabilities (persistence, concurrency, recovery, queries) with object-oriented ones (identity, encapsulation, inheritance).",
+      "A library that serializes objects to JSON files without transaction or query support.",
+      "A relational DBMS that only allows stored procedures written in object-oriented languages.",
+      "An application server that automatically translates Java classes into relational tables at compile time."
+    ],
+    "answer": "a",
+    "explanation": "The classic formula from the 1989 Manifesto is OODBMS = object-oriented system + database system. It is neither plain serialization nor an ORM."
+  },
+  {
+    "id": 2,
+    "level": "Basic",
+    "category": "Fundamentals",
+    "lesson": "01",
+    "question": "What best describes the 'impedance mismatch'?",
+    "options": [
+      "The speed difference between RAM and disk when data pages are read.",
+      "The structural and semantic differences between the application's object model and the relational storage model.",
+      "The incompatibility between two versions of the same relational DBMS during a migration.",
+      "The network latency that occurs when the client and server are in different data centers."
+    ],
+    "answer": "b",
+    "explanation": "It covers structure (graphs vs flat tables), identity (reference vs key), encapsulation, inheritance, navigation vs sets, types and transactional granularity."
+  },
+  {
+    "id": 3,
+    "level": "Basic",
+    "category": "Fundamentals",
+    "lesson": "01",
+    "question": "Who authored 'The Object-Oriented Database System Manifesto' (1989)?",
+    "options": [
+      "Codd, Date, Darwen, Chamberlin, Boyce and Gray.",
+      "Stonebraker, Rowe, Lindsay, Gray, Carey and Brodie.",
+      "Atkinson, Bancilhon, DeWitt, Dittrich, Maier and Zdonik.",
+      "Cattell, Barry, Berler, Eastman, Jordan and Russell."
+    ],
+    "answer": "c",
+    "explanation": "Stonebraker's group wrote the Third-Generation manifesto (1990), Date and Darwen wrote The Third Manifesto, and Cattell et al. edited ODMG."
+  },
+  {
+    "id": 4,
+    "level": "Basic",
+    "category": "Object model",
+    "lesson": "02",
+    "question": "Which set of properties characterizes an OID?",
+    "options": [
+      "Unique, user-modifiable and derived from the combination of key attributes.",
+      "Reusable after the object is deleted and always visible as a column in queries.",
+      "Local to each table and computed as a hash of the object's contents.",
+      "Unique, immutable, system-generated and independent of the attribute values."
+    ],
+    "answer": "d",
+    "explanation": "The OID gives the object identity for its whole lifetime even if its values change; hence it cannot be derived from its contents."
+  },
+  {
+    "id": 5,
+    "level": "Basic",
+    "category": "Object model",
+    "lesson": "02",
+    "question": "Two objects have exactly the same values in all their attributes but different OIDs. Which statement is correct?",
+    "options": [
+      "They are equal in value but not identical.",
+      "They are identical, because identity depends on values.",
+      "The system automatically merges them into a single object.",
+      "It is impossible: an OODBMS forbids objects with the same values."
+    ],
+    "answer": "a",
+    "explanation": "Identity (same OID) is stronger than equality: identical twins are equal but not the same person."
+  },
+  {
+    "id": 6,
+    "level": "Basic",
+    "category": "ODMG",
+    "lesson": "03",
+    "question": "In the ODMG model, what is a literal?",
+    "options": [
+      "An object with an OID that cannot be deleted while references to it exist.",
+      "A value without an OID embedded in the containing object, such as a long, a string or a struct.",
+      "A constant declared inside an OQL query that the optimizer precomputes.",
+      "An abstract class that cannot have instances or an extent."
+    ],
+    "answer": "b",
+    "explanation": "Objects have identity and can be shared; literals are values and are copied."
+  },
+  {
+    "id": 7,
+    "level": "Basic",
+    "category": "Object model",
+    "lesson": "02",
+    "question": "What is the extent of a class?",
+    "options": [
+      "The disk space reserved for the class, measured in pages.",
+      "The list of inherited methods the class can override.",
+      "The set of all persistent instances of the class, including those of its subclasses.",
+      "The maximum number of instances the class can have."
+    ],
+    "answer": "c",
+    "explanation": "Due to extent inclusion, Employees ⊆ Persons: a query over persons also returns employees."
+  },
+  {
+    "id": 8,
+    "level": "Basic",
+    "category": "Object model",
+    "lesson": "02",
+    "question": "Which collection constructor allows duplicates and has no order?",
+    "options": [
+      "set",
+      "list",
+      "dictionary",
+      "bag"
+    ],
+    "answer": "d",
+    "explanation": "set: no duplicates, no order; list: ordered with duplicates; dictionary: unique keys; bag: unordered multiset."
+  },
+  {
+    "id": 9,
+    "level": "Basic",
+    "category": "ODMG",
+    "lesson": "03",
+    "question": "Which ODMG component is used to define schemas?",
+    "options": [
+      "ODL (Object Definition Language).",
+      "OQL (Object Query Language).",
+      "OIF (Object Interchange Format).",
+      "OML (Object Manipulation Language)."
+    ],
+    "answer": "a",
+    "explanation": "ODL defines schemas in a language-independent way; OQL queries; OIF exchanges objects; manipulation happens in the language bindings."
+  },
+  {
+    "id": 10,
+    "level": "Basic",
+    "category": "ODMG",
+    "lesson": "03",
+    "question": "What advantage does declaring a relationship with an inverse in ODL provide?",
+    "options": [
+      "The relationship is stored in a separate table to speed up joins.",
+      "The system automatically maintains referential integrity on both sides of the relationship.",
+      "It allows declaring ternary and higher-order relationships.",
+      "It prevents related objects from being deleted while the relationship exists."
+    ],
+    "answer": "b",
+    "explanation": "If you call professor.teaches.insert_element(course), the system updates course.taught_by. ODMG only supports binary relationships."
+  },
+  {
+    "id": 11,
+    "level": "Basic",
+    "category": "Object model",
+    "lesson": "02",
+    "question": "What is late binding?",
+    "options": [
+      "Delaying writing changes to disk until the transaction ends.",
+      "Loading an object's attributes only when they are first accessed.",
+      "Choosing a method's implementation at run time according to the object's actual type.",
+      "Binding a class to its table at the end of compilation."
+    ],
+    "answer": "c",
+    "explanation": "It enables polymorphic queries: select f.area() from figures f runs each subclass's area()."
+  },
+  {
+    "id": 12,
+    "level": "Basic",
+    "category": "OQL",
+    "lesson": "04",
+    "question": "What collection type does an OQL 'select distinct ...' query without order by return?",
+    "options": [
+      "bag",
+      "list",
+      "array",
+      "set"
+    ],
+    "answer": "d",
+    "explanation": "select returns a bag; select distinct, a set; with order by, a list."
+  },
+  {
+    "id": 13,
+    "level": "Basic",
+    "category": "OQL",
+    "lesson": "04",
+    "question": "In OQL, what is a path expression such as p.belongs_to.name?",
+    "options": [
+      "Navigation through references between objects, equivalent to an implicit join.",
+      "The disk file path where object p is stored.",
+      "A string that the optimizer converts into a regular expression.",
+      "A remote call to a server stored procedure."
+    ],
+    "answer": "a",
+    "explanation": "Paths replace SQL's explicit JOINs as long as each step is single-valued."
+  },
+  {
+    "id": 14,
+    "level": "Basic",
+    "category": "Fundamentals",
+    "lesson": "01",
+    "question": "What was the last version of the ODMG standard and what happened afterwards?",
+    "options": [
+      "ODMG 5.0 (2010); it was fully merged into the SQL:2011 standard.",
+      "ODMG 3.0 (2000); the group disbanded in 2001 and its Java binding gave rise to JDO.",
+      "ODMG 2.0 (1997); it was directly replaced by JPA 1.0 that same year.",
+      "ODMG 4.0 (2004); the W3C adopted it as the standard for XML databases."
+    ],
+    "answer": "b",
+    "explanation": "JDO (JSR 12) inherited the Java binding; JPA arrived in 2006 with ideas from JDO and Hibernate."
+  },
+  {
+    "id": 15,
+    "level": "Basic",
+    "category": "Persistence",
+    "lesson": "05",
+    "question": "What does persistence by reachability mean?",
+    "options": [
+      "Only objects whose class inherits from a persistent base class are persisted.",
+      "Objects are persisted only if the user calls save() on each one.",
+      "Every object reachable, directly or indirectly, from a persistent root becomes persistent.",
+      "Objects persist while a network connection to the server exists."
+    ],
+    "answer": "c",
+    "explanation": "It is one of the three principles of orthogonal persistence (Atkinson and Morrison): the programmer does not mark objects one by one."
+  },
+  {
+    "id": 16,
+    "level": "Basic",
+    "category": "Persistence",
+    "lesson": "05",
+    "question": "What is ZODB?",
+    "options": [
+      "A Python ORM that maps classes to PostgreSQL tables.",
+      "A full-text search engine written in Java.",
+      "A compression format for relational database backups.",
+      "A native Python object database with transparent persistence, transactions and MVCC."
+    ],
+    "answer": "d",
+    "explanation": "ZODB was born with Zope; it uses FileStorage, ZEO for client-server and RelStorage to store in a relational DBMS."
+  },
+  {
+    "id": 17,
+    "level": "Basic",
+    "category": "Object-relational",
+    "lesson": "09",
+    "question": "Which SQL standard introduced structured user-defined types, the REF type and type/table inheritance?",
+    "options": [
+      "SQL:1999",
+      "SQL-92",
+      "SQL:2011",
+      "SQL-86"
+    ],
+    "answer": "a",
+    "explanation": "SQL:1999 gave rise to object-relational DBMSs; SQL:2003 added MULTISET."
+  },
+  {
+    "id": 18,
+    "level": "Basic",
+    "category": "Fundamentals",
+    "lesson": "01",
+    "question": "What did the 'Third-Generation Database System Manifesto' (1990) propose?",
+    "options": [
+      "Abandoning SQL and adopting OQL as the only query language.",
+      "Extending the relational model and SQL with object capabilities instead of replacing them.",
+      "Eliminating ACID transactions to scale horizontally.",
+      "Replacing tables with schemaless JSON documents."
+    ],
+    "answer": "b",
+    "explanation": "Written by Stonebraker et al., it anticipated the object-relational path followed by PostgreSQL, Oracle and Informix."
+  },
+  {
+    "id": 19,
+    "level": "Basic",
+    "category": "ORM",
+    "lesson": "10",
+    "question": "What does the Identity Map pattern guarantee in an ORM?",
+    "options": [
+      "That every table has an auto-increment primary key.",
+      "That identifiers are generated globally across all servers.",
+      "That within a session each row is represented by a single in-memory object.",
+      "That objects are saved in the same order they were created."
+    ],
+    "answer": "c",
+    "explanation": "Calling em.find(Customer.class, 1L) twice returns the same object. It is not global: each EntityManager has its own."
+  },
+  {
+    "id": 20,
+    "level": "Basic",
+    "category": "ORM",
+    "lesson": "10",
+    "question": "What is the N+1 problem?",
+    "options": [
+      "A table has N columns plus one inheritance discriminator column.",
+      "N+1 servers are needed to tolerate N failures.",
+      "A transaction performs N writes and one final commit.",
+      "A query loads N objects and then one extra query runs for each lazy association traversed."
+    ],
+    "answer": "d",
+    "explanation": "It is solved with JOIN FETCH, @EntityGraph, batch fetching or DTO projections."
+  },
+  {
+    "id": 21,
+    "level": "Intermediate",
+    "category": "ODMG",
+    "lesson": "03",
+    "question": "In ODL, what is the difference between 'class B extends A' and 'class B : I'?",
+    "options": [
+      "extends inherits state and behavior from a single class; ':' inherits only behavior (interfaces) and allows multiple inheritance.",
+      "extends allows multiple class inheritance; ':' only allows inheriting from one interface.",
+      "They are synonyms; ':' is shorthand for extends in ODMG 3.0.",
+      "extends copies the objects of A's extent; ':' only copies its schema."
+    ],
+    "answer": "a",
+    "explanation": "ODMG separates ISA behavior inheritance (multiple) from EXTENDS state inheritance (single)."
+  },
+  {
+    "id": 22,
+    "level": "Intermediate",
+    "category": "Object model",
+    "lesson": "02",
+    "question": "Two Person objects have the same name and reference the SAME Address object. What kind of equality do they at least satisfy?",
+    "options": [
+      "Identity, because they share the address.",
+      "Shallow equality (and therefore deep equality too).",
+      "Only deep equality, never shallow.",
+      "None, because their OIDs differ."
+    ],
+    "answer": "b",
+    "explanation": "Shallow = same values and same references. Identity ⇒ shallow ⇒ deep, but not the reverse."
+  },
+  {
+    "id": 23,
+    "level": "Intermediate",
+    "category": "ODMG",
+    "lesson": "03",
+    "question": "How do you model in ODL an M:N relationship between Student and Course that must store the grade?",
+    "options": [
+      "With a dictionary<Course, float> attribute in Student and nothing in Course.",
+      "By declaring a ternary relationship with a grade attribute.",
+      "By reifying it as an Enrollment class with two relationships with inverses, one to Student and one to Course.",
+      "With two set<> without inverses and a method that computes the grade."
+    ],
+    "answer": "c",
+    "explanation": "ODMG relationships are binary and have no attributes; associations with data become classes."
+  },
+  {
+    "id": 24,
+    "level": "Intermediate",
+    "category": "OQL",
+    "lesson": "04",
+    "question": "Why is the OQL expression 'e.enrollments.course' invalid if enrollments is set<Enrollment>?",
+    "options": [
+      "Because OQL does not allow paths with more than one dot.",
+      "Because sets cannot appear in the select clause.",
+      "Because course is an OQL reserved word.",
+      "Because a path can only follow single-valued steps; to traverse a collection you must introduce a variable in from (e.enrollments i)."
+    ],
+    "answer": "d",
+    "explanation": "Correct form: select i.course from students e, e.enrollments i."
+  },
+  {
+    "id": 25,
+    "level": "Intermediate",
+    "category": "OQL",
+    "lesson": "04",
+    "question": "In an OQL group by, what does the partition variable contain?",
+    "options": [
+      "The bag of elements of each group, as structs with the from variables.",
+      "The number of groups produced by the query.",
+      "The physical page where each group is stored.",
+      "Only the grouping key value."
+    ],
+    "answer": "a",
+    "explanation": "Example: avg(select x.p.salary from partition x) computes the average within each group."
+  },
+  {
+    "id": 26,
+    "level": "Intermediate",
+    "category": "OQL",
+    "lesson": "04",
+    "question": "What does 'for all c in p.teaches: c.credits = 8' return for a professor who teaches no course?",
+    "options": [
+      "false, because no course satisfies the condition.",
+      "true, because universal quantification over an empty collection is true.",
+      "nil, because the collection is empty.",
+      "A runtime error due to an empty collection."
+    ],
+    "answer": "b",
+    "explanation": "It is logic's vacuous truth; exists over an empty collection, by contrast, is false."
+  },
+  {
+    "id": 27,
+    "level": "Intermediate",
+    "category": "Persistence",
+    "lesson": "05",
+    "question": "What is pointer swizzling?",
+    "options": [
+      "Encrypting pointers so nobody can read the process memory.",
+      "Reordering objects on disk to improve clustering.",
+      "Converting references stored as OIDs into memory pointers when objects are loaded (and back when they are written).",
+      "Duplicating pointers across two replicas for high availability."
+    ],
+    "answer": "c",
+    "explanation": "It can be eager or lazy, in-place or copy-based, and software or hardware (virtual memory) based."
+  },
+  {
+    "id": 28,
+    "level": "Intermediate",
+    "category": "Persistence",
+    "lesson": "05",
+    "question": "In ZODB, a Persistent object has an attribute that is a plain Python list. You call obj.items.append(x) and commit. What happens?",
+    "options": [
+      "The change is always saved because ZODB compares the full state on commit.",
+      "ZODB raises a ConflictError because lists are not persistent.",
+      "The list is automatically converted into a PersistentList.",
+      "The change is not saved unless you set obj._p_changed = True or use PersistentList."
+    ],
+    "answer": "d",
+    "explanation": "ZODB detects attribute assignments on the Persistent object, not in-place mutations of non-persistent objects."
+  },
+  {
+    "id": 29,
+    "level": "Intermediate",
+    "category": "Persistence",
+    "lesson": "05",
+    "question": "In db4o, with the default update depth (1), you call store(order) after modifying order.customer.name. What happens?",
+    "options": [
+      "The order's direct fields are updated, but the change in the referenced customer is not saved.",
+      "The whole order graph is saved, including the customer's name.",
+      "db4o throws an exception for modifying a referenced object.",
+      "A duplicate customer with the new name is created."
+    ],
+    "answer": "a",
+    "explanation": "You must increase the update depth, call store(customer) or use transparent persistence."
+  },
+  {
+    "id": 30,
+    "level": "Intermediate",
+    "category": "Storage",
+    "lesson": "06",
+    "question": "What is a characteristic disadvantage of the page-server architecture compared with the object-server architecture?",
+    "options": [
+      "It cannot exploit clustering because it transfers objects one at a time.",
+      "Locking is usually coarse-grained (per page), causing false conflicts between different objects on the same page.",
+      "It forces all methods to run on the server.",
+      "It does not allow client caching."
+    ],
+    "answer": "b",
+    "explanation": "Its advantage is simplicity and exploiting clustering (one page brings many related objects)."
+  },
+  {
+    "id": 31,
+    "level": "Intermediate",
+    "category": "Storage",
+    "lesson": "06",
+    "question": "What is the goal of clustering in an OODB?",
+    "options": [
+      "Replicating the database across several cluster nodes.",
+      "Grouping similar queries to compile them once.",
+      "Physically placing together objects that are accessed together to reduce page reads.",
+      "Compressing objects of the same class into a single block."
+    ],
+    "answer": "c",
+    "explanation": "It can be by class, composition, relationship or programmer hints; the general optimum is NP-hard."
+  },
+  {
+    "id": 32,
+    "level": "Intermediate",
+    "category": "Storage",
+    "lesson": "06",
+    "question": "For the path Vehicle.manufacturer.company.city, what does a nested index map?",
+    "options": [
+      "Each intermediate object to the next object in the path.",
+      "The final value to the complete instantiations (vehicle, manufacturer, company).",
+      "Each class in the path to its number of instances.",
+      "The final value (city) to the starting objects of the path (vehicles)."
+    ],
+    "answer": "d",
+    "explanation": "The multi-index keeps one index per step and the path index stores full instantiations. The nested index is fastest for the full path but costliest to maintain."
+  },
+  {
+    "id": 33,
+    "level": "Intermediate",
+    "category": "Storage",
+    "lesson": "06",
+    "question": "When is a class-hierarchy index preferable to one index per class?",
+    "options": [
+      "When queries usually span the superclass and all its subclasses.",
+      "When queries almost always target a single deep subclass.",
+      "When the hierarchy has a single level and a single class.",
+      "When indexed attributes change in every transaction."
+    ],
+    "answer": "a",
+    "explanation": "A single B-tree with per-class OID lists avoids probing n separate indexes."
+  },
+  {
+    "id": 34,
+    "level": "Intermediate",
+    "category": "Transactions",
+    "lesson": "07",
+    "question": "In multiple-granularity locking, which modes is an IX lock compatible with?",
+    "options": [
+      "S and SIX",
+      "IS and IX",
+      "Only X",
+      "IS, IX, S and SIX"
+    ],
+    "answer": "b",
+    "explanation": "IX signals the intent to write below; it conflicts with S, SIX and X, which read or write the whole subtree."
+  },
+  {
+    "id": 35,
+    "level": "Intermediate",
+    "category": "Transactions",
+    "lesson": "07",
+    "question": "In closed nested transactions (Moss), what happens when a subtransaction commits?",
+    "options": [
+      "Its changes immediately become durable on disk.",
+      "It releases all its locks so other root transactions can use them.",
+      "Its effects and locks are inherited by the parent; they become durable only when the root transaction commits.",
+      "It forces the parent to commit at that very moment."
+    ],
+    "answer": "c",
+    "explanation": "Open nested transactions do release locks on commit, but then require compensations."
+  },
+  {
+    "id": 36,
+    "level": "Intermediate",
+    "category": "Transactions",
+    "lesson": "07",
+    "question": "What problem does the check-out/check-in model solve in design OODBs?",
+    "options": [
+      "It speeds up ad hoc queries by copying indexes to the client.",
+      "It removes the need for OIDs when working with copies.",
+      "It synchronizes clocks between client and server.",
+      "It allows long transactions (hours or days) in private workspaces without holding 2PL locks on the shared DB."
+    ],
+    "answer": "d",
+    "explanation": "Check-out takes a persistent lock; check-in validates and publishes a new version."
+  },
+  {
+    "id": 37,
+    "level": "Intermediate",
+    "category": "Object-relational",
+    "lesson": "09",
+    "question": "In PostgreSQL, professor INHERITS (person) and person has PRIMARY KEY (id). What is true?",
+    "options": [
+      "Uniqueness is not global: an id can repeat between person and professor, and an FK to person does not see professor rows.",
+      "The primary key is inherited and enforced across the whole hierarchy.",
+      "PostgreSQL prevents creating child tables if the parent has a primary key.",
+      "Professor rows do not appear when querying person."
+    ],
+    "answer": "a",
+    "explanation": "Indexes, UNIQUE/PK constraints and FKs do not propagate to children. SELECT on person does include children unless ONLY is used."
+  },
+  {
+    "id": 38,
+    "level": "Intermediate",
+    "category": "Object-relational",
+    "lesson": "09",
+    "question": "In Oracle, what does TREAT(VALUE(p) AS professor_t) do?",
+    "options": [
+      "It creates a copy of the object with a new OID of type professor_t.",
+      "It casts the object to its subtype professor_t (downcast) and returns NULL if it is not of that subtype.",
+      "It permanently changes the stored type of the row.",
+      "It validates that the table has a column named professor_t."
+    ],
+    "answer": "b",
+    "explanation": "It is often combined with IS OF (professor_t) to filter by subtype."
+  },
+  {
+    "id": 39,
+    "level": "Intermediate",
+    "category": "ORM",
+    "lesson": "10",
+    "question": "What is the main trade-off of JPA's SINGLE_TABLE inheritance strategy?",
+    "options": [
+      "Fully normalized schema, at the cost of one join per subclass.",
+      "No polymorphic queries, in exchange for reusing attributes.",
+      "Fast polymorphic queries without joins, at the cost of subclass columns having to be nullable.",
+      "UNION ALL in every query, in exchange for no discriminator."
+    ],
+    "answer": "c",
+    "explanation": "JOINED normalizes with joins; TABLE_PER_CLASS uses UNION ALL; @MappedSuperclass allows no polymorphic queries."
+  },
+  {
+    "id": 40,
+    "level": "Intermediate",
+    "category": "ORM",
+    "lesson": "10",
+    "question": "How does JPA's mappedBy differ from an ODMG relationship with an inverse?",
+    "options": [
+      "mappedBy automatically maintains both sides in memory and in the DB.",
+      "mappedBy always creates a join table.",
+      "mappedBy only works with one-to-one relationships.",
+      "mappedBy only indicates the FK owner side; the application must keep both sides consistent in memory."
+    ],
+    "answer": "d",
+    "explanation": "That is why helper methods like addOrder(o) are written to update both references."
+  },
+  {
+    "id": 41,
+    "level": "Advanced",
+    "category": "Schema evolution",
+    "lesson": "08",
+    "question": "What is the main trade-off of lazy instance conversion after a schema change?",
+    "options": [
+      "It avoids downtime and spreads the cost, but several object shapes coexist and every access must check the version.",
+      "It guarantees a single immediate format, but requires stopping the system.",
+      "It requires no conversion code, but loses old data.",
+      "It is faster to read, but prevents adding attributes."
+    ],
+    "answer": "a",
+    "explanation": "Immediate conversion has the opposite profile. Versant and ZODB's __setstate__ are examples of lazy conversion."
+  },
+  {
+    "id": 42,
+    "level": "Advanced",
+    "category": "Schema evolution",
+    "lesson": "08",
+    "question": "What is screening in ORION?",
+    "options": [
+      "Rewriting all instances in a nightly maintenance window.",
+      "Adapting old instances when they are read (hiding dropped attributes and adding default values) without ever rewriting them.",
+      "Rejecting any schema change that affects classes with instances.",
+      "Creating a SQL view for each class version."
+    ],
+    "answer": "b",
+    "explanation": "It performs zero rewrites at the price of a permanent overhead on every read."
+  },
+  {
+    "id": 43,
+    "level": "Advanced",
+    "category": "Transactions",
+    "lesson": "07",
+    "question": "During a lazy migration in ZODB, _p_resolveConflict(old, committed, new) is triggered. Why may old arrive in the old schema format?",
+    "options": [
+      "Because ZODB always reverts states to the class's first version.",
+      "Because __setstate__ runs after _p_resolveConflict.",
+      "Because ZODB passes the states as serialized on disk, and __setstate__ only converted the object in memory.",
+      "Because conflicting states are stored in a separate file with the original schema."
+    ],
+    "answer": "c",
+    "explanation": "All three states must be normalized to the new version before merging; otherwise a KeyError leaves the conflict unresolved."
+  },
+  {
+    "id": 44,
+    "level": "Advanced",
+    "category": "Transactions",
+    "lesson": "07",
+    "question": "In semantic concurrency control, which pair of concurrent operations on an account can be safely merged?",
+    "options": [
+      "Two withdrawals with funds validation, because both subtract.",
+      "A validated withdrawal and a balance query.",
+      "An account closure and a deposit.",
+      "Two deposits, because they commute: the result does not depend on the order."
+    ],
+    "answer": "d",
+    "explanation": "Two individually valid withdrawals can make the balance negative when combined; they do not commute with respect to the invariant."
+  },
+  {
+    "id": 45,
+    "level": "Advanced",
+    "category": "Transactions",
+    "lesson": "07",
+    "question": "For which access pattern is the SIX lock mode ideal?",
+    "options": [
+      "Scanning (reading) an entire extent or container and modifying only some of its objects.",
+      "Reading a single object without modifying anything.",
+      "Dropping an entire class and all its instances.",
+      "Signaling that an object will be read in a future transaction."
+    ],
+    "answer": "a",
+    "explanation": "SIX = S on the whole node + IX to X-lock the descendants being modified."
+  },
+  {
+    "id": 46,
+    "level": "Advanced",
+    "category": "Optimization",
+    "lesson": "11",
+    "question": "According to Hellerstein's predicate migration, in what order are expensive predicates evaluated?",
+    "options": [
+      "Always the most selective first, regardless of cost.",
+      "In increasing order of rank = (selectivity − 1) / per-tuple cost.",
+      "Always the cheapest first, regardless of selectivity.",
+      "In the order they appear in the where clause."
+    ],
+    "answer": "b",
+    "explanation": "A very selective but very expensive predicate (a method) may be better evaluated after a cheap, moderately selective one."
+  },
+  {
+    "id": 47,
+    "level": "Advanced",
+    "category": "Optimization",
+    "lesson": "11",
+    "question": "Which conditions must a method satisfy to be materialized (function materialization)?",
+    "options": [
+      "Being written in SQL and taking no parameters.",
+      "Running in under one millisecond.",
+      "Being deterministic, side-effect free and having trackable dependencies to invalidate the value when they change.",
+      "Belonging to a class without subclasses."
+    ],
+    "answer": "c",
+    "explanation": "It is analogous to a materialized view: faster queries at the cost of more expensive updates."
+  },
+  {
+    "id": 48,
+    "level": "Advanced",
+    "category": "Optimization",
+    "lesson": "11",
+    "question": "For 'select v from vehicles v where v.manufacturer.company.city = \"Monterrey\"', when is backward traversal preferable?",
+    "options": [
+      "When there are very few vehicles and many companies in Monterrey.",
+      "When the path has no indexes or inverse references.",
+      "Always: forward traversal is never optimal.",
+      "When the predicate on city is highly selective and there are indexes or inverse references to climb the path."
+    ],
+    "answer": "d",
+    "explanation": "You start from the few Monterrey companies and climb to manufacturers and vehicles instead of dereferencing millions of vehicles."
+  },
+  {
+    "id": 49,
+    "level": "Advanced",
+    "category": "Optimization",
+    "lesson": "11",
+    "question": "What advantage does a pointer-based hash join have over naive pointer chasing?",
+    "options": [
+      "It groups dereferences by target page so each page is read only once.",
+      "It removes the need for OIDs by using content hashes.",
+      "It allows running the query without opening a transaction.",
+      "It automatically converts the query to SQL."
+    ],
+    "answer": "a",
+    "explanation": "Shekita and Carey (1990) compared naive pointer chasing with hash, sort-merge and hybrid pointer-based variants."
+  },
+  {
+    "id": 50,
+    "level": "Advanced",
+    "category": "Optimization",
+    "lesson": "11",
+    "question": "What domain does the OO7 benchmark (Carey, DeWitt and Naughton, 1993) model?",
+    "options": [
+      "A banking system with accounts, transfers and auditing.",
+      "A CAD design application with modules, assemblies, composite parts and atomic parts.",
+      "A social network with users, posts and followers.",
+      "A data warehouse with sales facts and dimensions."
+    ],
+    "answer": "b",
+    "explanation": "It measures traversals, queries and structural changes; no system won everything."
+  },
+  {
+    "id": 51,
+    "level": "Advanced",
+    "category": "Real systems",
+    "lesson": "12",
+    "question": "What characteristic technique did ObjectStore use so that C++ pointers worked on persistent data?",
+    "options": [
+      "A dynamic proxy for each object generated at run time.",
+      "Translating each dereference into a SQL query to the server.",
+      "Swizzling at page-fault time, using the operating system's virtual memory protection.",
+      "Copying the whole database into memory at program start."
+    ],
+    "answer": "c",
+    "explanation": "Pages are mapped protected; touching them triggers a fault that loads the data and swizzles its pointers (Wilson, 1991)."
+  },
+  {
+    "id": 52,
+    "level": "Advanced",
+    "category": "Versioning",
+    "lesson": "08",
+    "question": "A product configuration released for manufacturing should reference its parts via...",
+    "options": [
+      "Generic references that always resolve to the default version.",
+      "Copies of the parts without OIDs to avoid dependencies.",
+      "Text names of the parts resolved when the drawing is printed.",
+      "Specific (static) references to concrete versions, so it does not change when new versions appear."
+    ],
+    "answer": "d",
+    "explanation": "Generic references are useful during development; releases need reproducibility."
+  },
+  {
+    "id": 53,
+    "level": "Advanced",
+    "category": "Storage",
+    "lesson": "06",
+    "question": "What is callback locking for client cache coherence?",
+    "options": [
+      "The client keeps locks cached across transactions and the server asks it to release them when another client needs them.",
+      "The client asks the server before every read to validate its copy.",
+      "The server periodically sends a full copy of the DB to each client.",
+      "Clients communicate with each other without going through the server."
+    ],
+    "answer": "a",
+    "explanation": "It reduces messages under low contention; alternatives are optimistic avoidance and invalidation notifications."
+  },
+  {
+    "id": 54,
+    "level": "Advanced",
+    "category": "Persistence",
+    "lesson": "05",
+    "question": "What are the three principles of orthogonal persistence (Atkinson and Morrison)?",
+    "options": [
+      "Atomicity, consistency and durability.",
+      "Type orthogonality, persistence by reachability and persistence independence.",
+      "Encapsulation, inheritance and polymorphism.",
+      "Serialization, compression and encryption."
+    ],
+    "answer": "b",
+    "explanation": "Any type can persist, an object's lifetime is defined by reachability, and code is the same for short- and long-lived data."
+  },
+  {
+    "id": 55,
+    "level": "Advanced",
+    "category": "Schema evolution",
+    "lesson": "08",
+    "question": "According to ORION's invariants, if a subclass redefines an inherited attribute, what restriction applies to its domain?",
+    "options": [
+      "It must be a generalization (superclass) of the original domain.",
+      "It can be any type as long as it keeps the name.",
+      "It must be the same domain or a specialization (subclass) of the original domain.",
+      "It must be an atomic type, never a class."
+    ],
+    "answer": "c",
+    "explanation": "It is the domain compatibility invariant, which preserves substitutability."
+  },
+  {
+    "id": 56,
+    "level": "Advanced",
+    "category": "Persistence",
+    "lesson": "05",
+    "question": "In JDO, with the default configuration (retainValues = false), what state is a persistent object in right after commit?",
+    "options": [
+      "Transient: it loses its persistent identity.",
+      "Persistent-dirty: it stays marked for the next transaction.",
+      "Persistent-deleted: it is removed from the cache and the DB.",
+      "Hollow: it keeps its identity, but its fields will be reloaded on next access."
+    ],
+    "answer": "d",
+    "explanation": "Hollow is equivalent to ZODB ghost objects: identity without loaded state."
+  },
+  {
+    "id": 57,
+    "level": "Advanced",
+    "category": "Fundamentals",
+    "lesson": "01",
+    "question": "Which explanation is most complete about why OODBs did not displace relational databases?",
+    "options": [
+      "SQL and BI ecosystem inertia, weaker ad hoc querying, language coupling and absorption of OO ideas by relational systems (SQL:1999, ORM).",
+      "OODBs were slower for every kind of workload.",
+      "OODBs did not support transactions or crash recovery.",
+      "No OODBMS was ever sold commercially."
+    ],
+    "answer": "a",
+    "explanation": "OODBs won in niches (CAD, telecom, high-energy physics, finance) and were much faster at graph traversals."
+  },
+  {
+    "id": 58,
+    "level": "Advanced",
+    "category": "Advanced design",
+    "lesson": "13",
+    "question": "What does the implicit authorization model for OODBs (Rabitti, Bertino, Kim and Woelk) propose?",
+    "options": [
+      "Granting all permissions to the DB creator and none to others.",
+      "Deriving permissions along class, composite-object and schema hierarchies, with positive and negative, strong and weak authorizations.",
+      "Using only OS file access control lists.",
+      "Encrypting each object with its creator's key."
+    ],
+    "answer": "b",
+    "explanation": "For example, reading a class implies reading its instances unless a strong negative authorization forbids it."
+  },
+  {
+    "id": 59,
+    "level": "Advanced",
+    "category": "ORM",
+    "lesson": "10",
+    "question": "In Hibernate, you JOIN FETCH two List collections of the same entity in a single query. What usually happens?",
+    "options": [
+      "Hibernate generates two independent, optimal queries.",
+      "The collections are loaded empty.",
+      "MultipleBagFetchException or a Cartesian product that multiplies rows.",
+      "The query is automatically converted into batch fetching."
+    ],
+    "answer": "c",
+    "explanation": "Solutions: use Set, split into several queries or use batch fetching / SUBSELECT."
+  },
+  {
+    "id": 60,
+    "level": "Advanced",
+    "category": "Advanced design",
+    "lesson": "13",
+    "question": "What security risk comes with opening a ZODB FileStorage file from an untrusted source?",
+    "options": [
+      "None: FileStorage contains only data and never code.",
+      "That the local database is automatically deleted.",
+      "That compatibility with older Python versions is lost.",
+      "Objects are stored as Python pickles and unpickling them can execute arbitrary code."
+    ],
+    "answer": "d",
+    "explanation": "Never load serialized data from untrusted sources; the same applies to other object-serialization formats."
+  }
+]

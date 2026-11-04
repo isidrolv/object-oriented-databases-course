@@ -1,0 +1,2286 @@
+
+<!doctype html>
+<html lang="es" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Curso neuro-optimizado (recuerdo activo, repetición espaciada, intercalación y técnica Feynman) sobre Bases de Datos Orientadas a Objetos.">
+      
+      
+        <meta name="author" content="Isidro Leos Viscencio">
+      
+      
+      
+        <link rel="prev" href="../11-optimizacion/">
+      
+      
+        <link rel="next" href="../13-diseno-avanzado/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.0">
+    
+    
+      
+        <title>12 · Sistemas reales - Bases de Datos Orientadas a Objetos — Curso de 90 días</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.57a0d79d.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.fb2fffe2.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="teal">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#lección-12--sistemas-reales-y-ecosistema" class="md-skip">
+          Saltar a contenido
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabecera">
+    <a href="../.." title="Bases de Datos Orientadas a Objetos — Curso de 90 días" class="md-header__button md-logo" aria-label="Bases de Datos Orientadas a Objetos — Curso de 90 días" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Bases de Datos Orientadas a Objetos — Curso de 90 días
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              12 · Sistemas reales
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="teal"  aria-label="Usar modo oscuro"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Usar modo oscuro" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="teal"  aria-label="Usar modo claro"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Usar modo claro" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Búsqueda" placeholder="Búsqueda" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Buscar">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Limpiar" aria-label="Limpiar" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando búsqueda
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Pestañas" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Inicio
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../programa-de-estudio/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Programa de estudio
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../00-como-estudiar/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Lecciones
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../ejemplos/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Ejemplos y ejercicios
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../autoevaluacion/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Autoevaluación
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../glosario/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Glosario
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navegación" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Bases de Datos Orientadas a Objetos — Curso de 90 días" class="md-nav__button md-logo" aria-label="Bases de Datos Orientadas a Objetos — Curso de 90 días" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Bases de Datos Orientadas a Objetos — Curso de 90 días
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Inicio
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../programa-de-estudio/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Programa de estudio
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lecciones
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Lecciones
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../00-como-estudiar/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    00 · Cómo estudiar este libro
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_2" id="__nav_3_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Fase 1 · Cimientos
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Fase 1 · Cimientos
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../01-fundamentos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    01 · Fundamentos y motivación
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02-modelo-de-objetos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    02 · El modelo de objetos
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03-odmg/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    03 · El estándar ODMG
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04-oql/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    04 · OQL
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_3" id="__nav_3_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Fase 2 · Mecanismos internos
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Fase 2 · Mecanismos internos
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../05-persistencia/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    05 · Persistencia
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../06-almacenamiento/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    06 · Almacenamiento e índices
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../07-transacciones/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    07 · Transacciones y concurrencia
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../08-evolucion-esquema/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    08 · Evolución de esquema y versionado
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3_4" id="__nav_3_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Fase 3 · Integración y maestría
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Fase 3 · Integración y maestría
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../09-objeto-relacional/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    09 · Objeto-relacional
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../10-orm/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    10 · ORM
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../11-optimizacion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    11 · Optimización
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    12 · Sistemas reales
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    12 · Sistemas reales
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#objetivos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Objetivos
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#explícalo-como-feynman" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Explícalo como Feynman
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-panorama-de-sistemas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Panorama de sistemas
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-mini-ejemplos-de-estilo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Mini-ejemplos de estilo
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Mini-ejemplos de estilo">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#gemstones-smalltalk-el-método-se-ejecuta-en-el-servidor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GemStone/S (Smalltalk): el método se ejecuta en el servidor
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#intersystems-iris-una-clase-que-también-es-tabla" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        InterSystems IRIS: una clase que también es tabla
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#realm-kotlin-objetos-vivos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Realm (Kotlin): objetos vivos
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-bdoo-vs-bases-nosql-modernas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. BDOO vs bases NoSQL modernas
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-matriz-de-decisión-ponderada-plantilla" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Matriz de decisión ponderada (plantilla)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#errores-comunes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Errores comunes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conexiones-intercalación" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conexiones (intercalación)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#preguntas-de-recuerdo-activo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Preguntas de recuerdo activo
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tarjetas-de-repaso" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tarjetas de repaso
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../13-diseno-avanzado/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    13 · Diseño avanzado
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../ejemplos/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ejemplos y ejercicios
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Ejemplos y ejercicios
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ejemplos/B1-esquema-odl/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    B1 · Esquema ODL (básico)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ejemplos/B2-persistencia-alcanzabilidad/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    B2 · Persistencia por alcanzabilidad (básico)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ejemplos/I1-objeto-relacional/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    I1 · Objeto-relacional (intermedio)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ejemplos/I2-clustering-indices/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    I2 · Clustering e índices (intermedio)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ejemplos/I3-consultas-oql/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    I3 · Consultas OQL (intermedio)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ejemplos/A1-evolucion-concurrencia/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    A1 · Evolución y concurrencia (avanzado)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ejemplos/A2-proyecto-final/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    A2 · Proyecto final (avanzado)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../autoevaluacion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Autoevaluación
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../glosario/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Glosario
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#objetivos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Objetivos
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#explícalo-como-feynman" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Explícalo como Feynman
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-panorama-de-sistemas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Panorama de sistemas
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-mini-ejemplos-de-estilo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Mini-ejemplos de estilo
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Mini-ejemplos de estilo">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#gemstones-smalltalk-el-método-se-ejecuta-en-el-servidor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GemStone/S (Smalltalk): el método se ejecuta en el servidor
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#intersystems-iris-una-clase-que-también-es-tabla" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        InterSystems IRIS: una clase que también es tabla
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#realm-kotlin-objetos-vivos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Realm (Kotlin): objetos vivos
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-bdoo-vs-bases-nosql-modernas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. BDOO vs bases NoSQL modernas
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-matriz-de-decisión-ponderada-plantilla" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Matriz de decisión ponderada (plantilla)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#errores-comunes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Errores comunes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conexiones-intercalación" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conexiones (intercalación)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#preguntas-de-recuerdo-activo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Preguntas de recuerdo activo
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tarjetas-de-repaso" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tarjetas de repaso
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="lección-12--sistemas-reales-y-ecosistema">Lección 12 · Sistemas reales y ecosistema<a class="headerlink" href="#lección-12--sistemas-reales-y-ecosistema" title="Permanent link">&para;</a></h1>
+<h2 id="objetivos">Objetivos<a class="headerlink" href="#objetivos" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Describir la arquitectura y el nicho de los principales OODBMS: <strong>GemStone/S, ObjectStore, Versant, Objectivity/DB, InterSystems IRIS, ObjectDB, db4o, ZODB, Realm y ObjectBox</strong>.</li>
+<li>Comparar las BDOO con las bases de <strong>documentos</strong> y de <strong>grafos</strong>.</li>
+<li>Construir una <strong>matriz de decisión</strong> ponderada.</li>
+</ul>
+<h2 id="explícalo-como-feynman">Explícalo como Feynman<a class="headerlink" href="#explícalo-como-feynman" title="Permanent link">&para;</a></h2>
+<div class="admonition quote">
+<p class="admonition-title">Versión para un niño de 12 años</p>
+<p>Hay muchas marcas de bicicletas: unas para montaña, otras para carreras, otras para niños. Todas tienen dos ruedas y pedales (identidad, objetos, persistencia), pero cada una está hecha para un camino distinto. Conocer las marcas te ayuda a elegir la bici adecuada para cada ruta.</p>
+</div>
+<h2 id="1-panorama-de-sistemas">1. Panorama de sistemas<a class="headerlink" href="#1-panorama-de-sistemas" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Sistema</th>
+<th>Lenguajes</th>
+<th>Arquitectura destacada</th>
+<th>Nicho típico</th>
+<th>Situación</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>GemStone/S</strong></td>
+<td>Smalltalk (y acceso desde otros lenguajes)</td>
+<td>Servidor de objetos que <strong>ejecuta métodos en el servidor</strong>; caché compartida; GC persistente; <em>class history</em></td>
+<td>Finanzas, logística, sistemas de misión crítica</td>
+<td>Activo (GemTalk Systems)</td>
+</tr>
+<tr>
+<td><strong>ObjectStore</strong></td>
+<td>C++, Java</td>
+<td><strong>Servidor de páginas</strong> con <em>swizzling</em> por memoria virtual (mapeo de páginas a direcciones del proceso)</td>
+<td>CAD, telecomunicaciones, sistemas embebidos</td>
+<td>Hoy en manos de Ignite Technologies</td>
+</tr>
+<tr>
+<td><strong>Versant Object Database</strong></td>
+<td>C++, Java</td>
+<td><strong>Servidor de objetos</strong>, OID lógicos, evolución perezosa de esquema, distribución</td>
+<td>Telecomunicaciones, defensa, transporte</td>
+<td>Línea de Actian</td>
+</tr>
+<tr>
+<td><strong>Objectivity/DB</strong></td>
+<td>C++, Java, Python</td>
+<td>BD <strong>federada y distribuida</strong> (federación → BD → contenedor → página → objeto); OID estructurados</td>
+<td>Física de altas energías (experimento BaBar en SLAC, escala de petabytes), inteligencia, telecomunicaciones</td>
+<td>Activo (Objectivity Inc.)</td>
+</tr>
+<tr>
+<td><strong>InterSystems Caché / IRIS</strong></td>
+<td>ObjectScript, Java, .NET, Python</td>
+<td><strong>Multimodelo</strong> sobre <em>globals</em> (arreglos dispersos multidimensionales); cada clase se proyecta automáticamente como tabla SQL</td>
+<td>Salud (historias clínicas), banca</td>
+<td>Activo; IRIS sucede a Caché</td>
+</tr>
+<tr>
+<td><strong>ObjectDB</strong></td>
+<td>Java</td>
+<td>BDOO que implementa <strong>JPA y JDO</strong> de forma nativa (sin traducción a tablas)</td>
+<td>Aplicaciones Java embebidas o cliente-servidor</td>
+<td>Activo</td>
+</tr>
+<tr>
+<td><strong>db4o</strong></td>
+<td>Java, .NET</td>
+<td>Embebida; QBE, <em>Native Queries</em>, SODA; profundidad de activación</td>
+<td>Móviles y embebidos (2000s)</td>
+<td>Descontinuada; código abierto archivado</td>
+</tr>
+<tr>
+<td><strong>ZODB</strong></td>
+<td>Python</td>
+<td>Persistencia por alcanzabilidad; MVCC; <code>FileStorage</code> <em>append-only</em>; <strong>ZEO</strong> (cliente-servidor) y <strong>RelStorage</strong> (guarda <em>pickles</em> en PostgreSQL/MySQL/Oracle)</td>
+<td>Zope, Plone, aplicaciones Python</td>
+<td>Activo (comunidad)</td>
+</tr>
+<tr>
+<td><strong>Realm</strong></td>
+<td>Swift, Kotlin, JS, .NET, Dart</td>
+<td>Motor embebido orientado a objetos con objetos «vivos» (<em>live objects</em>) y vistas reactivas, MVCC con <em>zero-copy</em></td>
+<td>Aplicaciones móviles</td>
+<td>Adquirido por MongoDB (2019); en 2024 MongoDB anunció la deprecación de Atlas Device Sync y los SDK; el núcleo sigue como código abierto</td>
+</tr>
+<tr>
+<td><strong>ObjectBox</strong></td>
+<td>Java/Kotlin, Swift, Dart, C/C++, Go, Python</td>
+<td>Embebido, orientado a objetos, enfocado en <em>edge</em>/IoT; búsqueda vectorial</td>
+<td>Móviles, IoT, IA en el dispositivo</td>
+<td>Activo</td>
+</tr>
+</tbody>
+</table>
+<p>Sistemas históricos importantes: <strong>O2</strong> (Francia, influyó en ODMG/OQL), <strong>ORION</strong> (MCC, Won Kim; base de la investigación en evolución de esquema y bloqueo), <strong>ONTOS</strong>, <strong>POET / FastObjects</strong>, <strong>Matisse</strong>, <strong>Jasmine</strong>, <strong>Iris</strong> (HP), <strong>EXODUS</strong> y <strong>SHORE</strong> (Universidad de Wisconsin).</p>
+<h2 id="2-mini-ejemplos-de-estilo">2. Mini-ejemplos de estilo<a class="headerlink" href="#2-mini-ejemplos-de-estilo" title="Permanent link">&para;</a></h2>
+<h3 id="gemstones-smalltalk-el-método-se-ejecuta-en-el-servidor">GemStone/S (Smalltalk): el método se ejecuta en el servidor<a class="headerlink" href="#gemstones-smalltalk-el-método-se-ejecuta-en-el-servidor" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c">"Persistencia por alcanzabilidad desde UserGlobals"</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="nc">UserGlobals</span> <span class="nf">at:</span> <span class="ss">#Clientes</span> <span class="nf">put:</span> <span class="nc">IdentitySet</span> <span class="nb">new</span><span class="p">.</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>(<span class="nc">UserGlobals</span> <span class="nf">at:</span> <span class="ss">#Clientes</span>) <span class="nf">add:</span> (<span class="nc">Cliente</span> <span class="nf">nombre:</span> <span class="s">'Ana'</span> <span class="nf">ciudad:</span> <span class="s">'CDMX'</span>)<span class="p">.</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="nc">System</span> <span class="nf">commitTransaction</span><span class="p">.</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="c">"Consulta con bloque: se evalúa en el servidor, cerca de los datos"</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>(<span class="nc">UserGlobals</span> <span class="nf">at:</span> <span class="ss">#Clientes</span>) <span class="nf">select:</span> [<span class="o">:</span><span class="nv">c</span> <span class="o">|</span> <span class="nv">c</span> <span class="nf">ciudad</span> <span class="nf">=</span> <span class="s">'CDMX'</span>]<span class="p">.</span>
+</code></pre></div>
+<h3 id="intersystems-iris-una-clase-que-también-es-tabla">InterSystems IRIS: una clase que también es tabla<a class="headerlink" href="#intersystems-iris-una-clase-que-también-es-tabla" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>Class Tienda.Cliente Extends %Persistent
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>{
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>Property Nombre As %String;
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>Property Ciudad As %String;
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>Relationship Pedidos As Tienda.Pedido [ Cardinality = many, Inverse = Cliente ];
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>Index CiudadIdx On Ciudad;
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>Method Etiqueta() As %String [ SqlProc ]
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>{
+<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>    Quit ..Nombre _ " (" _ ..Ciudad _ ")"
+<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>}
+<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>}
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1">-- La misma clase se consulta por SQL: proyección objeto → tabla automática</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">Nombre</span><span class="p">,</span><span class="w"> </span><span class="n">Ciudad</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">Tienda</span><span class="p">.</span><span class="n">Cliente</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">Ciudad</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'CDMX'</span><span class="p">;</span>
+</code></pre></div>
+<h3 id="realm-kotlin-objetos-vivos">Realm (Kotlin): objetos vivos<a class="headerlink" href="#realm-kotlin-objetos-vivos" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="kd">class</span><span class="w"> </span><span class="nc">Tarea</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">RealmObject</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">    </span><span class="nd">@PrimaryKey</span><span class="w"> </span><span class="kd">var</span><span class="w"> </span><span class="nv">id</span><span class="p">:</span><span class="w"> </span><span class="n">ObjectId</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ObjectId</span><span class="p">()</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nv">titulo</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">""</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nv">hecha</span><span class="p">:</span><span class="w"> </span><span class="kt">Boolean</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="p">}</span>
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="kd">val</span><span class="w"> </span><span class="nv">realm</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Realm</span><span class="p">.</span><span class="na">open</span><span class="p">(</span><span class="n">RealmConfiguration</span><span class="p">.</span><span class="na">create</span><span class="p">(</span><span class="n">schema</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">setOf</span><span class="p">(</span><span class="n">Tarea</span><span class="o">::</span><span class="n">class</span><span class="p">)))</span>
+<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="n">realm</span><span class="p">.</span><span class="na">writeBlocking</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">copyToRealm</span><span class="p">(</span><span class="n">Tarea</span><span class="p">().</span><span class="na">apply</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">titulo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"Estudiar OQL"</span><span class="w"> </span><span class="p">})</span><span class="w"> </span><span class="p">}</span>
+<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="kd">val</span><span class="w"> </span><span class="nv">pendientes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">realm</span><span class="p">.</span><span class="na">query</span><span class="o">&lt;</span><span class="n">Tarea</span><span class="o">&gt;</span><span class="p">(</span><span class="s">"hecha == false"</span><span class="p">).</span><span class="na">find</span><span class="p">()</span><span class="w">   </span><span class="c1">// resultados "vivos"</span>
+</code></pre></div>
+<h2 id="3-bdoo-vs-bases-nosql-modernas">3. BDOO vs bases NoSQL modernas<a class="headerlink" href="#3-bdoo-vs-bases-nosql-modernas" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Aspecto</th>
+<th>BDOO</th>
+<th>Documentos (MongoDB)</th>
+<th>Grafos (Neo4j)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Unidad</td>
+<td>Objeto con OID y métodos</td>
+<td>Documento JSON/BSON</td>
+<td>Nodo y arista con propiedades</td>
+</tr>
+<tr>
+<td>Referencias</td>
+<td>Punteros/OID nativos, navegación transparente</td>
+<td>Manuales (<code>_id</code>) o <code>$lookup</code></td>
+<td>Aristas de primera clase, <em>index-free adjacency</em></td>
+</tr>
+<tr>
+<td>Comportamiento</td>
+<td>Métodos en el modelo</td>
+<td>No (solo datos)</td>
+<td>No (solo datos)</td>
+</tr>
+<tr>
+<td>Esquema</td>
+<td>Fuerte (clases)</td>
+<td>Flexible (validación opcional)</td>
+<td>Flexible</td>
+</tr>
+<tr>
+<td>Consultas</td>
+<td>OQL / API del lenguaje</td>
+<td>MQL, <em>aggregation pipeline</em></td>
+<td>Cypher / GQL (ISO, 2024)</td>
+</tr>
+<tr>
+<td>Acoplamiento al lenguaje</td>
+<td>Alto</td>
+<td>Bajo</td>
+<td>Bajo</td>
+</tr>
+<tr>
+<td>Herencia</td>
+<td>Nativa</td>
+<td>Polimorfismo por campo discriminador</td>
+<td>Etiquetas múltiples</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Idea clave:</strong> las bases de documentos heredaron el <strong>anidamiento</strong> (objetos complejos) y las de grafos la <strong>navegación</strong> (recorrer referencias), pero ninguna adoptó la <strong>identidad + comportamiento + herencia</strong> dentro del motor. Por eso una BDOO sigue siendo distinta.</p>
+<h2 id="4-matriz-de-decisión-ponderada-plantilla">4. Matriz de decisión ponderada (plantilla)<a class="headerlink" href="#4-matriz-de-decisión-ponderada-plantilla" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Criterio</th>
+<th>Peso</th>
+<th>GemStone/S</th>
+<th>ObjectDB</th>
+<th>ZODB</th>
+<th>IRIS</th>
+<th>PostgreSQL + ORM</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Ajuste al lenguaje del equipo</td>
+<td>0.20</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Navegación de grafos profundos</td>
+<td>0.15</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Consultas <em>ad hoc</em> / BI</td>
+<td>0.15</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Escalabilidad / distribución</td>
+<td>0.10</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Evolución de esquema</td>
+<td>0.10</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Ecosistema y talento disponible</td>
+<td>0.15</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Licencia y costo</td>
+<td>0.10</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Soporte y madurez</td>
+<td>0.05</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>Total</strong></td>
+<td>1.00</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>Puntúa de 1 a 5 y multiplica por el peso. El ejercicio <a href="../../ejemplos/A2-proyecto-final/">A2</a> usa esta matriz.</p>
+<h2 id="errores-comunes">Errores comunes<a class="headerlink" href="#errores-comunes" title="Permanent link">&para;</a></h2>
+<ul>
+<li>❌ Elegir un OODBMS solo por rendimiento de recorridos sin evaluar el ecosistema ni el talento disponible.</li>
+<li>❌ Creer que MongoDB es una BDOO porque guarda «objetos».</li>
+<li>❌ Ignorar el riesgo de proveedor: varios OODBMS cambiaron de dueño o se descontinuaron (db4o, la sincronización de Realm).</li>
+</ul>
+<h2 id="conexiones-intercalación">Conexiones (intercalación)<a class="headerlink" href="#conexiones-intercalación" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Servidor de páginas (ObjectStore) vs de objetos (Versant) ↔ <a href="../06-almacenamiento/">Lección 06</a>.</li>
+<li>ObjectDB implementa JPA ↔ <a href="../10-orm/">Lección 10</a>.</li>
+<li><em>Class history</em> de GemStone ↔ <a href="../08-evolucion-esquema/">Lección 08</a>.</li>
+</ul>
+<h2 id="preguntas-de-recuerdo-activo">Preguntas de recuerdo activo<a class="headerlink" href="#preguntas-de-recuerdo-activo" title="Permanent link">&para;</a></h2>
+<ol>
+<li>¿Qué técnica de <em>swizzling</em> hizo famosa a ObjectStore?</li>
+<li>¿Qué tiene de especial la ejecución de métodos en GemStone/S?</li>
+<li>¿Sobre qué estructura de almacenamiento se construye InterSystems IRIS?</li>
+<li>¿Qué son ZEO y RelStorage en ZODB?</li>
+<li>¿Qué heredaron las BD de documentos y de grafos del mundo de objetos, y qué no?</li>
+</ol>
+<details class="success">
+<summary>Respuestas</summary>
+<ol>
+<li><em>Swizzling</em> por memoria virtual, en el momento de la falla de página (<em>page-fault time</em>).</li>
+<li>Los métodos Smalltalk se ejecutan en el servidor, cerca de los datos, como en un procedimiento almacenado pero escritos en el mismo lenguaje de la aplicación.</li>
+<li>Sobre <em>globals</em>: arreglos dispersos multidimensionales persistentes.</li>
+<li>ZEO es el servidor que permite que varios procesos compartan un <em>storage</em>; RelStorage guarda los objetos de ZODB (como <em>pickles</em>) en un SGBD relacional.</li>
+<li>Heredaron el anidamiento (documentos) y la navegación (grafos); no adoptaron la identidad, el comportamiento ni la herencia dentro del motor.</li>
+</ol>
+</details>
+<h2 id="tarjetas-de-repaso">Tarjetas de repaso<a class="headerlink" href="#tarjetas-de-repaso" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Frente</th>
+<th>Reverso</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Objectivity/DB</td>
+<td>BD federada y distribuida; usada a escala de petabytes en física de altas energías</td>
+</tr>
+<tr>
+<td>ObjectDB</td>
+<td>BDOO Java que implementa JPA y JDO de forma nativa</td>
+</tr>
+<tr>
+<td>IRIS</td>
+<td>Multimodelo sobre <em>globals</em>; las clases se proyectan como tablas SQL</td>
+</tr>
+<tr>
+<td>Realm</td>
+<td>BD de objetos móvil con objetos vivos; adquirida por MongoDB en 2019</td>
+</tr>
+<tr>
+<td>ORION</td>
+<td>Prototipo de MCC (Won Kim) clave en evolución de esquema y bloqueo</td>
+</tr>
+</tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Volver al principio
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Pie" >
+        
+          
+          <a href="../11-optimizacion/" class="md-footer__link md-footer__link--prev" aria-label="Anterior: 11 · Optimización">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Anterior
+              </span>
+              <div class="md-ellipsis">
+                11 · Optimización
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../13-diseno-avanzado/" class="md-footer__link md-footer__link--next" aria-label="Siguiente: 13 · Diseño avanzado">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Siguiente
+              </span>
+              <div class="md-ellipsis">
+                13 · Diseño avanzado
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "navigation.footer", "navigation.indexes", "search.suggest", "search.highlight", "content.code.copy", "toc.follow"], "search": "../../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado al portapapeles", "clipboard.copy": "Copiar al portapapeles", "search.result.more.one": "1 m\u00e1s en esta p\u00e1gina", "search.result.more.other": "# m\u00e1s en esta p\u00e1gina", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.term.missing": "Falta", "select.version": "Seleccionar versi\u00f3n"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.c21346df.min.js"></script>
+      
+    
+  </body>
+</html>

@@ -1,0 +1,2323 @@
+
+<!doctype html>
+<html lang="es" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Curso neuro-optimizado (recuerdo activo, repetición espaciada, intercalación y técnica Feynman) sobre Bases de Datos Orientadas a Objetos.">
+      
+      
+        <meta name="author" content="Isidro Leos Viscencio">
+      
+      
+      
+        <link rel="prev" href="../12-sistemas-reales/">
+      
+      
+        <link rel="next" href="../../ejemplos/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.0">
+    
+    
+      
+        <title>13 · Diseño avanzado - Bases de Datos Orientadas a Objetos — Curso de 90 días</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.57a0d79d.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.fb2fffe2.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="teal">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#lección-13--diseño-avanzado-casos-y-frontera-de-investigación" class="md-skip">
+          Saltar a contenido
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabecera">
+    <a href="../.." title="Bases de Datos Orientadas a Objetos — Curso de 90 días" class="md-header__button md-logo" aria-label="Bases de Datos Orientadas a Objetos — Curso de 90 días" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Bases de Datos Orientadas a Objetos — Curso de 90 días
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              13 · Diseño avanzado
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="teal"  aria-label="Usar modo oscuro"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Usar modo oscuro" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="teal"  aria-label="Usar modo claro"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Usar modo claro" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Búsqueda" placeholder="Búsqueda" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Buscar">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Limpiar" aria-label="Limpiar" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando búsqueda
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Pestañas" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Inicio
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../programa-de-estudio/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Programa de estudio
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../00-como-estudiar/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Lecciones
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../ejemplos/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Ejemplos y ejercicios
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../autoevaluacion/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Autoevaluación
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../glosario/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Glosario
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navegación" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Bases de Datos Orientadas a Objetos — Curso de 90 días" class="md-nav__button md-logo" aria-label="Bases de Datos Orientadas a Objetos — Curso de 90 días" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Bases de Datos Orientadas a Objetos — Curso de 90 días
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Inicio
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../programa-de-estudio/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Programa de estudio
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lecciones
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Lecciones
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../00-como-estudiar/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    00 · Cómo estudiar este libro
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_2" id="__nav_3_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Fase 1 · Cimientos
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Fase 1 · Cimientos
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../01-fundamentos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    01 · Fundamentos y motivación
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02-modelo-de-objetos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    02 · El modelo de objetos
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03-odmg/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    03 · El estándar ODMG
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04-oql/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    04 · OQL
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_3" id="__nav_3_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Fase 2 · Mecanismos internos
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Fase 2 · Mecanismos internos
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../05-persistencia/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    05 · Persistencia
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../06-almacenamiento/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    06 · Almacenamiento e índices
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../07-transacciones/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    07 · Transacciones y concurrencia
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../08-evolucion-esquema/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    08 · Evolución de esquema y versionado
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3_4" id="__nav_3_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Fase 3 · Integración y maestría
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Fase 3 · Integración y maestría
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../09-objeto-relacional/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    09 · Objeto-relacional
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../10-orm/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    10 · ORM
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../11-optimizacion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    11 · Optimización
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../12-sistemas-reales/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    12 · Sistemas reales
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    13 · Diseño avanzado
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    13 · Diseño avanzado
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#objetivos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Objetivos
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#explícalo-como-feynman" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Explícalo como Feynman
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-marco-de-decisión" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Marco de decisión
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Marco de decisión">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#señales-a-favor-de-una-bdoo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Señales a favor de una BDOO
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#señales-en-contra" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Señales en contra
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-patrones-de-modelado-para-dominios-complejos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Patrones de modelado para dominios complejos
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Patrones de modelado para dominios complejos">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#caso-red-de-telecomunicaciones" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Caso: red de telecomunicaciones
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#caso-historia-clínica" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Caso: historia clínica
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-distribución" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Distribución
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-seguridad" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Seguridad
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-multimodelo-y-convergencia" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Multimodelo y convergencia
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-frontera-de-investigación-y-temas-abiertos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Frontera de investigación y temas abiertos
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-cómo-demostrar-dominio-del-1--superior" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Cómo demostrar dominio del 1 % superior
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lecturas-recomendadas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lecturas recomendadas
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#errores-comunes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Errores comunes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conexiones-intercalación" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conexiones (intercalación)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#preguntas-de-recuerdo-activo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Preguntas de recuerdo activo
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tarjetas-de-repaso" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tarjetas de repaso
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../ejemplos/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ejemplos y ejercicios
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Ejemplos y ejercicios
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ejemplos/B1-esquema-odl/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    B1 · Esquema ODL (básico)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ejemplos/B2-persistencia-alcanzabilidad/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    B2 · Persistencia por alcanzabilidad (básico)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ejemplos/I1-objeto-relacional/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    I1 · Objeto-relacional (intermedio)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ejemplos/I2-clustering-indices/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    I2 · Clustering e índices (intermedio)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ejemplos/I3-consultas-oql/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    I3 · Consultas OQL (intermedio)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ejemplos/A1-evolucion-concurrencia/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    A1 · Evolución y concurrencia (avanzado)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ejemplos/A2-proyecto-final/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    A2 · Proyecto final (avanzado)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../autoevaluacion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Autoevaluación
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../glosario/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Glosario
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#objetivos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Objetivos
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#explícalo-como-feynman" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Explícalo como Feynman
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-marco-de-decisión" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Marco de decisión
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Marco de decisión">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#señales-a-favor-de-una-bdoo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Señales a favor de una BDOO
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#señales-en-contra" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Señales en contra
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-patrones-de-modelado-para-dominios-complejos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Patrones de modelado para dominios complejos
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Patrones de modelado para dominios complejos">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#caso-red-de-telecomunicaciones" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Caso: red de telecomunicaciones
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#caso-historia-clínica" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Caso: historia clínica
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-distribución" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Distribución
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-seguridad" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Seguridad
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-multimodelo-y-convergencia" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Multimodelo y convergencia
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-frontera-de-investigación-y-temas-abiertos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Frontera de investigación y temas abiertos
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-cómo-demostrar-dominio-del-1--superior" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Cómo demostrar dominio del 1 % superior
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lecturas-recomendadas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lecturas recomendadas
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#errores-comunes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Errores comunes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conexiones-intercalación" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conexiones (intercalación)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#preguntas-de-recuerdo-activo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Preguntas de recuerdo activo
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tarjetas-de-repaso" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tarjetas de repaso
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="lección-13--diseño-avanzado-casos-y-frontera-de-investigación">Lección 13 · Diseño avanzado, casos y frontera de investigación<a class="headerlink" href="#lección-13--diseño-avanzado-casos-y-frontera-de-investigación" title="Permanent link">&para;</a></h1>
+<h2 id="objetivos">Objetivos<a class="headerlink" href="#objetivos" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Aplicar un <strong>marco de decisión</strong> para elegir entre BDOO, SGBDOR, ORM, documentos o grafos.</li>
+<li>Modelar dominios complejos (CAD, telecomunicaciones, salud) con patrones de BDOO.</li>
+<li>Razonar sobre <strong>distribución</strong>, <strong>seguridad</strong> y <strong>multimodelo</strong>.</li>
+<li>Identificar los <strong>temas abiertos</strong> de investigación.</li>
+</ul>
+<h2 id="explícalo-como-feynman">Explícalo como Feynman<a class="headerlink" href="#explícalo-como-feynman" title="Permanent link">&para;</a></h2>
+<div class="admonition quote">
+<p class="admonition-title">Versión para un niño de 12 años</p>
+<p>Un buen carpintero no usa el martillo para todo. Sabe cuándo usar martillo, cuándo serrucho y cuándo pegamento. Ser experto en bases de datos de objetos es saber <strong>cuándo sí</strong> y, sobre todo, <strong>cuándo no</strong> usarlas.</p>
+</div>
+<h2 id="1-marco-de-decisión">1. Marco de decisión<a class="headerlink" href="#1-marco-de-decisión" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>¿El dominio es un grafo profundo de objetos con mucha navegación
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a> y comportamiento rico (CAD, simulación, telecomunicaciones)?
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a> ├── No → ¿Se necesitan consultas ad hoc, BI y muchos lenguajes?
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a> │        ├── Sí → Relacional (+ ORM si la app es OO)
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a> │        └── No → ¿Estructura flexible y anidada? → Documentos
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a> │                 ¿Relaciones como ciudadanas de primera clase? → Grafos
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a> └── Sí → ¿Un solo lenguaje dominante y equipo que acepta un motor de nicho?
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>          ├── Sí → OODBMS (GemStone/S, ObjectDB, ZODB, Objectivity/DB…)
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>          └── No → Objeto-relacional (tipos y extensiones) o multimodelo (IRIS)
+</code></pre></div>
+<h3 id="señales-a-favor-de-una-bdoo">Señales a favor de una BDOO<a class="headerlink" href="#señales-a-favor-de-una-bdoo" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Grafos con <strong>recorridos de muchos niveles</strong> en caliente (cientos o miles de desreferencias por operación).</li>
+<li><strong>Comportamiento</strong> que conviene ejecutar cerca de los datos.</li>
+<li><strong>Versiones</strong> y <strong>transacciones largas</strong> (diseño de ingeniería).</li>
+<li>Un <strong>único lenguaje</strong> dominante en todo el sistema.</li>
+<li>Tipos de datos complejos que no encajan en tablas (geometrías, árboles, redes).</li>
+</ul>
+<h3 id="señales-en-contra">Señales en contra<a class="headerlink" href="#señales-en-contra" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Reportes <em>ad hoc</em>, BI y analítica en SQL como requisito central.</li>
+<li>Muchos sistemas en distintos lenguajes comparten los datos.</li>
+<li>Poco talento disponible o riesgo de proveedor inaceptable.</li>
+<li>Cargas mayormente orientadas a conjuntos (agregaciones masivas).</li>
+</ul>
+<h2 id="2-patrones-de-modelado-para-dominios-complejos">2. Patrones de modelado para dominios complejos<a class="headerlink" href="#2-patrones-de-modelado-para-dominios-complejos" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Patrón</th>
+<th>Uso</th>
+<th>Ejemplo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Objeto compuesto con partes exclusivas</strong></td>
+<td>Borrado, bloqueo y <em>clustering</em> en cascada</td>
+<td><code>Ensamble</code> → <code>Pieza</code></td>
+</tr>
+<tr>
+<td><strong>Lista de materiales</strong> (<em>Bill of Materials</em>) recursiva</td>
+<td>Estructuras parte-de</td>
+<td><code>Componente.subcomponentes: set&lt;Componente&gt;</code></td>
+</tr>
+<tr>
+<td><strong>Objeto genérico + versiones</strong></td>
+<td>Diseño de ingeniería</td>
+<td><code>Plano</code> con <code>v1…vn</code> y configuraciones</td>
+</tr>
+<tr>
+<td><strong>Raíces por agregado</strong></td>
+<td>Puntos de entrada pequeños y estables</td>
+<td><code>root["clientes"]</code>, <code>root["catalogo"]</code> (similar a los agregados de DDD)</td>
+</tr>
+<tr>
+<td><strong>Índices como objetos</strong></td>
+<td>Colecciones grandes navegables</td>
+<td><code>OOBTree</code> de ZODB para <code>clientes_por_correo</code></td>
+</tr>
+<tr>
+<td><strong>Objetos valor inmutables</strong></td>
+<td>Evitar OID innecesarios</td>
+<td><code>Dinero</code>, <code>Coordenada</code>, <code>RangoFechas</code></td>
+</tr>
+<tr>
+<td><strong>Referencias inversas mantenidas</strong></td>
+<td>Recorrido hacia atrás sin escanear</td>
+<td><code>Curso.inscritos</code> ↔ <code>Estudiante.inscripciones</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="caso-red-de-telecomunicaciones">Caso: red de telecomunicaciones<a class="headerlink" href="#caso-red-de-telecomunicaciones" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>Red ─┬─▶ Nodo (Router, Switch, Antena)  ← herencia + polimorfismo: nodo.capacidad()
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>     ├─▶ Enlace(origen: Nodo, destino: Nodo, ancho_banda)
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>     └─▶ Servicio ─▶ Ruta: list&lt;Enlace&gt;
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>Operación típica: "¿qué servicios se caen si falla el nodo N?"
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>→ recorrer Enlaces incidentes a N → Rutas que los usan → Servicios
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>→ exige referencias inversas (Nodo.enlaces, Enlace.rutas) y clustering por región
+</code></pre></div>
+<h3 id="caso-historia-clínica">Caso: historia clínica<a class="headerlink" href="#caso-historia-clínica" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>Paciente ─▶ Episodio ─▶ Encuentro ─▶ Observación (polimórfica: Signo, Laboratorio, Imagen)
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>• Versiones: cada corrección crea una versión; nunca se borra (requisito legal).
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>• Consultas poblacionales (BI) → proyección SQL (estilo IRIS) o réplica a un almacén analítico.
+</code></pre></div>
+<h2 id="3-distribución">3. Distribución<a class="headerlink" href="#3-distribución" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Técnica</th>
+<th>Idea</th>
+<th>Ejemplo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Federación</strong></td>
+<td>Varias BD con un catálogo común y OID globales</td>
+<td>Objectivity/DB</td>
+</tr>
+<tr>
+<td><strong>Replicación</strong></td>
+<td>Copias de objetos para lectura o disponibilidad</td>
+<td>Versant, ZEO con réplicas (ZRS)</td>
+</tr>
+<tr>
+<td><strong>Particionamiento por agregado</strong></td>
+<td>Cada partición contiene raíces completas</td>
+<td>Agregados DDD por nodo</td>
+</tr>
+<tr>
+<td><strong>Commit distribuido</strong></td>
+<td>2PC entre servidores</td>
+<td>Versant, Objectivity/DB</td>
+</tr>
+</tbody>
+</table>
+<p>Problemas específicos: <strong>referencias entre particiones</strong> (OID globales y desreferencias remotas), <strong>GC distribuido</strong> y <strong>coherencia de cachés</strong> entre varios servidores.</p>
+<h2 id="4-seguridad">4. Seguridad<a class="headerlink" href="#4-seguridad" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Autorización sobre objetos, clases y métodos:</strong> conceder <code>ejecutar(aumentar_salario)</code> en lugar de <code>UPDATE salario</code>.</li>
+<li><strong>Autorización implícita</strong> (Rabitti, Bertino, Kim y Woelk, 1991): derivar permisos a lo largo de la jerarquía de clases, de objetos compuestos y del esquema (p. ej., leer una clase implica leer sus instancias), con autorizaciones <strong>positivas y negativas</strong>, <strong>fuertes y débiles</strong>.</li>
+<li><strong>Encapsulamiento como mecanismo de seguridad:</strong> si solo se accede por métodos, los métodos aplican las reglas.</li>
+<li><strong>Riesgos:</strong> código del método ejecutado en el servidor (inyección o métodos maliciosos), deserialización insegura (p. ej., <em>pickles</em> de Python: nunca cargar un <code>FileStorage</code> de origen no confiable).</li>
+</ul>
+<h2 id="5-multimodelo-y-convergencia">5. Multimodelo y convergencia<a class="headerlink" href="#5-multimodelo-y-convergencia" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>InterSystems IRIS:</strong> objetos, SQL, documentos y <em>globals</em> sobre el mismo almacenamiento.</li>
+<li><strong>PostgreSQL:</strong> tipos compuestos, <code>jsonb</code>, extensiones (PostGIS, <code>pgvector</code>).</li>
+<li><strong>Oracle:</strong> tipos de objeto, JSON, grafos (SQL/PGQ) y documentos.</li>
+<li><strong>SQL:2023</strong> añadió <strong>SQL/PGQ</strong> (consultas de grafos de propiedades sobre tablas) y mejoró el soporte de JSON; <strong>GQL</strong> se publicó como ISO/IEC 39075 en 2024.</li>
+</ul>
+<p>La tendencia: el <strong>modelo de objetos</strong> vive en la aplicación y en los lenguajes de consulta, mientras los motores se vuelven <strong>multimodelo</strong>.</p>
+<h2 id="6-frontera-de-investigación-y-temas-abiertos">6. Frontera de investigación y temas abiertos<a class="headerlink" href="#6-frontera-de-investigación-y-temas-abiertos" title="Permanent link">&para;</a></h2>
+<ol>
+<li><strong>Optimización de consultas con métodos opacos</strong> y aprendizaje automático (estimación de costo y selectividad aprendida).</li>
+<li><strong><em>Clustering</em> adaptativo</strong> basado en trazas de acceso.</li>
+<li><strong>Memoria persistente</strong> (NVM): persistencia ortogonal a nivel de lenguaje sobre memoria direccionable por bytes; reaparece el problema del <em>swizzling</em> y la consistencia ante fallas.</li>
+<li><strong>Evolución de esquema</strong> continua en sistemas sin interrupciones (<em>zero-downtime</em>).</li>
+<li><strong>Integración con lenguajes</strong> (<em>language-integrated query</em>: LINQ, Kotlin/Exposed, ORM con tipos verificados).</li>
+<li><strong>Objetos en la frontera (<em>edge</em>)</strong> con sincronización y resolución de conflictos (CRDT).</li>
+<li><strong>Vectores y objetos:</strong> BD orientadas a objetos con búsqueda vectorial para IA en el dispositivo (ObjectBox).</li>
+</ol>
+<h2 id="7-cómo-demostrar-dominio-del-1--superior">7. Cómo demostrar dominio del 1 % superior<a class="headerlink" href="#7-cómo-demostrar-dominio-del-1--superior" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Explica <strong>por qué</strong> las BDOO no dominaron el mercado y <strong>dónde</strong> siguen ganando.</li>
+<li>Traduce un mismo modelo a <strong>ODL, SQL:1999, Oracle, PostgreSQL, JPA y ZODB</strong>.</li>
+<li>Diseña <em>clustering</em> e índices <strong>a partir de la carga de trabajo</strong>.</li>
+<li>Argumenta compromisos con números: desreferencias, páginas leídas, conflictos por segundo.</li>
+<li>Cita fuentes primarias: el Manifiesto de 1989, ODMG 3.0, ORION, OO7, Shekita y Carey, Bertino y Kim.</li>
+</ul>
+<h2 id="lecturas-recomendadas">Lecturas recomendadas<a class="headerlink" href="#lecturas-recomendadas" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Fuente</th>
+<th>Por qué</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Atkinson et al., <em>The Object-Oriented Database System Manifesto</em> (1989)</td>
+<td>Definición canónica</td>
+</tr>
+<tr>
+<td>Cattell et al., <em>The Object Data Standard: ODMG 3.0</em> (2000)</td>
+<td>Estándar completo</td>
+</tr>
+<tr>
+<td>Kim, <em>Introduction to Object-Oriented Databases</em> (MIT Press, 1990)</td>
+<td>Fundamentos de ORION</td>
+</tr>
+<tr>
+<td>Bertino y Martino, <em>Object-Oriented Database Systems: Concepts and Architectures</em> (1993)</td>
+<td>Índices, consultas y arquitectura</td>
+</tr>
+<tr>
+<td>Elmasri y Navathe, <em>Fundamentals of Database Systems</em>, capítulos de BD de objetos y objeto-relacionales</td>
+<td>Visión de libro de texto</td>
+</tr>
+<tr>
+<td>Fowler, <em>Patterns of Enterprise Application Architecture</em> (2002)</td>
+<td>Patrones de ORM</td>
+</tr>
+<tr>
+<td>Carey, DeWitt y Naughton, <em>The OO7 Benchmark</em> (SIGMOD 1993)</td>
+<td>Rendimiento</td>
+</tr>
+<tr>
+<td>Documentación de ZODB, ObjectDB, GemStone/S e InterSystems IRIS</td>
+<td>Práctica actual</td>
+</tr>
+</tbody>
+</table>
+<h2 id="errores-comunes">Errores comunes<a class="headerlink" href="#errores-comunes" title="Permanent link">&para;</a></h2>
+<ul>
+<li>❌ Defender la BDOO como una solución universal.</li>
+<li>❌ Ignorar la seguridad del código que se ejecuta en el servidor o de la deserialización.</li>
+<li>❌ Diseñar sin una carga de trabajo explícita.</li>
+</ul>
+<h2 id="conexiones-intercalación">Conexiones (intercalación)<a class="headerlink" href="#conexiones-intercalación" title="Permanent link">&para;</a></h2>
+<p>Esta lección <strong>integra todo</strong>: el ejercicio <a href="../../ejemplos/A2-proyecto-final/">A2</a> exige combinar ODL (L03), OQL (L04), persistencia (L05), <em>clustering</em> (L06), transacciones (L07), evolución (L08) y selección de tecnología (L12).</p>
+<h2 id="preguntas-de-recuerdo-activo">Preguntas de recuerdo activo<a class="headerlink" href="#preguntas-de-recuerdo-activo" title="Permanent link">&para;</a></h2>
+<ol>
+<li>Nombra tres señales a favor y tres en contra de usar una BDOO.</li>
+<li>¿Qué es la autorización implícita en BDOO?</li>
+<li>¿Qué problemas específicos trae la distribución de objetos?</li>
+<li>¿Por qué la memoria persistente reabre el problema del <em>swizzling</em>?</li>
+<li>¿Qué añadió SQL:2023 relacionado con grafos?</li>
+</ol>
+<details class="success">
+<summary>Respuestas</summary>
+<ol>
+<li>A favor: grafos profundos navegados en caliente, comportamiento cerca de los datos, versiones y transacciones largas, un solo lenguaje. En contra: BI y consultas <em>ad hoc</em>, muchos lenguajes, poco talento o riesgo de proveedor, cargas orientadas a conjuntos.</li>
+<li>Derivar permisos a lo largo de las jerarquías de clases, de objetos compuestos y del esquema, combinando autorizaciones positivas y negativas, fuertes y débiles.</li>
+<li>Referencias entre particiones con OID globales, GC distribuido, coherencia de cachés y <em>commit</em> distribuido (2PC).</li>
+<li>Porque los punteros persistentes en memoria direccionable por bytes deben seguir siendo válidos entre ejecuciones con direcciones distintas, y hay que garantizar consistencia ante fallas sin bitácora tradicional.</li>
+<li>SQL/PGQ, que permite definir grafos de propiedades sobre tablas y consultarlos con patrones.</li>
+</ol>
+</details>
+<h2 id="tarjetas-de-repaso">Tarjetas de repaso<a class="headerlink" href="#tarjetas-de-repaso" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Frente</th>
+<th>Reverso</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Raíz por agregado</td>
+<td>Punto de entrada pequeño y estable por agregado de dominio</td>
+</tr>
+<tr>
+<td>Federación (Objectivity/DB)</td>
+<td>Varias BD con catálogo común y OID globales</td>
+</tr>
+<tr>
+<td>Riesgo de <em>pickles</em></td>
+<td>Deserializar datos no confiables puede ejecutar código</td>
+</tr>
+<tr>
+<td>GQL</td>
+<td>Lenguaje estándar ISO de consultas de grafos (ISO/IEC 39075, 2024)</td>
+</tr>
+<tr>
+<td>Señal clave de experto</td>
+<td>Saber cuándo NO usar una BDOO</td>
+</tr>
+</tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Volver al principio
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Pie" >
+        
+          
+          <a href="../12-sistemas-reales/" class="md-footer__link md-footer__link--prev" aria-label="Anterior: 12 · Sistemas reales">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Anterior
+              </span>
+              <div class="md-ellipsis">
+                12 · Sistemas reales
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../../ejemplos/" class="md-footer__link md-footer__link--next" aria-label="Siguiente: Ejemplos y ejercicios">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Siguiente
+              </span>
+              <div class="md-ellipsis">
+                Ejemplos y ejercicios
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "navigation.footer", "navigation.indexes", "search.suggest", "search.highlight", "content.code.copy", "toc.follow"], "search": "../../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado al portapapeles", "clipboard.copy": "Copiar al portapapeles", "search.result.more.one": "1 m\u00e1s en esta p\u00e1gina", "search.result.more.other": "# m\u00e1s en esta p\u00e1gina", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.term.missing": "Falta", "select.version": "Seleccionar versi\u00f3n"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.c21346df.min.js"></script>
+      
+    
+  </body>
+</html>

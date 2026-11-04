@@ -1,0 +1,2350 @@
+
+<!doctype html>
+<html lang="es" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Curso neuro-optimizado (recuerdo activo, repetición espaciada, intercalación y técnica Feynman) sobre Bases de Datos Orientadas a Objetos.">
+      
+      
+        <meta name="author" content="Isidro Leos Viscencio">
+      
+      
+      
+        <link rel="prev" href="../10-orm/">
+      
+      
+        <link rel="next" href="../12-sistemas-reales/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.0">
+    
+    
+      
+        <title>11 · Optimización - Bases de Datos Orientadas a Objetos — Curso de 90 días</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.57a0d79d.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.fb2fffe2.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="teal">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#lección-11--optimización-de-consultas-y-rendimiento" class="md-skip">
+          Saltar a contenido
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabecera">
+    <a href="../.." title="Bases de Datos Orientadas a Objetos — Curso de 90 días" class="md-header__button md-logo" aria-label="Bases de Datos Orientadas a Objetos — Curso de 90 días" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Bases de Datos Orientadas a Objetos — Curso de 90 días
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              11 · Optimización
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="teal"  aria-label="Usar modo oscuro"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Usar modo oscuro" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="teal"  aria-label="Usar modo claro"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Usar modo claro" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Búsqueda" placeholder="Búsqueda" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Buscar">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Limpiar" aria-label="Limpiar" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando búsqueda
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Pestañas" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Inicio
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../programa-de-estudio/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Programa de estudio
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../00-como-estudiar/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Lecciones
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../ejemplos/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Ejemplos y ejercicios
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../autoevaluacion/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Autoevaluación
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../glosario/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Glosario
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navegación" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Bases de Datos Orientadas a Objetos — Curso de 90 días" class="md-nav__button md-logo" aria-label="Bases de Datos Orientadas a Objetos — Curso de 90 días" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Bases de Datos Orientadas a Objetos — Curso de 90 días
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Inicio
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../programa-de-estudio/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Programa de estudio
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lecciones
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Lecciones
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../00-como-estudiar/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    00 · Cómo estudiar este libro
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_2" id="__nav_3_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Fase 1 · Cimientos
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Fase 1 · Cimientos
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../01-fundamentos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    01 · Fundamentos y motivación
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02-modelo-de-objetos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    02 · El modelo de objetos
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03-odmg/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    03 · El estándar ODMG
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04-oql/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    04 · OQL
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_3" id="__nav_3_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Fase 2 · Mecanismos internos
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Fase 2 · Mecanismos internos
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../05-persistencia/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    05 · Persistencia
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../06-almacenamiento/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    06 · Almacenamiento e índices
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../07-transacciones/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    07 · Transacciones y concurrencia
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../08-evolucion-esquema/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    08 · Evolución de esquema y versionado
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3_4" id="__nav_3_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Fase 3 · Integración y maestría
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Fase 3 · Integración y maestría
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../09-objeto-relacional/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    09 · Objeto-relacional
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../10-orm/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    10 · ORM
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    11 · Optimización
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    11 · Optimización
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#objetivos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Objetivos
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#explícalo-como-feynman" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Explícalo como Feynman
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-por-qué-es-difícil" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. ¿Por qué es difícil?
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-reescritura-de-expresiones-de-ruta" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Reescritura de expresiones de ruta
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Reescritura de expresiones de ruta">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#estrategia-a-recorrido-hacia-delante-forward-traversal-pointer-chasing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Estrategia A: recorrido hacia delante (forward traversal, pointer chasing)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#estrategia-b-recorrido-hacia-atrás-backward-traversal-como-join-por-valor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Estrategia B: recorrido hacia atrás (backward traversal), como join por valor
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-algoritmos-de-join-basados-en-punteros" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Algoritmos de join basados en punteros
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-predicados-costosos-y-métodos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Predicados costosos y métodos
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Predicados costosos y métodos">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#migración-de-predicados-hellerstein-y-stonebraker-1993" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Migración de predicados (Hellerstein y Stonebraker, 1993)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#materialización-de-métodos-function-materialization-kemper-kilger-y-moerkotte-1991" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Materialización de métodos (function materialization, Kemper, Kilger y Moerkotte, 1991)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-desanidamiento-unnesting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Desanidamiento (unnesting)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-benchmarks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Benchmarks
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. Benchmarks">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#oo1-cattell-y-skeen-1992--el-benchmark-de-sun" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        OO1 (Cattell y Skeen, 1992) — «el benchmark de Sun»
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#oo7-carey-dewitt-y-naughton-sigmod-1993" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        OO7 (Carey, DeWitt y Naughton, SIGMOD 1993)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-lista-de-verificación-de-rendimiento-en-una-bdoo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Lista de verificación de rendimiento en una BDOO
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#errores-comunes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Errores comunes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conexiones-intercalación" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conexiones (intercalación)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#preguntas-de-recuerdo-activo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Preguntas de recuerdo activo
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tarjetas-de-repaso" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tarjetas de repaso
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../12-sistemas-reales/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    12 · Sistemas reales
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../13-diseno-avanzado/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    13 · Diseño avanzado
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../ejemplos/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ejemplos y ejercicios
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Ejemplos y ejercicios
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ejemplos/B1-esquema-odl/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    B1 · Esquema ODL (básico)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ejemplos/B2-persistencia-alcanzabilidad/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    B2 · Persistencia por alcanzabilidad (básico)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ejemplos/I1-objeto-relacional/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    I1 · Objeto-relacional (intermedio)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ejemplos/I2-clustering-indices/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    I2 · Clustering e índices (intermedio)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ejemplos/I3-consultas-oql/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    I3 · Consultas OQL (intermedio)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ejemplos/A1-evolucion-concurrencia/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    A1 · Evolución y concurrencia (avanzado)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ejemplos/A2-proyecto-final/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    A2 · Proyecto final (avanzado)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../autoevaluacion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Autoevaluación
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../glosario/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Glosario
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#objetivos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Objetivos
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#explícalo-como-feynman" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Explícalo como Feynman
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-por-qué-es-difícil" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. ¿Por qué es difícil?
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-reescritura-de-expresiones-de-ruta" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Reescritura de expresiones de ruta
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Reescritura de expresiones de ruta">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#estrategia-a-recorrido-hacia-delante-forward-traversal-pointer-chasing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Estrategia A: recorrido hacia delante (forward traversal, pointer chasing)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#estrategia-b-recorrido-hacia-atrás-backward-traversal-como-join-por-valor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Estrategia B: recorrido hacia atrás (backward traversal), como join por valor
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-algoritmos-de-join-basados-en-punteros" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Algoritmos de join basados en punteros
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-predicados-costosos-y-métodos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Predicados costosos y métodos
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Predicados costosos y métodos">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#migración-de-predicados-hellerstein-y-stonebraker-1993" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Migración de predicados (Hellerstein y Stonebraker, 1993)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#materialización-de-métodos-function-materialization-kemper-kilger-y-moerkotte-1991" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Materialización de métodos (function materialization, Kemper, Kilger y Moerkotte, 1991)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-desanidamiento-unnesting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Desanidamiento (unnesting)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-benchmarks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Benchmarks
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. Benchmarks">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#oo1-cattell-y-skeen-1992--el-benchmark-de-sun" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        OO1 (Cattell y Skeen, 1992) — «el benchmark de Sun»
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#oo7-carey-dewitt-y-naughton-sigmod-1993" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        OO7 (Carey, DeWitt y Naughton, SIGMOD 1993)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-lista-de-verificación-de-rendimiento-en-una-bdoo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Lista de verificación de rendimiento en una BDOO
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#errores-comunes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Errores comunes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conexiones-intercalación" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conexiones (intercalación)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#preguntas-de-recuerdo-activo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Preguntas de recuerdo activo
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tarjetas-de-repaso" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tarjetas de repaso
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="lección-11--optimización-de-consultas-y-rendimiento">Lección 11 · Optimización de consultas y rendimiento<a class="headerlink" href="#lección-11--optimización-de-consultas-y-rendimiento" title="Permanent link">&para;</a></h1>
+<h2 id="objetivos">Objetivos<a class="headerlink" href="#objetivos" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Explicar por qué optimizar consultas de objetos es más difícil que optimizar SQL.</li>
+<li>Aplicar reescrituras: <strong>rutas a <em>joins</em></strong>, recorrido <strong>hacia delante vs hacia atrás</strong>, <strong>desanidamiento</strong> y <strong>migración de predicados costosos</strong>.</li>
+<li>Conocer los algoritmos de <strong><em>join</em> basados en punteros</strong>.</li>
+<li>Usar la <strong>materialización de métodos</strong> con criterio.</li>
+<li>Interpretar los <em>benchmarks</em> <strong>OO1</strong> y <strong>OO7</strong>.</li>
+</ul>
+<h2 id="explícalo-como-feynman">Explícalo como Feynman<a class="headerlink" href="#explícalo-como-feynman" title="Permanent link">&para;</a></h2>
+<div class="admonition quote">
+<p class="admonition-title">Versión para un niño de 12 años</p>
+<p>Quieres encontrar a todos los niños cuyo papá trabaja en Monterrey. Puedes ir <strong>casa por casa</strong> preguntando a cada niño dónde trabaja su papá (hacia delante) o ir <strong>a las oficinas de Monterrey</strong> y preguntar qué papás trabajan ahí y luego buscar a sus hijos (hacia atrás). Si en Monterrey trabajan pocos papás, el segundo camino es mucho más corto. El optimizador elige el camino más corto.</p>
+</div>
+<h2 id="1-por-qué-es-difícil">1. ¿Por qué es difícil?<a class="headerlink" href="#1-por-qué-es-difícil" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Dificultad</th>
+<th>Explicación</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Métodos opacos</strong></td>
+<td>El optimizador no sabe cuánto cuesta <code>e.promedio()</code> ni qué tan selectivo es</td>
+</tr>
+<tr>
+<td><strong>Encapsulamiento</strong></td>
+<td>Si la consulta solo ve métodos, no ve los atributos para usar índices</td>
+</tr>
+<tr>
+<td><strong>Rutas largas</strong></td>
+<td><code>a.b.c.d</code> puede evaluarse de muchas formas</td>
+</tr>
+<tr>
+<td><strong>Herencia y polimorfismo</strong></td>
+<td>Un <em>extent</em> mezcla tipos; la ligadura tardía impide saber qué código se ejecuta</td>
+</tr>
+<tr>
+<td><strong>Colecciones anidadas</strong></td>
+<td>Los resultados no son planos; hay cuantificadores y subconsultas por todas partes</td>
+</tr>
+<tr>
+<td><strong>Falta de un álgebra estándar</strong></td>
+<td>Hay varias propuestas: álgebra de Shaw y Zdonik, cálculo de comprensiones de monoides (Fegaras y Maier), álgebras de colecciones</td>
+</tr>
+</tbody>
+</table>
+<h2 id="2-reescritura-de-expresiones-de-ruta">2. Reescritura de expresiones de ruta<a class="headerlink" href="#2-reescritura-de-expresiones-de-ruta" title="Permanent link">&para;</a></h2>
+<p>Consulta:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">select</span><span class="w"> </span><span class="n">v</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="k">from</span><span class="w"> </span><span class="n">vehiculos</span><span class="w"> </span><span class="n">v</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="k">where</span><span class="w"> </span><span class="n">v</span><span class="p">.</span><span class="n">fabricante</span><span class="p">.</span><span class="n">empresa</span><span class="p">.</span><span class="n">ciudad</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ss">"Monterrey"</span>
+</code></pre></div>
+<h3 id="estrategia-a-recorrido-hacia-delante-forward-traversal-pointer-chasing">Estrategia A: recorrido hacia delante (<em>forward traversal</em>, <em>pointer chasing</em>)<a class="headerlink" href="#estrategia-a-recorrido-hacia-delante-forward-traversal-pointer-chasing" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>para cada v en vehiculos:            # |vehiculos| = 1 000 000
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>    si v.fabricante.empresa.ciudad == "Monterrey": emitir v
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>Costo ≈ 1 000 000 × (3 desreferencias)
+</code></pre></div>
+<h3 id="estrategia-b-recorrido-hacia-atrás-backward-traversal-como-join-por-valor">Estrategia B: recorrido hacia atrás (<em>backward traversal</em>), como <em>join</em> por valor<a class="headerlink" href="#estrategia-b-recorrido-hacia-atrás-backward-traversal-como-join-por-valor" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>E = select e from empresas e where e.ciudad = "Monterrey"       # 3 empresas (índice sobre ciudad)
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>F = select f from fabricantes f where f.empresa in E             # 40 fabricantes
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>V = select v from vehiculos v where v.fabricante in F            # índice sobre fabricante
+</code></pre></div>
+<p>Si hay índices sobre <code>empresa.ciudad</code>, <code>fabricante.empresa</code> y <code>vehiculo.fabricante</code> (un <strong>multi-índice</strong>), el costo baja de millones de desreferencias a unos cuantos accesos a índice. Con un <strong>índice anidado</strong> <code>ciudad → vehiculos</code>, la consulta es una sola búsqueda.</p>
+<p><strong>Regla:</strong> recorrer hacia atrás conviene cuando el predicado final es <strong>muy selectivo</strong> y existen índices o referencias inversas; hacia delante, cuando el conjunto inicial ya es pequeño.</p>
+<h2 id="3-algoritmos-de-join-basados-en-punteros">3. Algoritmos de <em>join</em> basados en punteros<a class="headerlink" href="#3-algoritmos-de-join-basados-en-punteros" title="Permanent link">&para;</a></h2>
+<p>Shekita y Carey (SIGMOD 1990) compararon:</p>
+<table>
+<thead>
+<tr>
+<th>Algoritmo</th>
+<th>Idea</th>
+<th>Mejor caso</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong><em>Naive pointer join</em></strong></td>
+<td>Para cada objeto, seguir su puntero</td>
+<td>Objetos destino ya en caché o bien agrupados</td>
+</tr>
+<tr>
+<td><strong><em>Pointer-based hash join</em></strong></td>
+<td>Agrupar los OID destino por página en una tabla <em>hash</em> y leer cada página una sola vez</td>
+<td>Muchas referencias a pocas páginas</td>
+</tr>
+<tr>
+<td><strong><em>Pointer-based sort-merge</em></strong></td>
+<td>Ordenar los OID por dirección física y recorrer en orden</td>
+<td>Lecturas secuenciales de disco</td>
+</tr>
+<tr>
+<td><strong><em>Hybrid hash</em></strong></td>
+<td>Mezcla de los anteriores con memoria limitada</td>
+<td>Uso general</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="c1"># Idea del pointer-based hash join: agrupar desreferencias por página</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">collections</span><span class="w"> </span><span class="kn">import</span> <span class="n">defaultdict</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="k">def</span><span class="w"> </span><span class="nf">pointer_hash_join</span><span class="p">(</span><span class="n">origenes</span><span class="p">,</span> <span class="n">pagina_de</span><span class="p">,</span> <span class="n">leer_pagina</span><span class="p">):</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>    <span class="n">por_pagina</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>    <span class="k">for</span> <span class="n">o</span> <span class="ow">in</span> <span class="n">origenes</span><span class="p">:</span>
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>        <span class="n">por_pagina</span><span class="p">[</span><span class="n">pagina_de</span><span class="p">(</span><span class="n">o</span><span class="o">.</span><span class="n">ref_oid</span><span class="p">)]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">o</span><span class="p">)</span>        <span class="c1"># agrupar por página destino</span>
+<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>    <span class="k">for</span> <span class="n">pagina</span><span class="p">,</span> <span class="n">grupo</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">por_pagina</span><span class="o">.</span><span class="n">items</span><span class="p">()):</span>      <span class="c1"># cada página se lee UNA vez</span>
+<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>        <span class="n">objetos</span> <span class="o">=</span> <span class="n">leer_pagina</span><span class="p">(</span><span class="n">pagina</span><span class="p">)</span>
+<a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a>        <span class="k">for</span> <span class="n">o</span> <span class="ow">in</span> <span class="n">grupo</span><span class="p">:</span>
+<a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a>            <span class="k">yield</span> <span class="n">o</span><span class="p">,</span> <span class="n">objetos</span><span class="p">[</span><span class="n">o</span><span class="o">.</span><span class="n">ref_oid</span><span class="p">]</span>
+</code></pre></div>
+<h2 id="4-predicados-costosos-y-métodos">4. Predicados costosos y métodos<a class="headerlink" href="#4-predicados-costosos-y-métodos" title="Permanent link">&para;</a></h2>
+<h3 id="migración-de-predicados-hellerstein-y-stonebraker-1993">Migración de predicados (Hellerstein y Stonebraker, 1993)<a class="headerlink" href="#migración-de-predicados-hellerstein-y-stonebraker-1993" title="Permanent link">&para;</a></h3>
+<p>Con predicados caros (métodos, UDF), no basta con «filtrar lo antes posible». Se ordenan por <strong>rango</strong>:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>rango(p) = (selectividad(p) − 1) / costo_por_tupla(p)
+</code></pre></div>
+<p>Se evalúan primero los predicados de <strong>rango más bajo</strong> (muy selectivos y baratos).</p>
+<table>
+<thead>
+<tr>
+<th>Predicado</th>
+<th>Selectividad</th>
+<th>Costo</th>
+<th>Rango</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>e.semestre = 9</code></td>
+<td>0.1</td>
+<td>1</td>
+<td>−0.9</td>
+</tr>
+<tr>
+<td><code>e.promedio() &gt; 9</code></td>
+<td>0.2</td>
+<td>50</td>
+<td>−0.016</td>
+</tr>
+<tr>
+<td><code>e.tiene_beca()</code></td>
+<td>0.5</td>
+<td>5</td>
+<td>−0.1</td>
+</tr>
+</tbody>
+</table>
+<p>Orden óptimo: <code>semestre</code> (−0.9) → <code>tiene_beca</code> (−0.1) → <code>promedio</code> (−0.016).</p>
+<h3 id="materialización-de-métodos-function-materialization-kemper-kilger-y-moerkotte-1991">Materialización de métodos (<em>function materialization</em>, Kemper, Kilger y Moerkotte, 1991)<a class="headerlink" href="#materialización-de-métodos-function-materialization-kemper-kilger-y-moerkotte-1991" title="Permanent link">&para;</a></h3>
+<p>Precalcular y guardar el resultado de un método (<code>e.promedio()</code>) para indexarlo o evitar recalcularlo.</p>
+<ul>
+<li>Requiere que el método sea <strong>determinista</strong> y <strong>sin efectos secundarios</strong>.</li>
+<li>Hay que <strong>invalidar</strong> el valor cuando cambian los objetos de los que depende (aquí, las inscripciones y calificaciones): se registran sus <strong>dependencias</strong>.</li>
+<li>Es un compromiso entre consultas rápidas y actualizaciones más caras (equivale a una vista materializada).</li>
+</ul>
+<h2 id="5-desanidamiento-unnesting">5. Desanidamiento (<em>unnesting</em>)<a class="headerlink" href="#5-desanidamiento-unnesting" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="c1">-- Consulta anidada (correlacionada)</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="k">select</span><span class="w"> </span><span class="n">d</span><span class="p">.</span><span class="n">nombre</span>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="k">from</span><span class="w"> </span><span class="n">departamentos</span><span class="w"> </span><span class="n">d</span>
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="k">where</span><span class="w"> </span><span class="k">exists</span><span class="w"> </span><span class="n">p</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="n">d</span><span class="p">.</span><span class="n">profesores</span><span class="p">:</span><span class="w"> </span><span class="n">p</span><span class="p">.</span><span class="n">salario</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">80000</span>
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>
+<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="c1">-- Reescritura como semi-join</span>
+<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="k">select</span><span class="w"> </span><span class="k">distinct</span><span class="w"> </span><span class="n">p</span><span class="p">.</span><span class="n">pertenece_a</span><span class="p">.</span><span class="n">nombre</span>
+<a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a><span class="k">from</span><span class="w"> </span><span class="n">profesores</span><span class="w"> </span><span class="n">p</span>
+<a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a><span class="k">where</span><span class="w"> </span><span class="n">p</span><span class="p">.</span><span class="n">salario</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">80000</span>
+</code></pre></div>
+<p>La segunda forma puede usar un índice sobre <code>salario</code> y evita recorrer todos los departamentos. El desanidamiento clásico de Kim (1982) se extendió a OQL para cuantificadores y colecciones (Steenhagen, Apers y Blanken, 1994; Fegaras y Maier, 2000).</p>
+<h2 id="6-benchmarks">6. <em>Benchmarks</em><a class="headerlink" href="#6-benchmarks" title="Permanent link">&para;</a></h2>
+<h3 id="oo1-cattell-y-skeen-1992--el-benchmark-de-sun">OO1 (Cattell y Skeen, 1992) — «el <em>benchmark</em> de Sun»<a class="headerlink" href="#oo1-cattell-y-skeen-1992--el-benchmark-de-sun" title="Permanent link">&para;</a></h3>
+<ul>
+<li>BD de <strong>partes</strong> (20 000 en la versión pequeña), cada una con <strong>3 conexiones</strong> a otras partes (90 % hacia partes «cercanas» para premiar el <em>clustering</em>).</li>
+<li>Operaciones: <strong><em>lookup</em></strong> (1 000 búsquedas por id), <strong><em>traversal</em></strong> (recorrido de 7 niveles = 3 280 partes) e <strong><em>insert</em></strong> (100 partes nuevas con sus conexiones y <em>commit</em>).</li>
+<li>Mostró que los OODBMS eran <strong>órdenes de magnitud</strong> más rápidos que los SGBDR de la época en recorridos con caché caliente.</li>
+</ul>
+<h3 id="oo7-carey-dewitt-y-naughton-sigmod-1993">OO7 (Carey, DeWitt y Naughton, SIGMOD 1993)<a class="headerlink" href="#oo7-carey-dewitt-y-naughton-sigmod-1993" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Modelo de diseño CAD: <strong>módulos → ensambles → partes compuestas → partes atómicas</strong>, más documentos y manuales.</li>
+<li>Mide <strong>recorridos</strong> (T1, T2, T6…), <strong>consultas</strong> (Q1–Q8: búsquedas exactas, por rango, <em>joins</em> por valor) y <strong>modificaciones estructurales</strong>.</li>
+<li>Conclusión: ningún sistema ganaba en todo; el resultado dependía fuertemente del <em>clustering</em>, de la caché y de la arquitectura (servidor de páginas vs de objetos).</li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Lección práctica</p>
+<p>Mide <strong>con tu propia carga</strong>. Los <em>benchmarks</em> sintéticos sirven para entender compromisos, no para elegir producto.</p>
+</div>
+<h2 id="7-lista-de-verificación-de-rendimiento-en-una-bdoo">7. Lista de verificación de rendimiento en una BDOO<a class="headerlink" href="#7-lista-de-verificación-de-rendimiento-en-una-bdoo" title="Permanent link">&para;</a></h2>
+<ol>
+<li><strong>Modelado:</strong> literales para valores, objetos para entidades compartidas.</li>
+<li><strong><em>Clustering</em></strong> alineado con el recorrido dominante.</li>
+<li><strong>Índices</strong> sobre los predicados frecuentes y sobre las rutas críticas.</li>
+<li><strong>Tamaño de transacción:</strong> ni demasiado grande (memoria, conflictos) ni demasiado pequeño (sobrecosto de <em>commit</em>); usa <em>savepoints</em>.</li>
+<li><strong>Caché cliente:</strong> dimensiona la caché (<code>cache_size</code> en ZODB) según el conjunto de trabajo.</li>
+<li><strong>Colecciones grandes:</strong> árboles B (<code>BTrees</code>) en lugar de listas o diccionarios gigantes.</li>
+<li><strong>Métodos en consultas:</strong> baratos, deterministas y sin efectos secundarios.</li>
+<li><strong>Monitorear</strong> conflictos, <em>cache hits</em> y desreferencias por transacción.</li>
+</ol>
+<h2 id="errores-comunes">Errores comunes<a class="headerlink" href="#errores-comunes" title="Permanent link">&para;</a></h2>
+<ul>
+<li>❌ Suponer que filtrar primero siempre es mejor (falla con predicados costosos).</li>
+<li>❌ Materializar métodos que dependen de datos muy volátiles.</li>
+<li>❌ Guardar una colección de millones de elementos como una <code>PersistentList</code> (se carga y se reescribe entera).</li>
+<li>❌ Extrapolar un <em>benchmark</em> de laboratorio a producción.</li>
+</ul>
+<h2 id="conexiones-intercalación">Conexiones (intercalación)<a class="headerlink" href="#conexiones-intercalación" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Multi-índice e índice anidado ↔ <a href="../06-almacenamiento/">Lección 06</a>.</li>
+<li>Cuantificadores y <code>partition</code> ↔ <a href="../04-oql/">OQL</a>.</li>
+<li>N+1 como problema de navegación ↔ <a href="../10-orm/">ORM</a>.</li>
+</ul>
+<h2 id="preguntas-de-recuerdo-activo">Preguntas de recuerdo activo<a class="headerlink" href="#preguntas-de-recuerdo-activo" title="Permanent link">&para;</a></h2>
+<ol>
+<li>¿Cuándo conviene recorrer una ruta hacia atrás?</li>
+<li>¿Cómo se calcula el rango de un predicado y en qué orden se evalúan?</li>
+<li>¿Qué condiciones debe cumplir un método para materializarse?</li>
+<li>¿Qué mide OO1 y qué estructura modela OO7?</li>
+<li>¿Qué ventaja tiene un <em>pointer-based hash join</em> sobre el recorrido ingenuo?</li>
+</ol>
+<details class="success">
+<summary>Respuestas</summary>
+<ol>
+<li>Cuando el predicado sobre el final de la ruta es muy selectivo y hay índices o referencias inversas.</li>
+<li><code>(selectividad − 1) / costo</code>; se evalúan de menor a mayor rango.</li>
+<li>Ser determinista, no tener efectos secundarios y tener dependencias rastreables para invalidarlo.</li>
+<li>OO1 mide <em>lookup</em>, <em>traversal</em> e <em>insert</em> sobre partes y conexiones; OO7 modela un diseño CAD con módulos, ensambles, partes compuestas y atómicas.</li>
+<li>Lee cada página destino una sola vez agrupando las desreferencias, en vez de saltar aleatoriamente por el disco.</li>
+</ol>
+</details>
+<h2 id="tarjetas-de-repaso">Tarjetas de repaso<a class="headerlink" href="#tarjetas-de-repaso" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Frente</th>
+<th>Reverso</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>Forward traversal</em></td>
+<td>Seguir punteros desde el <em>extent</em> inicial</td>
+</tr>
+<tr>
+<td><em>Backward traversal</em></td>
+<td>Partir del predicado final y subir con índices o referencias inversas</td>
+</tr>
+<tr>
+<td>Materialización de métodos</td>
+<td>Precalcular resultados de métodos con invalidación por dependencias</td>
+</tr>
+<tr>
+<td>OO7</td>
+<td><em>Benchmark</em> CAD de Carey, DeWitt y Naughton (1993)</td>
+</tr>
+<tr>
+<td>Rango de predicado</td>
+<td>(selectividad − 1) / costo</td>
+</tr>
+</tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Volver al principio
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Pie" >
+        
+          
+          <a href="../10-orm/" class="md-footer__link md-footer__link--prev" aria-label="Anterior: 10 · ORM">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Anterior
+              </span>
+              <div class="md-ellipsis">
+                10 · ORM
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../12-sistemas-reales/" class="md-footer__link md-footer__link--next" aria-label="Siguiente: 12 · Sistemas reales">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Siguiente
+              </span>
+              <div class="md-ellipsis">
+                12 · Sistemas reales
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "navigation.footer", "navigation.indexes", "search.suggest", "search.highlight", "content.code.copy", "toc.follow"], "search": "../../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado al portapapeles", "clipboard.copy": "Copiar al portapapeles", "search.result.more.one": "1 m\u00e1s en esta p\u00e1gina", "search.result.more.other": "# m\u00e1s en esta p\u00e1gina", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.term.missing": "Falta", "select.version": "Seleccionar versi\u00f3n"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.c21346df.min.js"></script>
+      
+    
+  </body>
+</html>

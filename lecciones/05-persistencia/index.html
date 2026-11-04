@@ -1,0 +1,2327 @@
+
+<!doctype html>
+<html lang="es" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Curso neuro-optimizado (recuerdo activo, repetición espaciada, intercalación y técnica Feynman) sobre Bases de Datos Orientadas a Objetos.">
+      
+      
+        <meta name="author" content="Isidro Leos Viscencio">
+      
+      
+      
+        <link rel="prev" href="../04-oql/">
+      
+      
+        <link rel="next" href="../06-almacenamiento/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.0">
+    
+    
+      
+        <title>05 · Persistencia - Bases de Datos Orientadas a Objetos — Curso de 90 días</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.57a0d79d.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.fb2fffe2.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="teal">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#lección-05--persistencia-de-objetos" class="md-skip">
+          Saltar a contenido
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabecera">
+    <a href="../.." title="Bases de Datos Orientadas a Objetos — Curso de 90 días" class="md-header__button md-logo" aria-label="Bases de Datos Orientadas a Objetos — Curso de 90 días" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Bases de Datos Orientadas a Objetos — Curso de 90 días
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              05 · Persistencia
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="teal"  aria-label="Usar modo oscuro"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Usar modo oscuro" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="teal"  aria-label="Usar modo claro"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Usar modo claro" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Búsqueda" placeholder="Búsqueda" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Buscar">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Limpiar" aria-label="Limpiar" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando búsqueda
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Pestañas" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Inicio
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../programa-de-estudio/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Programa de estudio
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../00-como-estudiar/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Lecciones
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../ejemplos/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Ejemplos y ejercicios
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../autoevaluacion/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Autoevaluación
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../glosario/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Glosario
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navegación" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Bases de Datos Orientadas a Objetos — Curso de 90 días" class="md-nav__button md-logo" aria-label="Bases de Datos Orientadas a Objetos — Curso de 90 días" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Bases de Datos Orientadas a Objetos — Curso de 90 días
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Inicio
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../programa-de-estudio/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Programa de estudio
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lecciones
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Lecciones
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../00-como-estudiar/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    00 · Cómo estudiar este libro
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_2" id="__nav_3_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Fase 1 · Cimientos
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Fase 1 · Cimientos
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../01-fundamentos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    01 · Fundamentos y motivación
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02-modelo-de-objetos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    02 · El modelo de objetos
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03-odmg/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    03 · El estándar ODMG
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04-oql/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    04 · OQL
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3_3" id="__nav_3_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Fase 2 · Mecanismos internos
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Fase 2 · Mecanismos internos
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    05 · Persistencia
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    05 · Persistencia
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#objetivos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Objetivos
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#explícalo-como-feynman" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Explícalo como Feynman
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-persistencia-ortogonal-tres-principios" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Persistencia ortogonal: tres principios
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-modelos-de-persistencia" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Modelos de persistencia
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-pointer-swizzling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Pointer swizzling
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-ciclo-de-vida-de-un-objeto-persistente" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Ciclo de vida de un objeto persistente
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-zodb-una-bdoo-nativa-de-python" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. ZODB: una BDOO nativa de Python
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. ZODB: una BDOO nativa de Python">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#la-trampa-de-la-mutabilidad-en-zodb" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        La trampa de la mutabilidad en ZODB
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#granularidad-de-almacenamiento" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Granularidad de almacenamiento
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-db4o-java-embebida--estilo-histórico" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. db4o (Java, embebida) — estilo histórico
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-jdo-y-objectdb" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. JDO y ObjectDB
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-recolección-de-basura-persistente" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Recolección de basura persistente
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#errores-comunes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Errores comunes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conexiones-intercalación" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conexiones (intercalación)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#preguntas-de-recuerdo-activo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Preguntas de recuerdo activo
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tarjetas-de-repaso" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tarjetas de repaso
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../06-almacenamiento/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    06 · Almacenamiento e índices
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../07-transacciones/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    07 · Transacciones y concurrencia
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../08-evolucion-esquema/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    08 · Evolución de esquema y versionado
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_4" id="__nav_3_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Fase 3 · Integración y maestría
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Fase 3 · Integración y maestría
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../09-objeto-relacional/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    09 · Objeto-relacional
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../10-orm/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    10 · ORM
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../11-optimizacion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    11 · Optimización
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../12-sistemas-reales/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    12 · Sistemas reales
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../13-diseno-avanzado/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    13 · Diseño avanzado
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../ejemplos/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ejemplos y ejercicios
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Ejemplos y ejercicios
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ejemplos/B1-esquema-odl/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    B1 · Esquema ODL (básico)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ejemplos/B2-persistencia-alcanzabilidad/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    B2 · Persistencia por alcanzabilidad (básico)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ejemplos/I1-objeto-relacional/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    I1 · Objeto-relacional (intermedio)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ejemplos/I2-clustering-indices/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    I2 · Clustering e índices (intermedio)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ejemplos/I3-consultas-oql/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    I3 · Consultas OQL (intermedio)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ejemplos/A1-evolucion-concurrencia/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    A1 · Evolución y concurrencia (avanzado)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ejemplos/A2-proyecto-final/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    A2 · Proyecto final (avanzado)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../autoevaluacion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Autoevaluación
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../glosario/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Glosario
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#objetivos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Objetivos
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#explícalo-como-feynman" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Explícalo como Feynman
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-persistencia-ortogonal-tres-principios" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Persistencia ortogonal: tres principios
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-modelos-de-persistencia" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Modelos de persistencia
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-pointer-swizzling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Pointer swizzling
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-ciclo-de-vida-de-un-objeto-persistente" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Ciclo de vida de un objeto persistente
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-zodb-una-bdoo-nativa-de-python" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. ZODB: una BDOO nativa de Python
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. ZODB: una BDOO nativa de Python">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#la-trampa-de-la-mutabilidad-en-zodb" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        La trampa de la mutabilidad en ZODB
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#granularidad-de-almacenamiento" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Granularidad de almacenamiento
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-db4o-java-embebida--estilo-histórico" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. db4o (Java, embebida) — estilo histórico
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-jdo-y-objectdb" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. JDO y ObjectDB
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-recolección-de-basura-persistente" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Recolección de basura persistente
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#errores-comunes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Errores comunes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conexiones-intercalación" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conexiones (intercalación)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#preguntas-de-recuerdo-activo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Preguntas de recuerdo activo
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tarjetas-de-repaso" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tarjetas de repaso
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="lección-05--persistencia-de-objetos">Lección 05 · Persistencia de objetos<a class="headerlink" href="#lección-05--persistencia-de-objetos" title="Permanent link">&para;</a></h1>
+<h2 id="objetivos">Objetivos<a class="headerlink" href="#objetivos" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Enunciar los <strong>tres principios de la persistencia ortogonal</strong> (Atkinson y Morrison).</li>
+<li>Comparar los modelos de persistencia: por alcanzabilidad, por herencia, explícita y por declaración.</li>
+<li>Explicar el <strong><em>pointer swizzling</em></strong> y sus variantes.</li>
+<li>Programar persistencia con <strong>ZODB</strong> (Python) y reconocer el estilo de <strong>db4o</strong>, <strong>JDO</strong> y <strong>ObjectDB</strong> (Java).</li>
+<li>Entender los <strong>estados del ciclo de vida</strong> de un objeto persistente (fantasmas, <em>hollow</em>, <em>dirty</em>).</li>
+</ul>
+<h2 id="explícalo-como-feynman">Explícalo como Feynman<a class="headerlink" href="#explícalo-como-feynman" title="Permanent link">&para;</a></h2>
+<div class="admonition quote">
+<p class="admonition-title">Versión para un niño de 12 años</p>
+<p>Imagina un árbol de Navidad colgado de un gancho en el techo. Todo lo que está <strong>colgado</strong> del árbol (esferas, luces, la estrella) se queda arriba aunque apagues la luz. Lo que está en el suelo se barre al día siguiente. La raíz persistente es el gancho: <strong>todo lo que cuelga de ella, directa o indirectamente, se guarda</strong>.</p>
+</div>
+<h2 id="1-persistencia-ortogonal-tres-principios">1. Persistencia ortogonal: tres principios<a class="headerlink" href="#1-persistencia-ortogonal-tres-principios" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Principio</th>
+<th>Enunciado</th>
+<th>Consecuencia</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Ortogonalidad de tipos</strong></td>
+<td>Cualquier objeto, de cualquier tipo, puede ser persistente</td>
+<td>No hay tipos «de BD» y tipos «de memoria»</td>
+</tr>
+<tr>
+<td><strong>Persistencia por alcanzabilidad</strong> (transitiva)</td>
+<td>La vida de un objeto la determina su alcanzabilidad desde una raíz persistente</td>
+<td>El programador no marca objeto por objeto</td>
+</tr>
+<tr>
+<td><strong>Independencia de la persistencia</strong></td>
+<td>El código es el mismo para datos de corta y de larga vida</td>
+<td>Se reutilizan algoritmos sin cambios</td>
+</tr>
+</tbody>
+</table>
+<h2 id="2-modelos-de-persistencia">2. Modelos de persistencia<a class="headerlink" href="#2-modelos-de-persistencia" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Modelo</th>
+<th>Cómo se decide</th>
+<th>Ejemplos</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Por alcanzabilidad</strong></td>
+<td>Lo alcanzable desde una raíz</td>
+<td>ZODB, GemStone/S, PJama, ODMG Smalltalk</td>
+</tr>
+<tr>
+<td><strong>Por herencia</strong></td>
+<td>La clase hereda de una clase persistente</td>
+<td>ZODB (<code>Persistent</code> para objetos de primer nivel), ODMG C++ (<code>d_Object</code>)</td>
+</tr>
+<tr>
+<td><strong>Explícita</strong></td>
+<td>Llamada a <code>store</code>/<code>makePersistent</code>/<code>persist</code></td>
+<td>db4o (<code>store</code>), JDO (<code>makePersistent</code>), JPA (<code>persist</code>)</td>
+</tr>
+<tr>
+<td><strong>Por declaración / anotación</strong></td>
+<td>Metadatos marcan las clases <em>persistence-capable</em></td>
+<td>JDO (XML o anotaciones + <em>enhancer</em>), JPA (<code>@Entity</code>)</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">En la práctica se combinan</p>
+<p>JDO y JPA hacen <code>makePersistent</code> explícito <strong>y</strong> propagan por alcanzabilidad (JDO lo hace siempre; JPA solo si configuras <code>cascade = PERSIST</code>). ZODB exige heredar de <code>Persistent</code> para que un objeto tenga OID propio, pero el guardado ocurre por alcanzabilidad.</p>
+</div>
+<h2 id="3-pointer-swizzling">3. <em>Pointer swizzling</em><a class="headerlink" href="#3-pointer-swizzling" title="Permanent link">&para;</a></h2>
+<p>En disco, un objeto referencia a otro por <strong>OID</strong>; en memoria, por <strong>dirección virtual</strong>. <em>Swizzling</em> = convertir OID → puntero en memoria; <em>unswizzling</em> = lo inverso al escribir.</p>
+<table>
+<thead>
+<tr>
+<th>Dimensión</th>
+<th>Opciones</th>
+<th>Compromiso</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Cuándo</strong></td>
+<td><em>Eager</em> (al cargar el objeto, todas sus referencias) vs <em>lazy</em> (al primer uso)</td>
+<td><em>Eager</em> = costo inicial alto; <em>lazy</em> = verificación en cada desreferencia</td>
+</tr>
+<tr>
+<td><strong>Dónde</strong></td>
+<td><em>In-place</em> (en el mismo búfer de página) vs <em>copy</em> (copia a otra área)</td>
+<td><em>In-place</em> complica escribir la página de vuelta</td>
+</tr>
+<tr>
+<td><strong>Cómo</strong></td>
+<td>Software (comprobar un bit «es OID o puntero») vs <strong>hardware</strong> (memoria virtual)</td>
+<td>Hardware: sin costo de comprobación, pero dependiente del SO</td>
+</tr>
+<tr>
+<td><strong>Dirección</strong></td>
+<td>Directo (puntero al objeto) vs indirecto (puntero a una entrada de tabla de objetos residentes)</td>
+<td>Indirecto facilita expulsar objetos de la caché</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Ejemplo histórico:</strong> ObjectStore usaba la memoria virtual (técnica de Wilson, <em>Pointer Swizzling at Page Fault Time</em>, 1991): las páginas se mapean protegidas; al tocarlas, la falla de página carga los datos y <em>swizzlea</em> sus punteros. Así los punteros de C++ funcionaban «sin cambios».</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>Disco                           Memoria
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>┌──────────────┐  swizzling    ┌──────────────────┐
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>│ Pedido #77   │ ───────────▶  │ Pedido @0x7f10   │
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>│ cliente: OID │               │ cliente: 0x7f88 ─┼──▶ Cliente @0x7f88
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>│        = 42  │ ◀───────────  │                  │
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>└──────────────┘ unswizzling   └──────────────────┘
+</code></pre></div>
+<h2 id="4-ciclo-de-vida-de-un-objeto-persistente">4. Ciclo de vida de un objeto persistente<a class="headerlink" href="#4-ciclo-de-vida-de-un-objeto-persistente" title="Permanent link">&para;</a></h2>
+<p>Estados de JDO (los demás sistemas usan nombres parecidos):</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>            makePersistent()                commit()
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>Transient ───────────────────▶ Persistent-New ─────────▶ Hollow
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>                                                           │ leer campo
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>                                                           ▼
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>     Persistent-Deleted ◀── deletePersistent() ── Persistent-Clean
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>                                                           │ modificar campo
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>                                                           ▼
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>                                                    Persistent-Dirty ── commit() ──▶ Hollow
+</code></pre></div>
+<ul>
+<li><strong>Hollow / fantasma (<em>ghost</em>):</strong> existe en memoria con su OID, pero sin estado cargado; se llena al primer acceso (carga diferida).</li>
+<li><strong>Dirty:</strong> modificado en la transacción; se escribirá en <code>commit</code>.</li>
+</ul>
+<h2 id="5-zodb-una-bdoo-nativa-de-python">5. ZODB: una BDOO nativa de Python<a class="headerlink" href="#5-zodb-una-bdoo-nativa-de-python" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1"># pip install ZODB</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="kn">import</span><span class="w"> </span><span class="nn">ZODB</span><span class="o">,</span><span class="w"> </span><span class="nn">ZODB.FileStorage</span><span class="o">,</span><span class="w"> </span><span class="nn">transaction</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="kn">from</span><span class="w"> </span><span class="nn">persistent</span><span class="w"> </span><span class="kn">import</span> <span class="n">Persistent</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="kn">from</span><span class="w"> </span><span class="nn">persistent.list</span><span class="w"> </span><span class="kn">import</span> <span class="n">PersistentList</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="kn">from</span><span class="w"> </span><span class="nn">BTrees.OOBTree</span><span class="w"> </span><span class="kn">import</span> <span class="n">OOBTree</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="k">class</span><span class="w"> </span><span class="nc">Cliente</span><span class="p">(</span><span class="n">Persistent</span><span class="p">):</span>
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nombre</span><span class="p">,</span> <span class="n">ciudad</span><span class="p">):</span>
+<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">nombre</span> <span class="o">=</span> <span class="n">nombre</span>
+<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">ciudad</span> <span class="o">=</span> <span class="n">ciudad</span>
+<a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">pedidos</span> <span class="o">=</span> <span class="n">PersistentList</span><span class="p">()</span>   <span class="c1"># colección persistente: detecta cambios</span>
+<a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a>
+<a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">agregar_pedido</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pedido</span><span class="p">):</span>
+<a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">pedidos</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">pedido</span><span class="p">)</span>
+<a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a>
+<a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a>
+<a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a><span class="k">class</span><span class="w"> </span><span class="nc">Pedido</span><span class="p">(</span><span class="n">Persistent</span><span class="p">):</span>
+<a id="__codelineno-2-19" name="__codelineno-2-19" href="#__codelineno-2-19"></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">folio</span><span class="p">,</span> <span class="n">lineas</span><span class="p">):</span>
+<a id="__codelineno-2-20" name="__codelineno-2-20" href="#__codelineno-2-20"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">folio</span> <span class="o">=</span> <span class="n">folio</span>
+<a id="__codelineno-2-21" name="__codelineno-2-21" href="#__codelineno-2-21"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">lineas</span> <span class="o">=</span> <span class="n">lineas</span>              <span class="c1"># lista simple: se guarda junto al pedido</span>
+<a id="__codelineno-2-22" name="__codelineno-2-22" href="#__codelineno-2-22"></a>
+<a id="__codelineno-2-23" name="__codelineno-2-23" href="#__codelineno-2-23"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">total</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<a id="__codelineno-2-24" name="__codelineno-2-24" href="#__codelineno-2-24"></a>        <span class="k">return</span> <span class="nb">sum</span><span class="p">(</span><span class="n">cant</span> <span class="o">*</span> <span class="n">precio</span> <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">cant</span><span class="p">,</span> <span class="n">precio</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">lineas</span><span class="p">)</span>
+<a id="__codelineno-2-25" name="__codelineno-2-25" href="#__codelineno-2-25"></a>
+<a id="__codelineno-2-26" name="__codelineno-2-26" href="#__codelineno-2-26"></a>
+<a id="__codelineno-2-27" name="__codelineno-2-27" href="#__codelineno-2-27"></a><span class="n">storage</span> <span class="o">=</span> <span class="n">ZODB</span><span class="o">.</span><span class="n">FileStorage</span><span class="o">.</span><span class="n">FileStorage</span><span class="p">(</span><span class="s2">"tienda.fs"</span><span class="p">)</span>
+<a id="__codelineno-2-28" name="__codelineno-2-28" href="#__codelineno-2-28"></a><span class="n">db</span> <span class="o">=</span> <span class="n">ZODB</span><span class="o">.</span><span class="n">DB</span><span class="p">(</span><span class="n">storage</span><span class="p">)</span>
+<a id="__codelineno-2-29" name="__codelineno-2-29" href="#__codelineno-2-29"></a><span class="n">conn</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">open</span><span class="p">()</span>
+<a id="__codelineno-2-30" name="__codelineno-2-30" href="#__codelineno-2-30"></a><span class="n">root</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">root</span><span class="p">()</span>                         <span class="c1"># raíz persistente (un mapping)</span>
+<a id="__codelineno-2-31" name="__codelineno-2-31" href="#__codelineno-2-31"></a>
+<a id="__codelineno-2-32" name="__codelineno-2-32" href="#__codelineno-2-32"></a><span class="k">if</span> <span class="s2">"clientes"</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">root</span><span class="p">:</span>
+<a id="__codelineno-2-33" name="__codelineno-2-33" href="#__codelineno-2-33"></a>    <span class="n">root</span><span class="p">[</span><span class="s2">"clientes"</span><span class="p">]</span> <span class="o">=</span> <span class="n">OOBTree</span><span class="p">()</span>           <span class="c1"># árbol B persistente, escalable</span>
+<a id="__codelineno-2-34" name="__codelineno-2-34" href="#__codelineno-2-34"></a>
+<a id="__codelineno-2-35" name="__codelineno-2-35" href="#__codelineno-2-35"></a><span class="n">ana</span> <span class="o">=</span> <span class="n">Cliente</span><span class="p">(</span><span class="s2">"Ana"</span><span class="p">,</span> <span class="s2">"CDMX"</span><span class="p">)</span>
+<a id="__codelineno-2-36" name="__codelineno-2-36" href="#__codelineno-2-36"></a><span class="n">ana</span><span class="o">.</span><span class="n">agregar_pedido</span><span class="p">(</span><span class="n">Pedido</span><span class="p">(</span><span class="mi">1001</span><span class="p">,</span> <span class="p">[(</span><span class="s2">"teclado"</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mf">450.0</span><span class="p">),</span> <span class="p">(</span><span class="s2">"mouse"</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mf">300.0</span><span class="p">)]))</span>
+<a id="__codelineno-2-37" name="__codelineno-2-37" href="#__codelineno-2-37"></a><span class="n">root</span><span class="p">[</span><span class="s2">"clientes"</span><span class="p">][</span><span class="s2">"ana"</span><span class="p">]</span> <span class="o">=</span> <span class="n">ana</span>              <span class="c1"># ana y su pedido se vuelven alcanzables</span>
+<a id="__codelineno-2-38" name="__codelineno-2-38" href="#__codelineno-2-38"></a><span class="n">transaction</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>                       <span class="c1"># ← persistencia por alcanzabilidad</span>
+<a id="__codelineno-2-39" name="__codelineno-2-39" href="#__codelineno-2-39"></a>
+<a id="__codelineno-2-40" name="__codelineno-2-40" href="#__codelineno-2-40"></a><span class="nb">print</span><span class="p">(</span><span class="n">root</span><span class="p">[</span><span class="s2">"clientes"</span><span class="p">][</span><span class="s2">"ana"</span><span class="p">]</span><span class="o">.</span><span class="n">pedidos</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">total</span><span class="p">())</span>   <span class="c1"># 1200.0</span>
+<a id="__codelineno-2-41" name="__codelineno-2-41" href="#__codelineno-2-41"></a><span class="nb">print</span><span class="p">(</span><span class="n">ana</span><span class="o">.</span><span class="n">_p_oid</span><span class="p">,</span> <span class="n">ana</span><span class="o">.</span><span class="n">_p_changed</span><span class="p">)</span>                     <span class="c1"># OID de 8 bytes, False</span>
+<a id="__codelineno-2-42" name="__codelineno-2-42" href="#__codelineno-2-42"></a><span class="n">conn</span><span class="o">.</span><span class="n">close</span><span class="p">();</span> <span class="n">db</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</code></pre></div>
+<h3 id="la-trampa-de-la-mutabilidad-en-zodb">La trampa de la mutabilidad en ZODB<a class="headerlink" href="#la-trampa-de-la-mutabilidad-en-zodb" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="k">class</span><span class="w"> </span><span class="nc">Carrito</span><span class="p">(</span><span class="n">Persistent</span><span class="p">):</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">items</span> <span class="o">=</span> <span class="p">[]</span>            <span class="c1"># lista Python normal, NO persistente</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">agregar</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item</span><span class="p">):</span>
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">items</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>    <span class="c1"># ZODB no se entera: el atributo no se reasignó</span>
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">_p_changed</span> <span class="o">=</span> <span class="kc">True</span>     <span class="c1"># ← hay que avisar explícitamente</span>
+</code></pre></div>
+<p>Alternativas: usar <code>PersistentList</code>/<code>PersistentMapping</code>/<code>BTrees</code>, o reasignar (<code>self.items = self.items + [item]</code>).</p>
+<h3 id="granularidad-de-almacenamiento">Granularidad de almacenamiento<a class="headerlink" href="#granularidad-de-almacenamiento" title="Permanent link">&para;</a></h3>
+<p>Solo los objetos que heredan de <code>Persistent</code> tienen <strong>OID propio</strong> y se cargan por separado. Los objetos «normales» (listas, tuplas, <code>dict</code>) se serializan <strong>dentro</strong> del registro de su dueño persistente. Decide con cuidado:</p>
+<table>
+<thead>
+<tr>
+<th>Si el subobjeto…</th>
+<th>Hazlo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Es pequeño y siempre se lee con el dueño</td>
+<td>Atributo normal (literal)</td>
+</tr>
+<tr>
+<td>Es grande, compartido o se modifica por separado</td>
+<td><code>Persistent</code> (objeto con OID)</td>
+</tr>
+<tr>
+<td>Es una colección de miles de elementos</td>
+<td><code>BTrees</code> (OOBTree, IOBTree…)</td>
+</tr>
+</tbody>
+</table>
+<h2 id="6-db4o-java-embebida--estilo-histórico">6. db4o (Java, embebida) — estilo histórico<a class="headerlink" href="#6-db4o-java-embebida--estilo-histórico" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="n">ObjectContainer</span><span class="w"> </span><span class="n">db</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Db4oEmbedded</span><span class="p">.</span><span class="na">openFile</span><span class="p">(</span><span class="n">Db4oEmbedded</span><span class="p">.</span><span class="na">newConfiguration</span><span class="p">(),</span><span class="w"> </span><span class="s">"pilotos.db4o"</span><span class="p">);</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="w">    </span><span class="n">db</span><span class="p">.</span><span class="na">store</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">Piloto</span><span class="p">(</span><span class="s">"Checo Pérez"</span><span class="p">,</span><span class="w"> </span><span class="mi">99</span><span class="p">));</span><span class="w">                 </span><span class="c1">// persistencia explícita</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="w">    </span><span class="c1">// Query By Example (QBE): los campos nulos o en cero son comodines</span>
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="w">    </span><span class="n">ObjectSet</span><span class="o">&lt;</span><span class="n">Piloto</span><span class="o">&gt;</span><span class="w"> </span><span class="n">r</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">db</span><span class="p">.</span><span class="na">queryByExample</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">Piloto</span><span class="p">(</span><span class="s">"Checo Pérez"</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">));</span>
+<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>
+<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="w">    </span><span class="c1">// Native Query: la consulta es código Java tipado</span>
+<a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a><span class="w">    </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Piloto</span><span class="o">&gt;</span><span class="w"> </span><span class="n">top</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">db</span><span class="p">.</span><span class="na">query</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">Predicate</span><span class="o">&lt;</span><span class="n">Piloto</span><span class="o">&gt;</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a><span class="w">        </span><span class="kd">public</span><span class="w"> </span><span class="kt">boolean</span><span class="w"> </span><span class="nf">match</span><span class="p">(</span><span class="n">Piloto</span><span class="w"> </span><span class="n">p</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">p</span><span class="p">.</span><span class="na">getPuntos</span><span class="p">()</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">50</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+<a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a><span class="w">    </span><span class="p">});</span>
+<a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a><span class="p">}</span><span class="w"> </span><span class="k">finally</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a><span class="w">    </span><span class="n">db</span><span class="p">.</span><span class="na">close</span><span class="p">();</span>
+<a id="__codelineno-4-14" name="__codelineno-4-14" href="#__codelineno-4-14"></a><span class="p">}</span>
+</code></pre></div>
+<p>Conceptos clave de db4o:</p>
+<ul>
+<li><strong>Activation depth</strong> (profundidad de activación, por defecto 5): cuántos niveles del grafo se cargan al recuperar un objeto; más allá, los objetos llegan <strong>inactivos</strong> (campos en <code>null</code>/0) salvo que se use <em>transparent activation</em>.</li>
+<li><strong>Update depth</strong> (por defecto 1): <code>store()</code> sobre un objeto ya guardado solo actualiza sus campos directos; los cambios en objetos referenciados no se guardan si no se aumenta la profundidad o se usa <em>transparent persistence</em>.</li>
+</ul>
+<h2 id="7-jdo-y-objectdb">7. JDO y ObjectDB<a class="headerlink" href="#7-jdo-y-objectdb" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="c1">// JDO</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="n">PersistenceManager</span><span class="w"> </span><span class="n">pm</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pmf</span><span class="p">.</span><span class="na">getPersistenceManager</span><span class="p">();</span>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="n">Transaction</span><span class="w"> </span><span class="n">tx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pm</span><span class="p">.</span><span class="na">currentTransaction</span><span class="p">();</span>
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="w">    </span><span class="n">tx</span><span class="p">.</span><span class="na">begin</span><span class="p">();</span>
+<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="w">    </span><span class="n">Cliente</span><span class="w"> </span><span class="n">c</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Cliente</span><span class="p">(</span><span class="s">"Ana"</span><span class="p">);</span>
+<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="w">    </span><span class="n">c</span><span class="p">.</span><span class="na">getPedidos</span><span class="p">().</span><span class="na">add</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">Pedido</span><span class="p">(</span><span class="mi">1001</span><span class="p">));</span>
+<a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a><span class="w">    </span><span class="n">pm</span><span class="p">.</span><span class="na">makePersistent</span><span class="p">(</span><span class="n">c</span><span class="p">);</span><span class="w">                 </span><span class="c1">// el pedido se persiste por alcanzabilidad</span>
+<a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a><span class="w">    </span><span class="n">tx</span><span class="p">.</span><span class="na">commit</span><span class="p">();</span>
+<a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a><span class="p">}</span><span class="w"> </span><span class="k">finally</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">tx</span><span class="p">.</span><span class="na">isActive</span><span class="p">())</span><span class="w"> </span><span class="n">tx</span><span class="p">.</span><span class="na">rollback</span><span class="p">();</span>
+<a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a><span class="w">    </span><span class="n">pm</span><span class="p">.</span><span class="na">close</span><span class="p">();</span>
+<a id="__codelineno-5-13" name="__codelineno-5-13" href="#__codelineno-5-13"></a><span class="p">}</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="c1">// ObjectDB: una BDOO que expone la API de JPA</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="n">EntityManagerFactory</span><span class="w"> </span><span class="n">emf</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Persistence</span><span class="p">.</span><span class="na">createEntityManagerFactory</span><span class="p">(</span><span class="s">"objectdb:tienda.odb"</span><span class="p">);</span>
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="n">EntityManager</span><span class="w"> </span><span class="n">em</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">emf</span><span class="p">.</span><span class="na">createEntityManager</span><span class="p">();</span>
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="n">em</span><span class="p">.</span><span class="na">getTransaction</span><span class="p">().</span><span class="na">begin</span><span class="p">();</span>
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="n">em</span><span class="p">.</span><span class="na">persist</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">Cliente</span><span class="p">(</span><span class="s">"Ana"</span><span class="p">));</span>
+<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="n">em</span><span class="p">.</span><span class="na">getTransaction</span><span class="p">().</span><span class="na">commit</span><span class="p">();</span>
+<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="n">List</span><span class="o">&lt;</span><span class="n">Cliente</span><span class="o">&gt;</span><span class="w"> </span><span class="n">l</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">em</span><span class="p">.</span><span class="na">createQuery</span><span class="p">(</span><span class="s">"SELECT c FROM Cliente c WHERE c.nombre = 'Ana'"</span><span class="p">,</span><span class="w"> </span><span class="n">Cliente</span><span class="p">.</span><span class="na">class</span><span class="p">)</span>
+<a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a><span class="w">                    </span><span class="p">.</span><span class="na">getResultList</span><span class="p">();</span>
+</code></pre></div>
+<p>JDO usa <strong><em>bytecode enhancement</em></strong>: un proceso posterior a la compilación añade a cada clase <em>persistence-capable</em> el código que intercepta las lecturas y escrituras de campos (para cargar fantasmas y marcar <em>dirty</em>).</p>
+<h2 id="8-recolección-de-basura-persistente">8. Recolección de basura persistente<a class="headerlink" href="#8-recolección-de-basura-persistente" title="Permanent link">&para;</a></h2>
+<p>Si la persistencia es por alcanzabilidad, un objeto inalcanzable debe borrarse. Opciones:</p>
+<ul>
+<li><strong>GC persistente</strong> (GemStone/S, ZODB con <code>db.pack()</code> que elimina revisiones antiguas y objetos inalcanzables).</li>
+<li><strong>Borrado explícito</strong> (ODMG <code>delete()</code>, JDO <code>deletePersistent</code>) con riesgo de <strong>referencias colgantes</strong>.</li>
+</ul>
+<h2 id="errores-comunes">Errores comunes<a class="headerlink" href="#errores-comunes" title="Permanent link">&para;</a></h2>
+<ul>
+<li>❌ Mutar una lista simple dentro de un <code>Persistent</code> sin <code>_p_changed = True</code>.</li>
+<li>❌ Creer que <code>store()</code> en db4o guarda todo el grafo modificado (depende del <em>update depth</em>).</li>
+<li>❌ Hacer de cada valor diminuto un objeto <code>Persistent</code> (explosión de OID y de idas al servidor).</li>
+<li>❌ Confundir <em>lazy loading</em> (cargar estado al usarlo) con <em>lazy swizzling</em> (convertir OID → puntero al usarlo): están relacionados pero no son lo mismo.</li>
+</ul>
+<h2 id="conexiones-intercalación">Conexiones (intercalación)<a class="headerlink" href="#conexiones-intercalación" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Fantasmas ↔ <em>proxies</em> de carga diferida en Hibernate (<a href="../10-orm/">Lección 10</a>).</li>
+<li><em>Swizzling</em> ↔ servidor de páginas y caché cliente (<a href="../06-almacenamiento/">Lección 06</a>).</li>
+<li><code>commit</code> y conflictos en ZODB ↔ control optimista (<a href="../07-transacciones/">Lección 07</a>).</li>
+</ul>
+<h2 id="preguntas-de-recuerdo-activo">Preguntas de recuerdo activo<a class="headerlink" href="#preguntas-de-recuerdo-activo" title="Permanent link">&para;</a></h2>
+<ol>
+<li>Enuncia los tres principios de la persistencia ortogonal.</li>
+<li>¿Qué es <em>swizzling</em> perezoso y qué costo tiene?</li>
+<li>¿Por qué hace falta <code>_p_changed = True</code> en ZODB?</li>
+<li>¿Qué es el <em>activation depth</em> de db4o?</li>
+<li>¿Qué estado tiene un objeto JDO justo después de <code>commit</code>?</li>
+</ol>
+<details class="success">
+<summary>Respuestas</summary>
+<ol>
+<li>Ortogonalidad de tipos, persistencia por alcanzabilidad, independencia de la persistencia.</li>
+<li>Convertir el OID en puntero en la primera desreferencia; cuesta una comprobación en cada acceso.</li>
+<li>Porque mutar un objeto no persistente dentro de un <code>Persistent</code> no se detecta: no hay asignación de atributo.</li>
+<li>Cuántos niveles del grafo de objetos se cargan (activan) al recuperar un objeto.</li>
+<li><em>Hollow</em> (con <code>retainValues=false</code>, el valor por defecto).</li>
+</ol>
+</details>
+<h2 id="tarjetas-de-repaso">Tarjetas de repaso<a class="headerlink" href="#tarjetas-de-repaso" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Frente</th>
+<th>Reverso</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Raíz persistente</td>
+<td>Punto de entrada nombrado desde el que se calcula la alcanzabilidad</td>
+</tr>
+<tr>
+<td><em>Swizzling</em> por hardware</td>
+<td>Usa la protección de páginas de la memoria virtual para interceptar accesos</td>
+</tr>
+<tr>
+<td><code>db.pack()</code> en ZODB</td>
+<td>Elimina revisiones antiguas y objetos inalcanzables del almacenamiento</td>
+</tr>
+<tr>
+<td><em>Bytecode enhancement</em></td>
+<td>Instrumentación de clases para interceptar accesos a campos (JDO)</td>
+</tr>
+<tr>
+<td>Objeto fantasma</td>
+<td>Objeto con OID cargado pero sin estado; se llena al primer acceso</td>
+</tr>
+</tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Volver al principio
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Pie" >
+        
+          
+          <a href="../04-oql/" class="md-footer__link md-footer__link--prev" aria-label="Anterior: 04 · OQL">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Anterior
+              </span>
+              <div class="md-ellipsis">
+                04 · OQL
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../06-almacenamiento/" class="md-footer__link md-footer__link--next" aria-label="Siguiente: 06 · Almacenamiento e índices">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Siguiente
+              </span>
+              <div class="md-ellipsis">
+                06 · Almacenamiento e índices
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "navigation.footer", "navigation.indexes", "search.suggest", "search.highlight", "content.code.copy", "toc.follow"], "search": "../../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado al portapapeles", "clipboard.copy": "Copiar al portapapeles", "search.result.more.one": "1 m\u00e1s en esta p\u00e1gina", "search.result.more.other": "# m\u00e1s en esta p\u00e1gina", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.term.missing": "Falta", "select.version": "Seleccionar versi\u00f3n"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.c21346df.min.js"></script>
+      
+    
+  </body>
+</html>

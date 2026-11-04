@@ -1,0 +1,2334 @@
+
+<!doctype html>
+<html lang="es" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Curso neuro-optimizado (recuerdo activo, repetición espaciada, intercalación y técnica Feynman) sobre Bases de Datos Orientadas a Objetos.">
+      
+      
+        <meta name="author" content="Isidro Leos Viscencio">
+      
+      
+      
+        <link rel="prev" href="../01-fundamentos/">
+      
+      
+        <link rel="next" href="../03-odmg/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.0">
+    
+    
+      
+        <title>02 · El modelo de objetos - Bases de Datos Orientadas a Objetos — Curso de 90 días</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.57a0d79d.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.fb2fffe2.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="teal">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#lección-02--el-modelo-de-objetos" class="md-skip">
+          Saltar a contenido
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabecera">
+    <a href="../.." title="Bases de Datos Orientadas a Objetos — Curso de 90 días" class="md-header__button md-logo" aria-label="Bases de Datos Orientadas a Objetos — Curso de 90 días" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Bases de Datos Orientadas a Objetos — Curso de 90 días
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              02 · El modelo de objetos
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="teal"  aria-label="Usar modo oscuro"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Usar modo oscuro" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="teal"  aria-label="Usar modo claro"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Usar modo claro" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Búsqueda" placeholder="Búsqueda" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Buscar">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Limpiar" aria-label="Limpiar" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando búsqueda
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Pestañas" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Inicio
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../programa-de-estudio/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Programa de estudio
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../00-como-estudiar/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Lecciones
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../ejemplos/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Ejemplos y ejercicios
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../autoevaluacion/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Autoevaluación
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../glosario/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Glosario
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navegación" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Bases de Datos Orientadas a Objetos — Curso de 90 días" class="md-nav__button md-logo" aria-label="Bases de Datos Orientadas a Objetos — Curso de 90 días" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Bases de Datos Orientadas a Objetos — Curso de 90 días
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Inicio
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../programa-de-estudio/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Programa de estudio
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lecciones
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Lecciones
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../00-como-estudiar/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    00 · Cómo estudiar este libro
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3_2" id="__nav_3_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Fase 1 · Cimientos
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Fase 1 · Cimientos
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../01-fundamentos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    01 · Fundamentos y motivación
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    02 · El modelo de objetos
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    02 · El modelo de objetos
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#objetivos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Objetivos
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#explícalo-como-feynman" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Explícalo como Feynman
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-identidad-de-objetos-oid" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Identidad de objetos (OID)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Identidad de objetos (OID)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tres-nociones-de-igualdad" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tres nociones de igualdad
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cómo-se-implementa-un-oid" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ¿Cómo se implementa un OID?
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-objetos-complejos-y-constructores-de-tipo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Objetos complejos y constructores de tipo
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-literales-vs-objetos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Literales vs objetos
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-encapsulamiento" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Encapsulamiento
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-tipos-clases-y-extents" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Tipos, clases y extents
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-herencia-sobrescritura-sobrecarga-y-ligadura-tardía" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Herencia, sobrescritura, sobrecarga y ligadura tardía
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. Herencia, sobrescritura, sobrecarga y ligadura tardía">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#conflictos-en-herencia-múltiple" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conflictos en herencia múltiple
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-completitud-computacional-y-extensibilidad" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Completitud computacional y extensibilidad
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#errores-comunes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Errores comunes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conexiones-intercalación" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conexiones (intercalación)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#preguntas-de-recuerdo-activo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Preguntas de recuerdo activo
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tarjetas-de-repaso" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tarjetas de repaso
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03-odmg/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    03 · El estándar ODMG
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04-oql/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    04 · OQL
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_3" id="__nav_3_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Fase 2 · Mecanismos internos
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Fase 2 · Mecanismos internos
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../05-persistencia/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    05 · Persistencia
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../06-almacenamiento/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    06 · Almacenamiento e índices
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../07-transacciones/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    07 · Transacciones y concurrencia
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../08-evolucion-esquema/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    08 · Evolución de esquema y versionado
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_4" id="__nav_3_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Fase 3 · Integración y maestría
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Fase 3 · Integración y maestría
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../09-objeto-relacional/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    09 · Objeto-relacional
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../10-orm/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    10 · ORM
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../11-optimizacion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    11 · Optimización
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../12-sistemas-reales/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    12 · Sistemas reales
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../13-diseno-avanzado/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    13 · Diseño avanzado
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../ejemplos/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ejemplos y ejercicios
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Ejemplos y ejercicios
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ejemplos/B1-esquema-odl/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    B1 · Esquema ODL (básico)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ejemplos/B2-persistencia-alcanzabilidad/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    B2 · Persistencia por alcanzabilidad (básico)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ejemplos/I1-objeto-relacional/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    I1 · Objeto-relacional (intermedio)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ejemplos/I2-clustering-indices/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    I2 · Clustering e índices (intermedio)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ejemplos/I3-consultas-oql/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    I3 · Consultas OQL (intermedio)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ejemplos/A1-evolucion-concurrencia/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    A1 · Evolución y concurrencia (avanzado)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ejemplos/A2-proyecto-final/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    A2 · Proyecto final (avanzado)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../autoevaluacion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Autoevaluación
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../glosario/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Glosario
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#objetivos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Objetivos
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#explícalo-como-feynman" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Explícalo como Feynman
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-identidad-de-objetos-oid" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Identidad de objetos (OID)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Identidad de objetos (OID)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tres-nociones-de-igualdad" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tres nociones de igualdad
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cómo-se-implementa-un-oid" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ¿Cómo se implementa un OID?
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-objetos-complejos-y-constructores-de-tipo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Objetos complejos y constructores de tipo
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-literales-vs-objetos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Literales vs objetos
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-encapsulamiento" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Encapsulamiento
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-tipos-clases-y-extents" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Tipos, clases y extents
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-herencia-sobrescritura-sobrecarga-y-ligadura-tardía" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Herencia, sobrescritura, sobrecarga y ligadura tardía
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. Herencia, sobrescritura, sobrecarga y ligadura tardía">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#conflictos-en-herencia-múltiple" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conflictos en herencia múltiple
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-completitud-computacional-y-extensibilidad" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Completitud computacional y extensibilidad
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#errores-comunes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Errores comunes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conexiones-intercalación" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conexiones (intercalación)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#preguntas-de-recuerdo-activo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Preguntas de recuerdo activo
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tarjetas-de-repaso" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tarjetas de repaso
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="lección-02--el-modelo-de-objetos">Lección 02 · El modelo de objetos<a class="headerlink" href="#lección-02--el-modelo-de-objetos" title="Permanent link">&para;</a></h1>
+<h2 id="objetivos">Objetivos<a class="headerlink" href="#objetivos" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Distinguir <strong>identidad</strong>, <strong>igualdad superficial</strong> e <strong>igualdad profunda</strong>.</li>
+<li>Explicar cómo se generan y usan los <strong>OID</strong> (<em>Object Identifiers</em>).</li>
+<li>Modelar <strong>objetos complejos</strong> con constructores de tipo.</li>
+<li>Razonar sobre <strong>tipos vs clases</strong>, <em>extents</em>, herencia simple y múltiple, sobrescritura, sobrecarga y ligadura tardía.</li>
+<li>Entender el <strong>encapsulamiento</strong> y su tensión con las consultas <em>ad hoc</em>.</li>
+</ul>
+<h2 id="explícalo-como-feynman">Explícalo como Feynman<a class="headerlink" href="#explícalo-como-feynman" title="Permanent link">&para;</a></h2>
+<div class="admonition quote">
+<p class="admonition-title">Versión para un niño de 12 años</p>
+<p>Dos gemelos idénticos tienen la misma cara, la misma ropa y la misma altura: son <strong>iguales</strong>, pero no son <strong>la misma persona</strong>. Si uno se corta el pelo, sigue siendo él. El OID es como el alma del objeto: no depende de cómo se ve (sus valores) y nunca cambia mientras el objeto exista.</p>
+</div>
+<h2 id="1-identidad-de-objetos-oid">1. Identidad de objetos (OID)<a class="headerlink" href="#1-identidad-de-objetos-oid" title="Permanent link">&para;</a></h2>
+<p>Un <strong>OID</strong> es un identificador <strong>único</strong>, <strong>inmutable</strong>, <strong>generado por el sistema</strong> e <strong>independiente del valor</strong> del objeto. Se usa para referenciar objetos desde otros objetos.</p>
+<table>
+<thead>
+<tr>
+<th>Propiedad</th>
+<th>OID</th>
+<th>Clave primaria relacional</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Quién la genera</td>
+<td>El sistema</td>
+<td>El diseñador (natural o subrogada)</td>
+</tr>
+<tr>
+<td>¿Visible para el usuario?</td>
+<td>Normalmente no</td>
+<td>Sí</td>
+</tr>
+<tr>
+<td>¿Cambia si cambian los datos?</td>
+<td>Nunca</td>
+<td>Una clave natural puede cambiar</td>
+</tr>
+<tr>
+<td>¿Se reutiliza?</td>
+<td>No (ni tras borrar)</td>
+<td>Depende</td>
+</tr>
+<tr>
+<td>Alcance</td>
+<td>Toda la BD (o federación)</td>
+<td>Una tabla</td>
+</tr>
+</tbody>
+</table>
+<h3 id="tres-nociones-de-igualdad">Tres nociones de igualdad<a class="headerlink" href="#tres-nociones-de-igualdad" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Noción</th>
+<th>Definición</th>
+<th>Ejemplo Python</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Identidad</strong> (<code>o1 == o2</code> por OID)</td>
+<td>Son el <em>mismo</em> objeto</td>
+<td><code>a is b</code></td>
+</tr>
+<tr>
+<td><strong>Igualdad superficial</strong> (<em>shallow</em>)</td>
+<td>Mismos valores atómicos y <strong>mismas referencias</strong> (mismos OID)</td>
+<td><code>a.__dict__ == b.__dict__</code> con referencias idénticas</td>
+</tr>
+<tr>
+<td><strong>Igualdad profunda</strong> (<em>deep</em>)</td>
+<td>Grafos de objetos isomorfos con mismos valores hoja, aunque las referencias apunten a objetos distintos</td>
+<td>comparación recursiva</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">class</span><span class="w"> </span><span class="nc">Direccion</span><span class="p">:</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">calle</span><span class="p">,</span> <span class="n">ciudad</span><span class="p">):</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">calle</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ciudad</span> <span class="o">=</span> <span class="n">calle</span><span class="p">,</span> <span class="n">ciudad</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="k">class</span><span class="w"> </span><span class="nc">Persona</span><span class="p">:</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nombre</span><span class="p">,</span> <span class="n">direccion</span><span class="p">):</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">nombre</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">direccion</span> <span class="o">=</span> <span class="n">nombre</span><span class="p">,</span> <span class="n">direccion</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="n">d1</span> <span class="o">=</span> <span class="n">Direccion</span><span class="p">(</span><span class="s2">"Reforma 10"</span><span class="p">,</span> <span class="s2">"CDMX"</span><span class="p">)</span>
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="n">d2</span> <span class="o">=</span> <span class="n">Direccion</span><span class="p">(</span><span class="s2">"Reforma 10"</span><span class="p">,</span> <span class="s2">"CDMX"</span><span class="p">)</span>       <span class="c1"># mismo valor, otro objeto</span>
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="n">p1</span> <span class="o">=</span> <span class="n">Persona</span><span class="p">(</span><span class="s2">"Ana"</span><span class="p">,</span> <span class="n">d1</span><span class="p">)</span>
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="n">p2</span> <span class="o">=</span> <span class="n">Persona</span><span class="p">(</span><span class="s2">"Ana"</span><span class="p">,</span> <span class="n">d1</span><span class="p">)</span>                   <span class="c1"># comparte la MISMA dirección</span>
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="n">p3</span> <span class="o">=</span> <span class="n">Persona</span><span class="p">(</span><span class="s2">"Ana"</span><span class="p">,</span> <span class="n">d2</span><span class="p">)</span>                   <span class="c1"># dirección distinta pero igual en valor</span>
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>
+<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="k">def</span><span class="w"> </span><span class="nf">superficial</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>    <span class="k">return</span> <span class="nb">all</span><span class="p">(</span><span class="nb">getattr</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">k</span><span class="p">)</span> <span class="ow">is</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="n">k</span><span class="p">)</span> <span class="ow">or</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">k</span><span class="p">)</span> <span class="o">==</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="n">k</span><span class="p">)</span>
+<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>               <span class="ow">and</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="nb">getattr</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">k</span><span class="p">),</span> <span class="s1">'__dict__'</span><span class="p">)</span>
+<a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>               <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">vars</span><span class="p">(</span><span class="n">a</span><span class="p">))</span>
+<a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>
+<a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a><span class="k">def</span><span class="w"> </span><span class="nf">profunda</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+<a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a>    <span class="k">if</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="s1">'__dict__'</span><span class="p">):</span>
+<a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a>        <span class="k">return</span> <span class="n">a</span> <span class="o">==</span> <span class="n">b</span>
+<a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a>    <span class="k">return</span> <span class="nb">type</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="ow">is</span> <span class="nb">type</span><span class="p">(</span><span class="n">b</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">all</span><span class="p">(</span><span class="n">profunda</span><span class="p">(</span><span class="nb">getattr</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">k</span><span class="p">),</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="n">k</span><span class="p">))</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">vars</span><span class="p">(</span><span class="n">a</span><span class="p">))</span>
+<a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a>
+<a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a><span class="nb">print</span><span class="p">(</span><span class="n">p1</span> <span class="ow">is</span> <span class="n">p2</span><span class="p">)</span>             <span class="c1"># False → identidades distintas</span>
+<a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a><span class="nb">print</span><span class="p">(</span><span class="n">superficial</span><span class="p">(</span><span class="n">p1</span><span class="p">,</span> <span class="n">p2</span><span class="p">))</span>  <span class="c1"># True  → mismo nombre y misma referencia a d1</span>
+<a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a><span class="nb">print</span><span class="p">(</span><span class="n">superficial</span><span class="p">(</span><span class="n">p1</span><span class="p">,</span> <span class="n">p3</span><span class="p">))</span>  <span class="c1"># False → d1 y d2 son objetos distintos</span>
+<a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a><span class="nb">print</span><span class="p">(</span><span class="n">profunda</span><span class="p">(</span><span class="n">p1</span><span class="p">,</span> <span class="n">p3</span><span class="p">))</span>     <span class="c1"># True  → los grafos son iguales en valor</span>
+</code></pre></div>
+<div class="admonition tip">
+<p class="admonition-title">Implicación</p>
+<p>Identidad ⇒ igualdad superficial ⇒ igualdad profunda. La inversa <strong>no</strong> se cumple.</p>
+</div>
+<h3 id="cómo-se-implementa-un-oid">¿Cómo se implementa un OID?<a class="headerlink" href="#cómo-se-implementa-un-oid" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Físico:</strong> codifica la dirección (volumen, página, ranura). Rápido, pero mover el objeto exige dejar un <em>forwarding pointer</em>.</li>
+<li><strong>Lógico:</strong> número único que se resuelve por una tabla de mapeo OID → dirección. Más flexible, un acceso extra.</li>
+<li><strong>Híbrido/estructurado:</strong> p. ej. <em>número de clase + número de serie</em>; en Objectivity/DB, <code>base.contenedor.página.ranura</code>.</li>
+<li>En ZODB el OID es un entero de 8 bytes asignado al primer <code>commit</code>; la ubicación física la resuelve el <em>storage</em> (<code>FileStorage</code> mantiene un índice OID → posición en archivo).</li>
+</ul>
+<h2 id="2-objetos-complejos-y-constructores-de-tipo">2. Objetos complejos y constructores de tipo<a class="headerlink" href="#2-objetos-complejos-y-constructores-de-tipo" title="Permanent link">&para;</a></h2>
+<p>Los constructores ortogonales permiten construir cualquier estructura:</p>
+<table>
+<thead>
+<tr>
+<th>Constructor</th>
+<th>Semántica</th>
+<th>Duplicados</th>
+<th>Orden</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>tuple</code> / <code>struct</code></td>
+<td>Conjunto fijo de atributos con nombre</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>set</code></td>
+<td>Conjunto</td>
+<td>No</td>
+<td>No</td>
+</tr>
+<tr>
+<td><code>bag</code></td>
+<td>Multiconjunto</td>
+<td>Sí</td>
+<td>No</td>
+</tr>
+<tr>
+<td><code>list</code></td>
+<td>Secuencia</td>
+<td>Sí</td>
+<td>Sí</td>
+</tr>
+<tr>
+<td><code>array</code></td>
+<td>Secuencia indexada de tamaño (normalmente) fijo</td>
+<td>Sí</td>
+<td>Sí</td>
+</tr>
+<tr>
+<td><code>dictionary</code></td>
+<td>Mapa clave → valor</td>
+<td>Claves únicas</td>
+<td>No</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Ortogonalidad:</strong> cualquier constructor puede aplicarse a cualquier tipo, incluidos otros constructores: <code>set&lt;list&lt;tuple&lt;...&gt;&gt;&gt;</code>.</p>
+<p>Distingue también:</p>
+<ul>
+<li><strong>Objeto compuesto (<em>composite</em> / agregación fuerte):</strong> las partes dependen del todo (borrar el coche borra su motor). ORION lo llamaba <em>composite object</em> con referencias <em>dependientes exclusivas</em>.</li>
+<li><strong>Asociación:</strong> referencias entre objetos independientes (el coche <em>referencia</em> a su dueño, que existe por sí mismo).</li>
+</ul>
+<h2 id="3-literales-vs-objetos">3. Literales vs objetos<a class="headerlink" href="#3-literales-vs-objetos" title="Permanent link">&para;</a></h2>
+<p>En el modelo ODMG:</p>
+<ul>
+<li><strong>Objeto:</strong> tiene OID, es mutable, puede ser compartido.</li>
+<li><strong>Literal:</strong> <strong>no</strong> tiene OID, es un valor; se incrusta en el objeto que lo contiene (<code>long</code>, <code>string</code>, <code>date</code>, <code>struct Direccion {...}</code>).</li>
+</ul>
+<p>Elegir entre literal y objeto es una decisión de diseño: ¿esa cosa tiene <strong>vida propia</strong> y se <strong>comparte</strong>? Entonces es un objeto.</p>
+<h2 id="4-encapsulamiento">4. Encapsulamiento<a class="headerlink" href="#4-encapsulamiento" title="Permanent link">&para;</a></h2>
+<p>Un objeto expone una <strong>interfaz</strong> (firmas de métodos) y oculta su <strong>implementación</strong> (estructura y código). Beneficio: independencia lógica de datos a nivel de objeto.</p>
+<p><strong>Tensión:</strong> las consultas <em>ad hoc</em> quieren leer atributos directamente. Soluciones históricas:</p>
+<ul>
+<li>Exponer atributos de solo lectura a las consultas (ODMG lo permite: los atributos forman parte de la interfaz).</li>
+<li>Permitir consultas solo vía métodos (<em>accessors</em>), lo que dificulta la optimización.</li>
+<li>Encapsulamiento «relajado» para el optimizador y estricto para las aplicaciones.</li>
+</ul>
+<h2 id="5-tipos-clases-y-extents">5. Tipos, clases y <em>extents</em><a class="headerlink" href="#5-tipos-clases-y-extents" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Concepto</th>
+<th>Significado</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Tipo</strong></td>
+<td>Especificación (interfaz): qué operaciones y propiedades tiene. Noción de <strong>tiempo de compilación</strong></td>
+</tr>
+<tr>
+<td><strong>Clase</strong></td>
+<td>Implementación del tipo + fábrica de objetos (operación <code>new</code>) + a veces su <em>extent</em>. Noción de <strong>tiempo de ejecución</strong></td>
+</tr>
+<tr>
+<td><strong><em>Extent</em></strong></td>
+<td>El conjunto de todas las instancias persistentes de un tipo en la BD</td>
+</tr>
+</tbody>
+</table>
+<p>En ODMG: <code>interface</code> define solo comportamiento (no instanciable); <code>class</code> define estado + comportamiento (instanciable) y puede declarar un <code>extent</code> y claves (<code>key</code>).</p>
+<p><strong>Herencia de <em>extents</em>:</strong> el <em>extent</em> de una superclase <strong>incluye</strong> las instancias de sus subclases (inclusión de <em>extents</em>: <code>Empleados ⊆ Personas</code>).</p>
+<h2 id="6-herencia-sobrescritura-sobrecarga-y-ligadura-tardía">6. Herencia, sobrescritura, sobrecarga y ligadura tardía<a class="headerlink" href="#6-herencia-sobrescritura-sobrecarga-y-ligadura-tardía" title="Permanent link">&para;</a></h2>
+<p>ODMG distingue:</p>
+<ul>
+<li><strong>Herencia de comportamiento (ISA, <code>:</code>):</strong> una interfaz o clase hereda la interfaz de otra. Se permite <strong>herencia múltiple</strong> de interfaces.</li>
+<li><strong>Herencia de estado (<code>EXTENDS</code>):</strong> una clase hereda estado y comportamiento de <strong>una sola</strong> clase.</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>interface Imprimible { void imprimir(); };
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>class Persona { attribute string nombre; };
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>class Empleado extends Persona : Imprimible { attribute float salario; };
+</code></pre></div>
+<ul>
+<li><strong>Sobrescritura (<em>overriding</em>):</strong> la subclase redefine un método heredado.</li>
+<li><strong>Sobrecarga (<em>overloading</em>):</strong> el mismo nombre de operación en tipos distintos (<code>area()</code> en <code>Circulo</code> y en <code>Cuadrado</code>).</li>
+<li><strong>Ligadura tardía (<em>late binding</em>):</strong> la implementación concreta se elige <strong>en tiempo de ejecución</strong> según el tipo real del objeto.</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="k">class</span><span class="w"> </span><span class="nc">Figura</span><span class="p">:</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">area</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span> <span class="k">raise</span> <span class="ne">NotImplementedError</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="k">class</span><span class="w"> </span><span class="nc">Circulo</span><span class="p">(</span><span class="n">Figura</span><span class="p">):</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">r</span><span class="p">):</span> <span class="bp">self</span><span class="o">.</span><span class="n">r</span> <span class="o">=</span> <span class="n">r</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">area</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span> <span class="k">return</span> <span class="mf">3.14159</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">r</span> <span class="o">**</span> <span class="mi">2</span>
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="k">class</span><span class="w"> </span><span class="nc">Rectangulo</span><span class="p">(</span><span class="n">Figura</span><span class="p">):</span>
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">h</span><span class="p">):</span> <span class="bp">self</span><span class="o">.</span><span class="n">b</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">h</span> <span class="o">=</span> <span class="n">b</span><span class="p">,</span> <span class="n">h</span>
+<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">area</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span> <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">b</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">h</span>
+<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>
+<a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a><span class="n">figuras</span> <span class="o">=</span> <span class="p">[</span><span class="n">Circulo</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="n">Rectangulo</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)]</span>
+<a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a><span class="nb">print</span><span class="p">(</span><span class="nb">sum</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">area</span><span class="p">()</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">figuras</span><span class="p">))</span>   <span class="c1"># ligadura tardía: cada objeto usa su area()</span>
+</code></pre></div>
+<p>En una BDOO, la consulta <code>select f.area() from Figuras f</code> aplica ligadura tardía <strong>dentro del motor</strong>: el <em>extent</em> <code>Figuras</code> contiene círculos y rectángulos, y cada uno ejecuta su propio método. En relacional necesitarías <code>CASE tipo WHEN ...</code>.</p>
+<h3 id="conflictos-en-herencia-múltiple">Conflictos en herencia múltiple<a class="headerlink" href="#conflictos-en-herencia-múltiple" title="Permanent link">&para;</a></h3>
+<p>Si <code>C</code> hereda de <code>A</code> y <code>B</code> y ambos definen <code>m()</code>:</p>
+<ul>
+<li>Prohibirlo (error de compilación).</li>
+<li>Resolverlo por orden de declaración (Python usa <strong>MRO C3</strong>).</li>
+<li>Obligar a renombrar o a redefinir <code>m()</code> en <code>C</code>.</li>
+</ul>
+<h2 id="7-completitud-computacional-y-extensibilidad">7. Completitud computacional y extensibilidad<a class="headerlink" href="#7-completitud-computacional-y-extensibilidad" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Completitud computacional:</strong> se puede expresar cualquier función computable (el lenguaje de métodos es Turing-completo). SQL-92 no lo era; por eso se añadieron <em>stored procedures</em> y luego SQL/PSM.</li>
+<li><strong>Extensibilidad:</strong> los tipos definidos por el usuario se usan <strong>igual</strong> que los predefinidos (en atributos, consultas, índices).</li>
+</ul>
+<h2 id="errores-comunes">Errores comunes<a class="headerlink" href="#errores-comunes" title="Permanent link">&para;</a></h2>
+<ul>
+<li>❌ Confundir igualdad profunda con identidad al deduplicar objetos.</li>
+<li>❌ Modelar como objeto lo que es un valor (p. ej., <code>Dinero</code>, <code>Fecha</code>, <code>Direccion</code> no compartida) → más OID, más indirección, peor rendimiento.</li>
+<li>❌ Pensar que el <em>extent</em> de <code>Persona</code> excluye a los empleados.</li>
+<li>❌ Creer que encapsulamiento total es compatible sin costo con consultas <em>ad hoc</em> optimizadas.</li>
+</ul>
+<h2 id="conexiones-intercalación">Conexiones (intercalación)<a class="headerlink" href="#conexiones-intercalación" title="Permanent link">&para;</a></h2>
+<ul>
+<li>OID físicos vs lógicos ↔ <a href="../06-almacenamiento/">almacenamiento</a> y <em>pointer swizzling</em> en <a href="../05-persistencia/">persistencia</a>.</li>
+<li><em>Extents</em> ↔ <code>extent</code> de ODL en <a href="../03-odmg/">ODMG</a> y consultas sobre jerarquías en <a href="../04-oql/">OQL</a>.</li>
+<li>Identidad ↔ <em>identity map</em> en <a href="../10-orm/">ORM</a>.</li>
+</ul>
+<h2 id="preguntas-de-recuerdo-activo">Preguntas de recuerdo activo<a class="headerlink" href="#preguntas-de-recuerdo-activo" title="Permanent link">&para;</a></h2>
+<ol>
+<li>¿Qué cuatro propiedades tiene un OID?</li>
+<li>Ordena por fuerza: igualdad profunda, identidad, igualdad superficial.</li>
+<li>¿Qué diferencia hay entre un objeto y un literal en ODMG?</li>
+<li>¿Qué es la inclusión de <em>extents</em>?</li>
+<li>¿Qué es la ligadura tardía y por qué importa en consultas?</li>
+</ol>
+<details class="success">
+<summary>Respuestas</summary>
+<ol>
+<li>Único, inmutable, generado por el sistema, independiente del valor (y normalmente no reutilizable).</li>
+<li>Identidad (más fuerte) ⇒ superficial ⇒ profunda (más débil).</li>
+<li>El objeto tiene OID, es mutable y compartible; el literal es un valor sin OID incrustado en otro objeto.</li>
+<li>El <em>extent</em> de una superclase contiene también las instancias de sus subclases.</li>
+<li>Elegir en tiempo de ejecución la implementación del método según el tipo real; permite consultas polimórficas sobre <em>extents</em> heterogéneos.</li>
+</ol>
+</details>
+<h2 id="tarjetas-de-repaso">Tarjetas de repaso<a class="headerlink" href="#tarjetas-de-repaso" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Frente</th>
+<th>Reverso</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>OID físico vs lógico</td>
+<td>Físico codifica la dirección (rápido, frágil al mover); lógico requiere tabla de mapeo (flexible)</td>
+</tr>
+<tr>
+<td>Igualdad superficial</td>
+<td>Mismos valores y mismas referencias (mismos OID)</td>
+</tr>
+<tr>
+<td>Igualdad profunda</td>
+<td>Grafos isomorfos con valores hoja iguales</td>
+</tr>
+<tr>
+<td><code>EXTENDS</code> vs <code>:</code> en ODMG</td>
+<td><code>EXTENDS</code>: herencia de estado, simple; <code>:</code> herencia de comportamiento, múltiple</td>
+</tr>
+<tr>
+<td>Extensibilidad</td>
+<td>Los tipos de usuario se tratan igual que los predefinidos</td>
+</tr>
+</tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Volver al principio
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Pie" >
+        
+          
+          <a href="../01-fundamentos/" class="md-footer__link md-footer__link--prev" aria-label="Anterior: 01 · Fundamentos y motivación">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Anterior
+              </span>
+              <div class="md-ellipsis">
+                01 · Fundamentos y motivación
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../03-odmg/" class="md-footer__link md-footer__link--next" aria-label="Siguiente: 03 · El estándar ODMG">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Siguiente
+              </span>
+              <div class="md-ellipsis">
+                03 · El estándar ODMG
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "navigation.footer", "navigation.indexes", "search.suggest", "search.highlight", "content.code.copy", "toc.follow"], "search": "../../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado al portapapeles", "clipboard.copy": "Copiar al portapapeles", "search.result.more.one": "1 m\u00e1s en esta p\u00e1gina", "search.result.more.other": "# m\u00e1s en esta p\u00e1gina", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.term.missing": "Falta", "select.version": "Seleccionar versi\u00f3n"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.c21346df.min.js"></script>
+      
+    
+  </body>
+</html>
